@@ -1,0 +1,17 @@
+<ul>
+  <li *ngFor="let game of BoardGames">
+    <p-panel [toggleable]="true" [collapsed]="true">
+      <p-header>
+        {{game.Name}}
+      </p-header>
+      <span>List of expansins</span>
+      <br>
+      <span>Played Games</span>
+      <p-footer>
+        <label>Add Expansion</label>&nbsp;&nbsp;&nbsp;&nbsp;
+        <label>Play Game</label>
+      </p-footer>
+    </p-panel>
+  </li>
+</ul>
+<label>Add new game</label>
