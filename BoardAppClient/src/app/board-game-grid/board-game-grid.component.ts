@@ -65,4 +65,8 @@ export class BoardGameGridComponent implements OnInit {
   ngOnInit() {
   }
 
+  AddExpansion() {
+    console.log("Launch add expansion popup.");
+  }
+
 }
