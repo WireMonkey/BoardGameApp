@@ -1,12 +1,16 @@
 <ul>
-  <li *ngFor="let game of BoardGames">
+  <li *ngFor="let game of BoardGames" id="game._id">
     <p-panel [toggleable]="true" [collapsed]="true">
       <p-header>
         {{game.Name}}
       </p-header>
-      <span>List of expansins</span>
-      <br>
-      <span>Played Games</span>
+      <h5>Expansions</h5>
+      <ul>
+        <li *ngFor="let exp of game.Expansions">
+          {{exp}}
+        </li>
+      </ul>
+      <h5>Played Games</h5>
       <p-footer>
         <label>Add Expansion</label>&nbsp;&nbsp;&nbsp;&nbsp;
         <label>Play Game</label>

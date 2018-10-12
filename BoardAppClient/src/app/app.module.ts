@@ -12,6 +12,7 @@ import {TooltipModule} from 'primeng/tooltip';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {AccordionModule} from 'primeng/accordion';
 import {PanelModule} from 'primeng/panel';
+import {TableModule} from 'primeng/table';
 
 
 //Components
@@ -34,7 +35,8 @@ import { BoardGameGridComponent } from './board-game-grid/board-game-grid.compon
     TooltipModule,
     OverlayPanelModule,
     AccordionModule,
-    PanelModule
+    PanelModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
