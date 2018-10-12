@@ -11,6 +11,20 @@
         </li>
       </ul>
       <h5>Played Games</h5>
+        <p-table [value]="game.Plays">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Date</th>
+              <th>Players</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-play>
+            <tr>
+              <td>{{play.Date}}</td>
+              <td>{{play.Players}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
       <p-footer>
         <label>Add Expansion</label>&nbsp;&nbsp;&nbsp;&nbsp;
         <label>Play Game</label>
