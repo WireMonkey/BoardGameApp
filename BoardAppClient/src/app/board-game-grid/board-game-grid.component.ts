@@ -69,4 +69,8 @@ export class BoardGameGridComponent implements OnInit {
     console.log("Launch add expansion popup.");
   }
 
+  PlayGame() {
+    console.log("Launch Play game popup.");
+  }
+
 }
