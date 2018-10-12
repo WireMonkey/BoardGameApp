@@ -23,7 +23,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "../BoardAppClient/node_modules/primeng/resources/themes/omega/theme.css",
+              "../BoardAppClient/node_modules/font-awesome/css/font-awesome.css",
+              "../BoardAppClient/node_modules/primeng/resources/primeng.css",
+              "../BoardAppClient/node_modules/primeicons/primeicons.css"
             ],
             "scripts": []
           },
