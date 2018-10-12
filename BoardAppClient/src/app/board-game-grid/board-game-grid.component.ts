@@ -20,7 +20,8 @@ export class BoardGameGridComponent implements OnInit {
           "Players": [
             "Person1",
             "Person2"
-          ]
+          ],
+          "winner":"person1"
         }
       ]
     },
@@ -37,7 +38,8 @@ export class BoardGameGridComponent implements OnInit {
           "Players": [
             "Person1",
             "Person2"
-          ]
+          ],
+          "winner":"person1"
         }
       ]
     },
@@ -54,11 +56,14 @@ export class BoardGameGridComponent implements OnInit {
           "Players": [
             "Person1",
             "Person2"
-          ]
+          ],
+          "winner":"person1"
         }
       ]
     }
   ]
+
+  expDialogShow: boolean = false;
 
   constructor() { }
 
@@ -66,7 +71,7 @@ export class BoardGameGridComponent implements OnInit {
   }
 
   AddExpansion() {
-    console.log("Launch add expansion popup.");
+    this.expDialogShow = true;
   }
 
   PlayGame() {

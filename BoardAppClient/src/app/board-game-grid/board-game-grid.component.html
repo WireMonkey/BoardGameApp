@@ -33,3 +33,13 @@
   </li>
 </ul>
 <button pButton type="button" label="Add new Board Game" class="ui-button-raised" (click)="AddBoardGame($event)"></button>
+<p-dialog title="Add Expansion" [(visible)]="expDialogShow" [modal]="true" [responsive]="true" [maximizable]="true" [baseZIndex]="10000">
+    <span class="ui-float-label">
+        <input id="expName" type="text" size="30" pInputText> 
+        <label for="expName">Expansion Name</label>
+    </span>
+  <p-footer>
+      <button type="button" pButton icon="pi pi-check" (click)="expDialogShow=false" label="Yes"></button>
+      <button type="button" pButton icon="pi pi-close" (click)="expDialogShow=false" label="No" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
