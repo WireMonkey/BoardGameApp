@@ -63,52 +63,15 @@ export class BoardGameGridComponent implements OnInit {
     }
   ]
 
-
-  playGameDialogShow: boolean = false;
   addBoardGameShow: boolean = false;
-
-  player: any;
-  players: string[] = [];
-  filteredPlayers: any[];
-  playerList: string[] = ["player1","player2","player3","player4"];
-  date1: Date;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  PlayGame() {
-    this.playGameDialogShow = true;
-  }
-
   AddBoardGame() {
     this.addBoardGameShow = true;
   }
 
-  isEmptyOrSpaces(str){
-    return str === null || str.match(/^ *$/) !== null;
-  }
-
-  filterPlayers(event) {
-    this.filteredPlayers = [];
-    for(let i = 0; i < this.playerList.length; i++) {
-        let brand = this.playerList[i];
-        if(brand.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
-            this.filteredPlayers.push(brand);
-        }
-    }
-  }
-
-  autoCompleteKeyPress(event){
-    if ((event.keyCode === 188 || event.keyCode === 13) && (!this.isEmptyOrSpaces(this.player))){
-      this.players.push(this.player);
-      this.player = "";
-    }
-  }
-
-  addPlayer(event){
-    this.players.push(this.player);
-    this.player = "";
-  }
 }
