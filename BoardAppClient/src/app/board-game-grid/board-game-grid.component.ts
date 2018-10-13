@@ -63,15 +63,10 @@ export class BoardGameGridComponent implements OnInit {
     }
   ]
 
-  addBoardGameShow: boolean = false;
-
   constructor() { }
 
   ngOnInit() {
   }
-
-  AddBoardGame() {
-    this.addBoardGameShow = true;
-  }
+  
 
 }

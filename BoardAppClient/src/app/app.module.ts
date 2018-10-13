@@ -21,13 +21,15 @@ import { AppComponent } from './app.component';
 import { BoardGameGridComponent } from './board-game-grid/board-game-grid.component';
 import { AddExpansionModalComponent } from './add-expansion-modal/add-expansion-modal.component';
 import { PlayGameModalComponent } from './play-game-modal/play-game-modal.component';
+import { AddBoardGameModalComponent } from './add-board-game-modal/add-board-game-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BoardGameGridComponent,
     AddExpansionModalComponent,
-    PlayGameModalComponent
+    PlayGameModalComponent,
+    AddBoardGameModalComponent
   ],
   imports: [
     BrowserModule,
