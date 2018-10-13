@@ -26,7 +26,7 @@
           </ng-template>
         </p-table>
       <p-footer>
-        <button pButton type="button" label="Add Expansion" class="ui-button-raised" (click)="AddExpansion($event)"></button>&nbsp;
+        <app-add-expansion-modal></app-add-expansion-modal>
         <button pButton type="button" label="Play Game" class="ui-button-raised ui-button-success" (click)="PlayGame($event)"></button>
       </p-footer>
     </p-panel>
@@ -35,17 +35,6 @@
 <button pButton type="button" label="Add new Board Game" class="ui-button-raised" (click)="AddBoardGame($event)"></button>
 
 <!--Popups-->
-<p-dialog title="Add Expansion" [(visible)]="expDialogShow" [modal]="true" [responsive]="true" [maximizable]="true" [baseZIndex]="10000">
-    <span class="ui-float-label">
-        <input id="expName" type="text" size="30" pInputText>
-        <label for="expName">Expansion Name</label>
-    </span>
-  <p-footer>
-      <button type="button" pButton icon="pi pi-check" (click)="expDialogShow=false" label="Add"></button>
-      <button type="button" pButton icon="pi pi-close" (click)="expDialogShow=false" label="Cancel" class="ui-button-secondary"></button>
-  </p-footer>
-</p-dialog>
-
 <p-dialog title="Play a game" [(visible)]="playGameDialogShow" [modal]="true" [responsive]="true" [maximizable]="true" [baseZIndex]="10000">
     <label>Date: </label><p-calendar [(ngModel)]="date1"></p-calendar><br>
     <p-autoComplete [(ngModel)]="player" [suggestions]="filteredPlayers" (completeMethod)="filterPlayers($event)" styleClass="wid100"

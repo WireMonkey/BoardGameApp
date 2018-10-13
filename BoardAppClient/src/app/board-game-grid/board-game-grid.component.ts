@@ -63,7 +63,7 @@ export class BoardGameGridComponent implements OnInit {
     }
   ]
 
-  expDialogShow: boolean = false;
+
   playGameDialogShow: boolean = false;
   addBoardGameShow: boolean = false;
 
@@ -76,10 +76,6 @@ export class BoardGameGridComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  AddExpansion() {
-    this.expDialogShow = true;
   }
 
   PlayGame() {

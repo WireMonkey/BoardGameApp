@@ -19,11 +19,13 @@ import {DialogModule} from 'primeng/dialog';
 //Components
 import { AppComponent } from './app.component';
 import { BoardGameGridComponent } from './board-game-grid/board-game-grid.component';
+import { AddExpansionModalComponent } from './add-expansion-modal/add-expansion-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BoardGameGridComponent
+    BoardGameGridComponent,
+    AddExpansionModalComponent
   ],
   imports: [
     BrowserModule,
