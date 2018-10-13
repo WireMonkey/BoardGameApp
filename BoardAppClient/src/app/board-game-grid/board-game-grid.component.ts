@@ -65,6 +65,7 @@ export class BoardGameGridComponent implements OnInit {
 
   expDialogShow: boolean = false;
   playGameDialogShow: boolean = false;
+  addBoardGameShow: boolean = false;
 
   player: any;
   players: string[] = [];
@@ -86,7 +87,7 @@ export class BoardGameGridComponent implements OnInit {
   }
 
   AddBoardGame() {
-    console.log("Launch Add New Board Game popup.");
+    this.addBoardGameShow = true;
   }
 
   isEmptyOrSpaces(str){

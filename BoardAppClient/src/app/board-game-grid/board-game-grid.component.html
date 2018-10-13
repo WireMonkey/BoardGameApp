@@ -41,8 +41,8 @@
         <label for="expName">Expansion Name</label>
     </span>
   <p-footer>
-      <button type="button" pButton icon="pi pi-check" (click)="expDialogShow=false" label="Yes"></button>
-      <button type="button" pButton icon="pi pi-close" (click)="expDialogShow=false" label="No" class="ui-button-secondary"></button>
+      <button type="button" pButton icon="pi pi-check" (click)="expDialogShow=false" label="Add"></button>
+      <button type="button" pButton icon="pi pi-close" (click)="expDialogShow=false" label="Cancel" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
 
@@ -59,7 +59,18 @@
         <label for="winnerTxt">Winner</label>
       </span>
   <p-footer>
-      <button type="button" pButton icon="pi pi-check" (click)="playGameDialogShow=false" label="Yes"></button>
-      <button type="button" pButton icon="pi pi-close" (click)="playGameDialogShow=false" label="No" class="ui-button-secondary"></button>
+      <button type="button" pButton icon="pi pi-check" (click)="playGameDialogShow=false" label="Done"></button>
+      <button type="button" pButton icon="pi pi-close" (click)="playGameDialogShow=false" label="Cancel" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
+<p-dialog title="Add New BoardGame" [(visible)]="addBoardGameShow" [modal]="true" [responsive]="true" [maximizable]="true" [baseZIndex]="10000">
+    <span class="ui-float-label">
+        <input id="expName" type="text" size="30" pInputText>
+        <label for="expName">Boardgame Name</label>
+    </span>
+  <p-footer>
+      <button type="button" pButton icon="pi pi-check" (click)="addBoardGameShow=false" label="Add"></button>
+      <button type="button" pButton icon="pi pi-close" (click)="addBoardGameShow=false" label="Cancel" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
