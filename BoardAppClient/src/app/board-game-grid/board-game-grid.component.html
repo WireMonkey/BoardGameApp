@@ -37,7 +37,7 @@
 <!--Popups-->
 <p-dialog title="Add Expansion" [(visible)]="expDialogShow" [modal]="true" [responsive]="true" [maximizable]="true" [baseZIndex]="10000">
     <span class="ui-float-label">
-        <input id="expName" type="text" size="30" pInputText> 
+        <input id="expName" type="text" size="30" pInputText>
         <label for="expName">Expansion Name</label>
     </span>
   <p-footer>
@@ -47,14 +47,17 @@
 </p-dialog>
 
 <p-dialog title="Play a game" [(visible)]="playGameDialogShow" [modal]="true" [responsive]="true" [maximizable]="true" [baseZIndex]="10000">
+    <label>Date: </label><p-calendar [(ngModel)]="date1"></p-calendar><br>
     <p-autoComplete [(ngModel)]="player" [suggestions]="filteredPlayers" (completeMethod)="filterPlayers($event)" styleClass="wid100"
-        [minLength]="1" placeholder="Add Players" (onKeyUp)="autoCompleteKeyPress($event)" (onSelect)="addPlayer($event)" [dropdown]="true">
+      [minLength]="1" placeholder="Add Players" (onKeyUp)="autoCompleteKeyPress($event)" (onSelect)="addPlayer($event)" [dropdown]="true">
     </p-autoComplete>
     <ul>
         <li *ngFor="let p of players">{{p}}</li>
     </ul>
-    <h6>Date</h6>
-    <p-calendar [(ngModel)]="date1"></p-calendar>
+    <span class="ui-float-label">
+        <input id="winnerTxt" type="text" size="40" pInputText>
+        <label for="winnerTxt">Winner</label>
+      </span>
   <p-footer>
       <button type="button" pButton icon="pi pi-check" (click)="playGameDialogShow=false" label="Yes"></button>
       <button type="button" pButton icon="pi pi-close" (click)="playGameDialogShow=false" label="No" class="ui-button-secondary"></button>
