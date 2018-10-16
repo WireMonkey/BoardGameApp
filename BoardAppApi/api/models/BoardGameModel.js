@@ -9,9 +9,7 @@ var BoardGameSchema = new Schema({
         required: "Enter name for the boardgame."
     },
     expansions: {
-        type: [{
-            type:string
-        }]
+        type: [String]
     },
     plays: {
         type: [
@@ -21,10 +19,10 @@ var BoardGameSchema = new Schema({
                     default: Date.now,
                 },
                 players: [{
-                    type: string
+                    type: String
                 }],
                 winner: {
-                    type: string
+                    type: String
                 }
             }
         ]

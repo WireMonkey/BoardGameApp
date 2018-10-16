@@ -1,11 +1,12 @@
 'use strict';
 
+require('./../models/BoardGameModel');
 const mongoose = require('mongoose'),
-  Task = mongoose.model('BoardGame');
+  BoardGames = mongoose.model('BoardGames');
 const playerController = require('./PlayerController.js');
 
 exports.list_all_tasks = function(req, res) {
-  Task.find({}, function(err, task) {
+  BoardGames.find({}, function(err, task) {
     if (err)
       res.send(err);
     res.json(task);
@@ -13,8 +14,8 @@ exports.list_all_tasks = function(req, res) {
 };
 
 exports.create_a_task = function(req, res) {
-  var new_task = new Task(req.body);
-  new_task.save(function(err, task) {
+  var new_BoardGames = new BoardGames(req.body);
+  new_BoardGames.save(function(err, task) {
     if (err){
       res.send(err);
     }
@@ -24,7 +25,7 @@ exports.create_a_task = function(req, res) {
 };
 
 exports.read_a_task = function(req, res) {
-  Task.findById(req.params._id, function(err, task) {
+  BoardGames.findById(req.params._id, function(err, task) {
     if (err)
       res.send(err);
     res.json(task);
@@ -32,7 +33,7 @@ exports.read_a_task = function(req, res) {
 };
 
 exports.update_a_task = function(req, res) {
-  Task.findOneAndUpdate({_id: req.params._id}, req.body, {new: true}, function(err, task) {
+  BoardGames.findOneAndUpdate({_id: req.params._id}, req.body, {new: true}, function(err, task) {
     if (err) {
       res.send(err);
     }
@@ -49,7 +50,7 @@ exports.update_a_task = function(req, res) {
 };
 
 exports.delete_a_task = function(req, res) {
-  Task.remove({
+  BoardGames.remove({
     _id: req.params._id
   }, function(err, task) {
     if (err)
@@ -59,7 +60,7 @@ exports.delete_a_task = function(req, res) {
 };
 
 function GetAllPlayers() {
-  Task.find({}, function(err, tasks){
+  BoardGames.find({}, function(err, tasks){
     if(err){
       return null;
     }
