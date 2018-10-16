@@ -10,7 +10,7 @@ mongoose.connect('mongodb://localhost/blah');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var routes = require('./api/routes/BoardGameModel'); //importing route
+var routes = require('./routes/Routes'); //importing route
 routes(app); //register the route
 
 app.listen(port);
