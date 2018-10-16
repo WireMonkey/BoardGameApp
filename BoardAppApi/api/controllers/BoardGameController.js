@@ -18,13 +18,7 @@ exports.create_a_task = function(req, res) {
     if (err){
       res.send(err);
     }
-    //Update player cache
-    let players = GetAllPlayers();
-    if(players != null){
-      playerController.Set_Players({body: players},null);
-    } else {
-      //Log this somewhere
-    }
+    
     res.json(task);
   });
 };
@@ -39,8 +33,17 @@ exports.read_a_task = function(req, res) {
 
 exports.update_a_task = function(req, res) {
   Task.findOneAndUpdate({_id: req.params._id}, req.body, {new: true}, function(err, task) {
-    if (err)
+    if (err) {
       res.send(err);
+    }
+    //Update player cache
+    let players = GetAllPlayers();
+    if(players != null){
+      playerController.Set_Players({body: players},null);
+    } else {
+      //Log this somewhere
+    }
+    
     res.json(task);
   });
 };
