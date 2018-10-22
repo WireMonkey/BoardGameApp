@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-//PrimeNg
+//Node_modules
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {CalendarModule} from 'primeng/calendar';
 import {ButtonModule} from 'primeng/button';
@@ -14,7 +14,7 @@ import {AccordionModule} from 'primeng/accordion';
 import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
 import {DialogModule} from 'primeng/dialog';
-
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 //Components
 import { AppComponent } from './app.component';
@@ -22,6 +22,10 @@ import { BoardGameGridComponent } from './board-game-grid/board-game-grid.compon
 import { AddExpansionModalComponent } from './add-expansion-modal/add-expansion-modal.component';
 import { PlayGameModalComponent } from './play-game-modal/play-game-modal.component';
 import { AddBoardGameModalComponent } from './add-board-game-modal/add-board-game-modal.component';
+
+//services
+//import {BordGameService} from './services/bord-game-service.service';
+//import {PlayersService} from './services/players.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,10 @@ import { AddBoardGameModalComponent } from './add-board-game-modal/add-board-gam
     AccordionModule,
     PanelModule,
     TableModule,
-    DialogModule
+    DialogModule,
+    //BordGameService,
+    //PlayersService,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
