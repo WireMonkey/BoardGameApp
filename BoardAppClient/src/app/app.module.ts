@@ -24,6 +24,7 @@ import { AddExpansionModalComponent } from './add-expansion-modal/add-expansion-
 import { PlayGameModalComponent } from './play-game-modal/play-game-modal.component';
 import { AddBoardGameModalComponent } from './add-board-game-modal/add-board-game-modal.component';
 import { RefreshDataComponent } from './refresh-data/refresh-data.component';
+import { ErrorButtonComponent } from './error-button/error-button.component';
 
 //services
 //import {BordGameService} from './services/bord-game-service.service';
@@ -36,7 +37,8 @@ import { RefreshDataComponent } from './refresh-data/refresh-data.component';
     AddExpansionModalComponent,
     PlayGameModalComponent,
     AddBoardGameModalComponent,
-    RefreshDataComponent
+    RefreshDataComponent,
+    ErrorButtonComponent
   ],
   imports: [
     BrowserModule,
