@@ -15,6 +15,7 @@ import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
 import {DialogModule} from 'primeng/dialog';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {ToolbarModule} from 'primeng/toolbar';
 
 //Components
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { BoardGameGridComponent } from './board-game-grid/board-game-grid.compon
 import { AddExpansionModalComponent } from './add-expansion-modal/add-expansion-modal.component';
 import { PlayGameModalComponent } from './play-game-modal/play-game-modal.component';
 import { AddBoardGameModalComponent } from './add-board-game-modal/add-board-game-modal.component';
+import { RefreshDataComponent } from './refresh-data/refresh-data.component';
 
 //services
 //import {BordGameService} from './services/bord-game-service.service';
@@ -33,7 +35,8 @@ import { AddBoardGameModalComponent } from './add-board-game-modal/add-board-gam
     BoardGameGridComponent,
     AddExpansionModalComponent,
     PlayGameModalComponent,
-    AddBoardGameModalComponent
+    AddBoardGameModalComponent,
+    RefreshDataComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { AddBoardGameModalComponent } from './add-board-game-modal/add-board-gam
     DialogModule,
     //BordGameService,
     //PlayersService,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

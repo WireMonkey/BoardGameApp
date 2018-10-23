@@ -1,16 +1,22 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Board Games
-  </h1>
-  <div>
-    <app-board-game-grid></app-board-game-grid>
+<p-toolbar>
+  <div class="ui-toolbar-group-left">
+    <h1>
+      Board Games
+    </h1>
   </div>
-</div>
-<ngx-spinner
-  bdColor="rgba(0,0,0,0.8)"
-  size="Large"
-  color="#ff0"
-  type="pacman">
+  <div class="ui-toolbar-group-right">
+      <app-refresh-data></app-refresh-data>
+  </div>
+</p-toolbar>
+<div style="text-align:center;">
+  <app-board-game-grid></app-board-game-grid>
+  <ngx-spinner
+    bdColor="rgba(0,0,0,0.8)"
+    size="Large"
+    color="#ff0"
+    type="pacman">
   <h2 style="color:white">Loading...</h2>
-</ngx-spinner>
+  </ngx-spinner>
+</div>
+

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BoardGameGridComponent } from './board-game-grid/board-game-grid.component';
+import { RefreshDataComponent } from './refresh-data/refresh-data.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 
