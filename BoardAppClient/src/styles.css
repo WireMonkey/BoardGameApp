@@ -1,10 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 h1 {
-    color: white;
+  color: white;
 }
 
 #errorButton {
-    position: fixed;
-    bottom: 0;
-    right: 0;
+  margin: 5px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+body #errorButton .ui-button {
+  background-color: red;
 }
