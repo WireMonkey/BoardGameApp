@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function(app) {
   var todoList = require('../controllers/BoardGameController');
-  var players = require('../controllers/PlayerController');
+  //var players = require('../controllers/PlayerController');
 
   // todoList Routes
   app.route('/boardgames')
@@ -14,7 +14,7 @@ module.exports = function(app) {
     .delete(todoList.delete_a_task);
 
   //Player routes
-  app.route('/players')
-    .get(players.Get_Players)
-    .post(players.Set_Players);
+  //app.route('/players')
+  //  .get(players.Get_Players)
+  //  .post(players.Set_Players);
 };

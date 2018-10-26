@@ -1,6 +1,6 @@
 'use strict';
 const redis = require('redis');
-const options = {host: ""};
+const options = {host: "192.168.1.15"};
 const client = redis.createClient(options);
 
 
