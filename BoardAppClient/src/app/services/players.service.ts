@@ -8,6 +8,6 @@ export class PlayersService {
   constructor() { }
 
   getPlayers(){
-    
+
   }
 }

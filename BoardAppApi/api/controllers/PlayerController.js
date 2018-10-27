@@ -3,6 +3,7 @@ const redis = require('redis');
 const options = {host: "192.168.1.15"};
 const client = redis.createClient(options);
 
+client.on('error',function(err){ console.error(err)});
 
 exports.Get_Players = function(req, res) {
     client.get("Players", function(err, data){
