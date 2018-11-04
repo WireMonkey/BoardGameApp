@@ -1,74 +1,43 @@
 'use strict';
+let fs = require('fs');
+let BoardGameData = [];
+fs.readFile('DB/DB.txt', function(err, data) { 
+  if (err) {
+    console.log(err);
+  }
+  console.log(BoardGameData);
+  BoardGameData = JSON.parse(data.toString('utf8'));
+});
 
-require('./../models/BoardGameModel');
-const mongoose = require('mongoose'),
-  BoardGames = mongoose.model('BoardGames');
-const playerController = require('./PlayerController.js');
-
-exports.list_all_tasks = function(req, res) {
-  BoardGames.find({}, function(err, task) {
-    if (err)
-      res.send(err);
-    res.json(task);
-  });
+exports.GetAllBoardGames = function(req, res) {
+    res.json(BoardGameData);
 };
 
-exports.create_a_task = function(req, res) {
-  var new_BoardGames = new BoardGames(req.body);
-  new_BoardGames.save(function(err, task) {
-    if (err){
-      res.send(err);
-    }
-    
-    res.json(task);
-  });
-};
-
-exports.read_a_task = function(req, res) {
-  BoardGames.findById(req.params._id, function(err, task) {
-    if (err)
-      res.send(err);
-    res.json(task);
-  });
-};
-
-exports.update_a_task = function(req, res) {
-  BoardGames.findOneAndUpdate({_id: req.params._id}, req.body, {new: true}, function(err, task) {
-    if (err) {
-      res.send(err);
-    }
-    //Update player cache
-    let players = GetAllPlayers();
-    if(players != null){
-      playerController.Set_Players({body: players},null);
-    } else {
-      //Log this somewhere
-    }
-    
-    res.json(task);
-  });
-};
-
-exports.delete_a_task = function(req, res) {
-  BoardGames.remove({
-    _id: req.params._id
-  }, function(err, task) {
-    if (err)
-      res.send(err);
-    res.json({ message: 'Task successfully deleted' });
-  });
-};
-
-function GetAllPlayers() {
-  BoardGames.find({}, function(err, tasks){
-    if(err){
-      return null;
-    }
-    let players = [];
-    tasks.forEach(t => {
-      players.concat(t.players);
+exports.SaveBoardGames = function(req, res) {
+  console.log(req.body);
+  let updateData = req.body;
+  
+  //If the boardgame exists the update the data to be the same
+  if(BoardGameData.some(game => {
+    return game.Name == updateData.Name;
+  })) {
+    console.log("exists");
+    let newList = BoardGameData.filter(game => {
+      return game.Name != updateData.Name;
     });
 
-    return players;
+    BoardGameData = [];
+    BoardGameData = newList;
+  }
+
+  BoardGameData.push(updateData);
+
+  fs.writeFile('DB/DB.txt', JSON.stringify(BoardGameData), function (err) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    }
+    console.log('File is created successfully.');
+    res.json({message: 'Data Saved.'});
   });
 };

@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import {RequestOptions, Request, Headers } from '@angular/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BordGameService {
 
-  constructor() { }
+  apiUrl: string = 'http://192.168.1.15:3000/boardgames'
+  constructor(private http: HttpClient) { }
 
   getBoardGames(){
-
+    return this.http.get(this.apiUrl).pipe(map(data => data));
   }
 
   updateBoardGame(){
-
-  }
-
-  deleteBoardGame(){
 
   }
 }

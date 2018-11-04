@@ -1,3 +1,4 @@
+import { BordGameService } from './../services/bord-game.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,67 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board-game-grid.component.css']
 })
 export class BoardGameGridComponent implements OnInit {
-  BoardGames: object[] = [
-    {
-      "Name": "Test",
-      "_id": 0,
-      "Expansions": [
-        "exp1",
-        "exp2"
-      ],
-      "Plays": [
-        {
-          "Date": "2018-01-01",
-          "Players": [
-            "Person1",
-            "Person2"
-          ],
-          "winner":"person1"
-        }
-      ]
-    },
-    {
-      "Name": "Test2",
-      "_id": 1,
-      "Expansions": [
-        "exp1",
-        "exp2"
-      ],
-      "Plays": [
-        {
-          "Date": "2018-01-01",
-          "Players": [
-            "Person1",
-            "Person2"
-          ],
-          "winner":"person1"
-        }
-      ]
-    },
-    {
-      "Name": "Test3",
-      "_id": 2,
-      "Expansions": [
-        "exp1",
-        "exp2"
-      ],
-      "Plays": [
-        {
-          "Date": "2018-01-01",
-          "Players": [
-            "Person1",
-            "Person2"
-          ],
-          "winner":"person1"
-        }
-      ]
-    }
-  ]
+  BoardGames: any;
 
-  constructor() { }
+  constructor(private service: BordGameService) { }
 
   ngOnInit() {
+     this.service.getBoardGames().subscribe(data =>{
+       this.BoardGames = data;
+       console.log(data);
+     });
   }
-  
+
 
 }

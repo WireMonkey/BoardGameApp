@@ -27,8 +27,7 @@ import { RefreshDataComponent } from './refresh-data/refresh-data.component';
 import { ErrorButtonComponent } from './error-button/error-button.component';
 
 //services
-//import {BordGameService} from './services/bord-game-service.service';
-//import {PlayersService} from './services/players.service';
+
 
 @NgModule({
   declarations: [
@@ -54,12 +53,11 @@ import { ErrorButtonComponent } from './error-button/error-button.component';
     PanelModule,
     TableModule,
     DialogModule,
-    //BordGameService,
-    //PlayersService,
     NgxSpinnerModule,
     ToolbarModule
   ],
   providers: [],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
