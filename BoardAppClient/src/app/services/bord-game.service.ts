@@ -15,7 +15,7 @@ export class BordGameService {
     return this.http.get(this.apiUrl).pipe(map(data => data));
   }
 
-  updateBoardGame(){
-
+  updateBoardGame(data: any){
+    return this.http.post(this.apiUrl,data).pipe(map(data => data));
   }
 }

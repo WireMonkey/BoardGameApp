@@ -5,5 +5,5 @@ module.exports = function(app) {
   // todoList Routes
   app.route('/boardgames')
     .get(boardGame.GetAllBoardGames)
-    .put(boardGame.SaveBoardGames);
+    .post(boardGame.SaveBoardGames);
 };
