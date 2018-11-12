@@ -3,8 +3,10 @@ import { BordGameService } from './../services/bord-game.service';
 import { Store } from '@ngrx/store';
 import { AppState } from './../app.state';
 import { boardgame } from './../models/boardgames.model'
+import { player } from './../models/player.model'
 import * as boardgameActions from './../actions/boardgame.actions'
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-play-game-modal',
@@ -13,17 +15,19 @@ import { Observable } from 'rxjs';
 })
 export class PlayGameModalComponent implements OnInit {
   @Input() boardGame: any;
-  constructor() { }
 
-  ngOnInit() {
-  }
-
+  playerList: string[] = ["player1","player2","player3","player4"];
   playGameDialogShow: boolean = false;
   player: any;
   players: string[] = [];
   filteredPlayers: any[];
-  playerList: string[] = ["player1","player2","player3","player4"];
   date1: Date;
+
+  constructor(private service: BordGameService,private store: Store<AppState>) { 
+  }
+
+  ngOnInit() {
+  }
 
   PlayGame() {
     this.playGameDialogShow = true;

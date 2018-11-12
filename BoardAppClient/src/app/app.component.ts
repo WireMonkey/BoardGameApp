@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from './app.state';
 import { boardgame } from './models/boardgames.model'
 import * as boardgameActions from './actions/boardgame.actions'
+import * as playerActions from './actions/player.actions'
 import { Observable } from 'rxjs';
 
 
@@ -37,7 +38,17 @@ export class AppComponent {
 
       //Pass all boardgames into store
       for (let index = 0; index < this.BoardGames.length; index++) {
+        console.log(this.BoardGames[index]);
         this.store.dispatch(new boardgameActions.AddBoardGame(this.BoardGames[index]));
+
+        //Add all players to player store
+        if(this.BoardGames[index].Plays){
+          this.BoardGames[index].Plays.forEach(play => {
+            if(play.Players){
+              this.store.dispatch(new playerActions.AddPlayers(play.Players));
+            }
+          });
+        }
       }
 
       //hide spinner
