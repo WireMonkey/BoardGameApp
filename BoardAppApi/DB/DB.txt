@@ -1,1 +1,1 @@
-[{"Name":"RollPlayer","Expansions":["Monsters and Minions"]},{"Name":"Oregon Trail","Plays":[{"Date":"2018-11-04","Players":["Josh","Jared","Nick"],"Winner":"Players"}]},{"Name":"Smash Up"},{"Name":"Donminion"},{"Name":"deck of cards"}]
+[{"Name":"7 Wonders Duel"},{"Name":"Rollplayer","Expansions":[],"Plays":[]},{"Name":"Dominion","Expansions":[],"Plays":[]}]

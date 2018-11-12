@@ -3,6 +3,7 @@ import { Action } from '@ngrx/store'
 import { boardgame } from './../models/boardgames.model'
 
 export const ADD_BOARDGAME = '[boardgame] add'
+export const CLEAR_BOARDGAME = '[boardgame] clear'
 
 export class AddBoardGame implements Action {
   readonly type = ADD_BOARDGAME
@@ -10,4 +11,9 @@ export class AddBoardGame implements Action {
   constructor(public payload: boardgame) {}
 }
 
-export type Actions = AddBoardGame
+export class ClearBoardGame implements Action {
+  readonly type = CLEAR_BOARDGAME
+  constructor() {}
+}
+
+export type Actions = AddBoardGame | ClearBoardGame

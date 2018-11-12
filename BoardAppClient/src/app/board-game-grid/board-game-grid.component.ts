@@ -1,5 +1,5 @@
-import { BordGameService } from './../services/bord-game.service';
 import { Component, OnInit } from '@angular/core';
+import { BordGameService } from './../services/bord-game.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from './../app.state';
