@@ -26,12 +26,14 @@ import { AddBoardGameModalComponent } from './add-board-game-modal/add-board-gam
 import { RefreshDataComponent } from './refresh-data/refresh-data.component';
 import { ErrorButtonComponent } from './error-button/error-button.component';
 
-//services
+//ngrx
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './reducers/boardgame.reducer';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent, 
     BoardGameGridComponent,
     AddExpansionModalComponent,
     PlayGameModalComponent,
@@ -54,7 +56,8 @@ import { ErrorButtonComponent } from './error-button/error-button.component';
     TableModule,
     DialogModule,
     NgxSpinnerModule,
-    ToolbarModule
+    ToolbarModule,
+    StoreModule.forRoot({boardgame: reducer})
   ],
   providers: [],
   exports: [],

@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="let game of BoardGames" id="game._id">
+  <li *ngFor="let game of BoardGames | async">
     <p-panel [toggleable]="true" [collapsed]="true">
       <p-header>
         {{game.Name}}

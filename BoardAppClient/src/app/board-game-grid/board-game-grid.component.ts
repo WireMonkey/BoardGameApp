@@ -1,5 +1,9 @@
 import { BordGameService } from './../services/bord-game.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from './../app.state';
+import { boardgame } from './../models/boardgames.model'
 
 @Component({
   selector: 'app-board-game-grid',
@@ -7,15 +11,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board-game-grid.component.css']
 })
 export class BoardGameGridComponent implements OnInit {
-  BoardGames: any;
+  BoardGames: Observable<boardgame[]>;
 
-  constructor(private service: BordGameService) { }
+  constructor(private service: BordGameService, private store: Store<AppState>) {
+    this.BoardGames = this.store.select('boardgame');
+  }
 
   ngOnInit() {
-     this.service.getBoardGames().subscribe(data =>{
-       this.BoardGames = data;
-       console.log(data);
-     });
   }
 
 
