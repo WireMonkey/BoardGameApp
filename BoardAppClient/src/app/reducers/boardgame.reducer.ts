@@ -11,6 +11,12 @@ export function reducer (state: boardgame[] = initState, action: BoardgameAction
     case BoardgameActions.CLEAR_BOARDGAME:
       state = initState;
       return state;
+    case BoardgameActions.UPDATE_BOARDGAME:
+      let newList = state.filter(game => {
+        return game.Name != action.payload.Name
+      });
+      state = newList;
+      return [...state,action.payload];
     default:
       return state;
   }

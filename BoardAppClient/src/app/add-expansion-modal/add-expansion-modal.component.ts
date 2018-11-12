@@ -12,15 +12,26 @@ import { Observable } from 'rxjs';
   styleUrls: ['./add-expansion-modal.component.css']
 })
 export class AddExpansionModalComponent implements OnInit {
-  @Input() boardGame: any;
+  @Input() boardGame: boardgame;
   expDialogShow: boolean = false;
+  public NewExpansion: string = "";
 
-  constructor() { }
+  constructor(private service: BordGameService,private store: Store<AppState>) { }
 
   ngOnInit() {
   }
 
   AddExpansion() {
     this.expDialogShow = true;
+  }
+
+  saveExpansion(event: any) {
+    this.boardGame.Expansions.push(this.NewExpansion);
+    
+    this.service.updateBoardGame(this.boardGame).subscribe(data =>{
+      this.store.dispatch(new boardgameActions.UpdateBoardGame(this.boardGame));
+
+      this.expDialogShow = false;
+    })
   }
 }

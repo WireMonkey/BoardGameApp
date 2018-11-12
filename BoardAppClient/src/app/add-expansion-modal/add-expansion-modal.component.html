@@ -1,11 +1,11 @@
 <button pButton type="button" label="Add Expansion" class="ui-button-raised" (click)="AddExpansion($event)"></button>&nbsp;
 <p-dialog title="Add Expansion" [(visible)]="expDialogShow" [modal]="true" [responsive]="true" [maximizable]="true" [baseZIndex]="10000">
     <span class="ui-float-label">
-        <input id="expName" type="text" size="30" pInputText>
+        <input id="expName" type="text" size="30" pInputText [(ngModel)]="NewExpansion">
         <label for="expName">Expansion Name</label>
     </span>
   <p-footer>
-      <button type="button" pButton icon="pi pi-check" (click)="expDialogShow=false" label="Add"></button>
+      <button type="button" pButton icon="pi pi-check" (click)="saveExpansion($event)" label="Add"></button>
       <button type="button" pButton icon="pi pi-close" (click)="expDialogShow=false" label="Cancel" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>

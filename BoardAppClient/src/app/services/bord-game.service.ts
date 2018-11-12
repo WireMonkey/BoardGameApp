@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class BordGameService {
 
-  apiUrl: string = 'http://192.168.1.15:3000/boardgames'
+  apiUrl: string = 'http://localhost:3000/boardgames'
   constructor(private http: HttpClient) { }
 
   getBoardGames(){

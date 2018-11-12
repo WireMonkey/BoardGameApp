@@ -1,1 +1,1 @@
-[{"Name":"7 Wonders Duel"},{"Name":"Rollplayer","Expansions":[],"Plays":[]},{"Name":"Dominion","Expansions":[],"Plays":[]}]
+[{"Name":"7 Wonders Duel"},{"Name":"Dominion","Expansions":[],"Plays":[]},{"Name":"Rollplayer","Expansions":["Minions and Monsters"],"Plays":[]}]
