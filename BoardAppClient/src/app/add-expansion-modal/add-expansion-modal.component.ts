@@ -32,6 +32,7 @@ export class AddExpansionModalComponent implements OnInit {
       this.store.dispatch(new boardgameActions.UpdateBoardGame(this.boardGame));
 
       this.expDialogShow = false;
+      this.NewExpansion = "";
     })
   }
 }

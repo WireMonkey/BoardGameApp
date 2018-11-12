@@ -13,11 +13,11 @@
     </ul>
     <br>
     <span class="ui-float-label">
-      <input id="winnerTxt" type="text" size="40" pInputText>
+      <input id="winnerTxt" type="text" size="40" pInputText [(ngModel)]="gameWinner">
       <label for="winnerTxt">Winner</label>
     </span>
   <p-footer>
-      <button type="button" pButton icon="pi pi-check" (click)="playGameDialogShow=false" label="Done"></button>
+      <button type="button" pButton icon="pi pi-check" (click)="saveGamePlay($event)" label="Done"></button>
       <button type="button" pButton icon="pi pi-close" (click)="playGameDialogShow=false" label="Cancel" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>

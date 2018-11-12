@@ -22,6 +22,7 @@ export class PlayGameModalComponent implements OnInit {
   players: string[] = [];
   filteredPlayers: any[];
   date1: Date;
+  gameWinner: string;
 
   constructor(private service: BordGameService,private store: Store<AppState>) { 
   }
@@ -57,5 +58,20 @@ export class PlayGameModalComponent implements OnInit {
   addPlayer(event){
     this.players.push(this.player);
     this.player = "";
+  }
+
+  saveGamePlay(event: any){
+    let gamePlay = {Date: this.date1, Players: this.players, Winner: this.gameWinner};
+    this.boardGame.Plays.push(gamePlay);
+
+    this.service.updateBoardGame(this.boardGame).subscribe(data =>{
+      this.store.dispatch(new boardgameActions.UpdateBoardGame(this.boardGame));
+
+      this.playGameDialogShow = false;
+      this.date1 = new Date;
+      this.players = [];
+      this.gameWinner ="";
+    })
+
   }
 }

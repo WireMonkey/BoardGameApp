@@ -1,1 +1,1 @@
-[{"Name":"7 Wonders Duel"},{"Name":"Dominion","Expansions":[],"Plays":[]},{"Name":"Rollplayer","Expansions":["Minions and Monsters"],"Plays":[]}]
+[{"Name":"7 Wonders Duel"},{"Name":"Dominion","Expansions":[],"Plays":[]},{"Name":"Rollplayer","Expansions":["Minions and Monsters"],"Plays":[{"Date":"2018-11-12T06:00:00.000Z","Players":["Josh K","Robin J","Chris"],"Winner":"Chris"},{"Date":"2018-11-13T06:00:00.000Z","Players":["josh"],"Winner":"josh"}]}]
