@@ -16,7 +16,7 @@ import { map } from 'rxjs/operators';
 export class PlayGameModalComponent implements OnInit {
   @Input() boardGame: any;
 
-  playerList: string[] = ["player1","player2","player3","player4"];
+  playerList: string[] = [];
   playGameDialogShow: boolean = false;
   player: any;
   players: string[] = [];
@@ -25,7 +25,16 @@ export class PlayGameModalComponent implements OnInit {
   gameWinner: string;
   today: Date = new Date();
 
-  constructor(private service: BordGameService,private store: Store<AppState>) { 
+  playerStore: Observable<player[]>;
+
+  constructor(private service: BordGameService, private store: Store<AppState>) { 
+    this.playerStore = this.store.select('player');
+    
+    this.playerStore.forEach(item => {
+      this.playerList = item.map(p => {
+        return p.Name;
+      });
+    });
   }
 
   ngOnInit() {

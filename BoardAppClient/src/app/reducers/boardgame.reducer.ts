@@ -4,7 +4,7 @@ import * as BoardgameActions from './../actions/boardgame.actions'
 
 const initState: boardgame[] = [];
 
-export function reducer (state: boardgame[] = initState, action: BoardgameActions.Actions){
+export function boardGameReducer (state: boardgame[] = initState, action: BoardgameActions.Actions){
   switch(action.type){
     case BoardgameActions.ADD_BOARDGAME:
       return [...state,action.payload];
@@ -15,6 +15,7 @@ export function reducer (state: boardgame[] = initState, action: BoardgameAction
       let newList = state.filter(game => {
         return game.Name != action.payload.Name
       });
+      
       state = newList;
       return [...state,action.payload];
     default:

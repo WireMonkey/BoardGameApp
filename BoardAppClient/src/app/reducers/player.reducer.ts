@@ -5,12 +5,14 @@ import { player } from './../models/player.model'
 
 const initState: player[] = [];
 
-export function reducer (state: player[] = initState, action: PlayersActions.Actions){
+export function playerReducer (state: player[] = initState, action: PlayersActions.Actions){
   switch(action.type){
     case PlayersActions.ADD_PLAYER:
-      let addPlayers = action.payload.filter(player => state.includes(player));
-      state = state.concat(addPlayers);
-      return state;
+      if(state.some(p => p.Name == action.payload.Name)){
+        return state;
+      } else {
+        return [...state,action.payload];
+      }
     default:
       return state;
   }

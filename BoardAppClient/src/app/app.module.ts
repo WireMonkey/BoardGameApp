@@ -28,7 +28,8 @@ import { ErrorButtonComponent } from './error-button/error-button.component';
 
 //ngrx
 import { StoreModule } from '@ngrx/store';
-import { reducer } from './reducers/boardgame.reducer';
+import { boardGameReducer } from './reducers/boardgame.reducer';
+import { playerReducer } from './reducers/player.reducer';
 
 
 @NgModule({
@@ -57,7 +58,7 @@ import { reducer } from './reducers/boardgame.reducer';
     DialogModule,
     NgxSpinnerModule,
     ToolbarModule,
-    StoreModule.forRoot({boardgame: reducer})
+    StoreModule.forRoot({boardgame: boardGameReducer,player: playerReducer})
   ],
   providers: [],
   exports: [],
