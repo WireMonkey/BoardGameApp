@@ -17,7 +17,13 @@ export function boardGameReducer (state: boardgame[] = initState, action: Boardg
       });
       
       state = newList;
-      return [...state,action.payload];
+      state.push(action.payload);
+      state = state.sort((a,b) =>{
+        let tA = a.Name;
+        let tB = b.Name;
+        return (tA < tB) ? -1 : (tA > tB) ? 1 : 0;
+      });
+      return state;
     default:
       return state;
   }
