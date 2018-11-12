@@ -21,8 +21,9 @@ export class PlayGameModalComponent implements OnInit {
   player: any;
   players: string[] = [];
   filteredPlayers: any[];
-  date1: Date;
+  date1: Date = new Date();
   gameWinner: string;
+  today: Date = new Date();
 
   constructor(private service: BordGameService,private store: Store<AppState>) { 
   }

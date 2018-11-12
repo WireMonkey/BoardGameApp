@@ -3,7 +3,9 @@ import { BordGameService } from './../services/bord-game.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from './../app.state';
-import { boardgame } from './../models/boardgames.model'
+import { boardgame } from './../models/boardgames.model';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-board-game-grid',
@@ -20,5 +22,12 @@ export class BoardGameGridComponent implements OnInit {
   ngOnInit() {
   }
 
+  formatDate(date: Date) {
+    let formatDate = moment(date);
+    return formatDate.format('MMM Do YYYY');
+  }
 
+  formatPlayerList(list: string[]){
+    return list.join(', ');
+  }
 }

@@ -1,9 +1,11 @@
 <button pButton type="button" label="Play Game" class="ui-button-raised ui-button-success" (click)="PlayGame($event)"></button>
 <p-dialog header="Play a game" [(visible)]="playGameDialogShow" [modal]="true" [responsive]="true" [maximizable]="true" [baseZIndex]="10000" [height]="500" [resizable]="false"
   [contentStyle]="{'overflow':'visible'}">
-    <label>Date: </label><p-calendar [(ngModel)]="date1"></p-calendar>
+    <label>Played On</label><br>
+    <p-calendar [(ngModel)]="date1" [maxDate]="today" [defaultDate]="today"></p-calendar>
     <br>
     <br>
+    <label>Players</label><br>
     <p-autoComplete [(ngModel)]="player" [suggestions]="filteredPlayers" (completeMethod)="filterPlayers($event)" styleClass="wid100"
       [minLength]="1" placeholder="Add Players" (onKeyUp)="autoCompleteKeyPress($event)" (onSelect)="addPlayer($event)" [dropdown]="true">
     </p-autoComplete>

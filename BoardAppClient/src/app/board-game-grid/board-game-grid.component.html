@@ -4,24 +4,26 @@
       <p-header>
         {{game.Name}}
       </p-header>
-      <h5>Expansions</h5>
+      <h3>Expansions</h3>
       <ul>
         <li *ngFor="let exp of game.Expansions">
           {{exp}}
         </li>
       </ul>
-      <h5>Played Games</h5>
+      <h3>Played Games</h3>
         <p-table [value]="game.Plays">
           <ng-template pTemplate="header">
             <tr>
-              <th>Date</th>
+              <th>Date Played</th>
               <th>Players</th>
+              <th>Winner</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-play>
             <tr>
-              <td>{{play.Date}}</td>
-              <td>{{play.Players}}</td>
+              <td>{{formatDate(play.Date)}}</td>
+              <td>{{formatPlayerList(play.Players)}}</td>
+              <td>{{play.Winner}}</td>
             </tr>
           </ng-template>
         </p-table>
