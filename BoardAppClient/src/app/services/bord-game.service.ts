@@ -9,7 +9,9 @@ import { map } from 'rxjs/operators';
 export class BordGameService {
 
   apiUrl: string = 'http://localhost:3000/boardgames'
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.apiUrl = sessionStorage.getItem('apiUrl');
+  }
 
   getBoardGames(){
     return this.http.get(this.apiUrl).pipe(map(data => data));

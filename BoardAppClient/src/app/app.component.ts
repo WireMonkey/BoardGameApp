@@ -23,6 +23,9 @@ export class AppComponent {
   ngOnInit() {
     //show spinner
     this.spinner.show();
+    //Get Api url
+    let ip = window.location.hostname;
+    sessionStorage.setItem('apiUrl','http://' + ip + ':3000/boardgames')
 
     //Call Service to get all boardgames
     this.service.getBoardGames().subscribe(data =>{
