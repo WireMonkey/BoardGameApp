@@ -29,8 +29,6 @@ export class AddExpansionModalComponent implements OnInit {
     this.boardGame.Expansions.push(this.NewExpansion);
     
     this.service.updateBoardGame(this.boardGame).subscribe(data =>{
-      this.store.dispatch(new boardgameActions.UpdateBoardGame(this.boardGame));
-
       this.expDialogShow = false;
       this.NewExpansion = "";
     })

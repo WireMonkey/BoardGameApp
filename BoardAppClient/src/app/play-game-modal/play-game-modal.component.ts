@@ -78,8 +78,6 @@ export class PlayGameModalComponent implements OnInit {
     this.boardGame.Plays.push(gamePlay);
 
     this.service.updateBoardGame(this.boardGame).subscribe(data =>{
-      this.store.dispatch(new boardgameActions.UpdateBoardGame(this.boardGame));
-
       this.playGameDialogShow = false;
       this.date1 = new Date;
       this.players = [];

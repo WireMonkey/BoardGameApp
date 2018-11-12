@@ -1,5 +1,6 @@
 <button pButton type="button" label="Add new Board Game" class="ui-button-raised" (click)="ShowModal($event)"></button>
-<p-dialog title="Add New BoardGame" [(visible)]="addBoardGameShow" [modal]="true" [responsive]="true" [maximizable]="true" [baseZIndex]="10000">
+<p-dialog header="Add New BoardGame" [(visible)]="addBoardGameShow" [modal]="true" [responsive]="true" [maximizable]="true" [baseZIndex]="10000">
+    <br>
     <span class="ui-float-label">
         <input id="expName" type="text" size="30" pInputText [(ngModel)]="NewBoardGame">
         <label for="expName">Boardgame Name</label>
