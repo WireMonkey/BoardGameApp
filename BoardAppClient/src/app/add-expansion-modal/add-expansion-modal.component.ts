@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { BordGameService } from './../services/bord-game.service';
+import { Store } from '@ngrx/store';
+import { AppState } from './../app.state';
+import { boardgame } from './../models/boardgames.model'
+import * as boardgameActions from './../actions/boardgame.actions'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-expansion-modal',
@@ -6,13 +12,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-expansion-modal.component.css']
 })
 export class AddExpansionModalComponent implements OnInit {
+  @Input() boardGame: any;
+  expDialogShow: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  expDialogShow: boolean = false;
   AddExpansion() {
     this.expDialogShow = true;
   }

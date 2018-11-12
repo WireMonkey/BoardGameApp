@@ -24,7 +24,6 @@ export class RefreshDataComponent implements OnInit {
     this.spinner.show();
 
     this.store.dispatch(new boardgameActions.ClearBoardGame());
-    console.log("show");
 
     this.service.getBoardGames().subscribe(data =>{
 
@@ -39,7 +38,6 @@ export class RefreshDataComponent implements OnInit {
 
       //hide spinner
       this.spinner.hide();
-      console.log("hide");
     });
   }
 }

@@ -26,8 +26,8 @@
           </ng-template>
         </p-table>
       <p-footer>
-        <app-add-expansion-modal></app-add-expansion-modal>
-        <app-play-game-modal></app-play-game-modal>
+        <app-add-expansion-modal [boardGame]="game"></app-add-expansion-modal>
+        <app-play-game-modal [boardGame]="game"></app-play-game-modal>
       </p-footer>
     </p-panel>
   </li>

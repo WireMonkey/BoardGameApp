@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { BordGameService } from './../services/bord-game.service';
+import { Store } from '@ngrx/store';
+import { AppState } from './../app.state';
+import { boardgame } from './../models/boardgames.model'
+import * as boardgameActions from './../actions/boardgame.actions'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-play-game-modal',
@@ -6,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./play-game-modal.component.css']
 })
 export class PlayGameModalComponent implements OnInit {
-
+  @Input() boardGame: any;
   constructor() { }
 
   ngOnInit() {
