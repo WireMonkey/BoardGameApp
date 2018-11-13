@@ -44,5 +44,6 @@ exports.ClearCache = function(req, res) {
       res.json({message: 'Error reading data', error: err});
     }
     BoardGameData = JSON.parse(data.toString('utf8'));
+    res.json({message: 'Cache Reset.'});
   });
 }
