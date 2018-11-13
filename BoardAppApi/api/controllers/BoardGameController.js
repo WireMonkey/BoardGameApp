@@ -5,7 +5,6 @@ fs.readFile('DB/DB.txt', function(err, data) {
   if (err) {
     console.log(err);
   }
-  console.log(BoardGameData);
   BoardGameData = JSON.parse(data.toString('utf8'));
 });
 
@@ -14,19 +13,15 @@ exports.GetAllBoardGames = function(req, res) {
 };
 
 exports.SaveBoardGames = function(req, res) {
-  console.log(req.body);
   let updateData = req.body;
   
   //If the boardgame exists the update the data to be the same
   if(BoardGameData.some(game => {
     return game.Name == updateData.Name;
   })) {
-    console.log("exists");
     let newList = BoardGameData.filter(game => {
       return game.Name != updateData.Name;
     });
-
-    BoardGameData = [];
     BoardGameData = newList;
   }
 
@@ -35,9 +30,19 @@ exports.SaveBoardGames = function(req, res) {
   fs.writeFile('DB/DB.txt', JSON.stringify(BoardGameData), function (err) {
     if (err) {
       console.log(err);
-      res.send(err);
+      res.json({message: 'Error writing data', error: err});
     }
     console.log('File is created successfully.');
     res.json({message: 'Data Saved.'});
   });
 };
+
+exports.ClearCache = function(req, res) {
+  fs.readFile('DB/DB.txt', function(err, data) { 
+    if (err) {
+      console.log(err);
+      res.json({message: 'Error reading data', error: err});
+    }
+    BoardGameData = JSON.parse(data.toString('utf8'));
+  });
+}
