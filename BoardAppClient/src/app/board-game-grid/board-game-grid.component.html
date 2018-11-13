@@ -1,5 +1,4 @@
-<ul>
-  <li *ngFor="let game of BoardGames | async">
+  <div *ngFor="let game of BoardGames | async">
     <p-panel [toggleable]="true" [collapsed]="true">
       <p-header>
         {{game.Name}}
@@ -32,6 +31,5 @@
         <app-play-game-modal [boardGame]="game"></app-play-game-modal>
       </p-footer>
     </p-panel>
-  </li>
-</ul>
+  </div>
 <app-add-board-game-modal></app-add-board-game-modal>
