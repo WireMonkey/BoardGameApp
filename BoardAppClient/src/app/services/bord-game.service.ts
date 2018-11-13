@@ -8,13 +8,13 @@ import { map } from 'rxjs/operators';
 })
 export class BordGameService {
 
-  apiUrl: string = 'http://localhost:3000/boardgames'
-  constructor(private http: HttpClient) { 
-    this.apiUrl = sessionStorage.getItem('apiUrl');
+  apiUrl: string = '';
+  constructor(private http: HttpClient) {
+    this.apiUrl = 'http://' + window.location.hostname + ':3000/boardgames'
   }
 
   getBoardGames(){
-    return this.http.get(this.apiUrl).pipe(map(data => data));
+      return this.http.get(this.apiUrl).pipe(map(data => data));
   }
 
   updateBoardGame(data: any){
