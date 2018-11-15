@@ -36,6 +36,8 @@ export class RefreshDataComponent implements OnInit {
         this.store.dispatch(new boardgameActions.AddBoardGame(this.BoardGames[index]));
       }
 
+      this.BoardGames = [];
+
       //hide spinner
       this.spinner.hide();
     });

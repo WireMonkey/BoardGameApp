@@ -15,13 +15,13 @@ export function boardGameReducer (state: boardgame[] = initState, action: Boardg
       });
       return state;
     case BoardgameActions.CLEAR_BOARDGAME:
-      state = initState;
+      state = [];
       return state;
     case BoardgameActions.UPDATE_BOARDGAME:
       let newList = state.filter(game => {
         return game.Name != action.payload.Name
       });
-      
+
       state = newList;
       state.push(action.payload);
       state = state.sort((a,b) =>{
