@@ -16,6 +16,8 @@ import {TableModule} from 'primeng/table';
 import {DialogModule} from 'primeng/dialog';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {ToolbarModule} from 'primeng/toolbar';
+import {DataViewModule} from 'primeng/dataview';
+import {DropdownModule} from 'primeng/dropdown';
 
 //Components
 import { AppComponent } from './app.component';
@@ -30,6 +32,7 @@ import { ErrorButtonComponent } from './error-button/error-button.component';
 import { StoreModule } from '@ngrx/store';
 import { boardGameReducer } from './reducers/boardgame.reducer';
 import { playerReducer } from './reducers/player.reducer';
+import { BoardGameGridItemComponent } from './board-game-grid-item/board-game-grid-item.component';
 
 
 @NgModule({
@@ -40,7 +43,8 @@ import { playerReducer } from './reducers/player.reducer';
     PlayGameModalComponent,
     AddBoardGameModalComponent,
     RefreshDataComponent,
-    ErrorButtonComponent
+    ErrorButtonComponent,
+    BoardGameGridItemComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +62,8 @@ import { playerReducer } from './reducers/player.reducer';
     DialogModule,
     NgxSpinnerModule,
     ToolbarModule,
+    DataViewModule,
+    DropdownModule,
     StoreModule.forRoot({boardgame: boardGameReducer,player: playerReducer})
   ],
   providers: [],

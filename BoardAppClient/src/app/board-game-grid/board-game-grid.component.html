@@ -1,35 +1,20 @@
-  <div *ngFor="let game of BoardGames | async">
-    <p-panel [toggleable]="true" [collapsed]="true">
-      <p-header>
-        {{game.Name}}
-      </p-header>
-      <h3>Expansions</h3>
-      <ul>
-        <li *ngFor="let exp of game.Expansions">
-          {{exp}}
-        </li>
-      </ul>
-      <h3>Played Games</h3>
-        <p-table [value]="game.Plays">
-          <ng-template pTemplate="header">
-            <tr>
-              <th>Date Played</th>
-              <th>Players</th>
-              <th>Winner</th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-play>
-            <tr>
-              <td>{{formatDate(play.Date)}}</td>
-              <td>{{formatPlayerList(play.Players)}}</td>
-              <td>{{play.Winner}}</td>
-            </tr>
-          </ng-template>
-        </p-table>
-      <p-footer>
-        <app-add-expansion-modal [boardGame]="game"></app-add-expansion-modal>
-        <app-play-game-modal [boardGame]="game"></app-play-game-modal>
-      </p-footer>
-    </p-panel>
-  </div>
-<app-add-board-game-modal></app-add-board-game-modal>
+<p-dataView #dv [value]="BoardGames | async" [paginator]="true" [rows]="10">
+    <p-header>
+        <div class="ui-helper-clearfix">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4" style="text-align:left">
+                    <p-dropdown placeholder="Sort By" (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
+                </div>
+                <div class="ui-g-6 ui-md-4 filter-container">
+                </div>
+                <div class="ui-g-6 ui-md-4" style="text-align:right">
+                    <p-autoComplete [(ngModel)]="player" [suggestions]="filteredGames" (completeMethod)="filterPlayers($event)" styleClass="wid100"
+      [minLength]="1" placeholder="Search Games" (onKeyUp)="autoCompleteKeyPress($event)" (onSelect)="addPlayer($event)"></p-autoComplete>
+                </div>
+            </div>
+        </div>
+    </p-header>
+  <ng-template let-game pTemplate="listItem">
+      <app-board-game-grid-item [boardGame]="game"></app-board-game-grid-item>
+  </ng-template>
+</p-dataView>

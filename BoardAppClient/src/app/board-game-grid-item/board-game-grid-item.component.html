@@ -1,0 +1,32 @@
+<p-panel [toggleable]="true" [collapsed]="true">
+    <p-header>
+      {{boardGame.Name}}
+    </p-header>
+    <h3>Expansions</h3>
+    <ul>
+      <li *ngFor="let exp of boardGame.Expansions">
+        {{exp}}
+      </li>
+    </ul>
+    <h3>Played Games</h3>
+      <p-table [value]="boardGame.Plays">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Date Played</th>
+            <th>Players</th>
+            <th>Winner</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-play>
+          <tr>
+            <td>{{formatDate(play.Date)}}</td>
+            <td>{{formatPlayerList(play.Players)}}</td>
+            <td>{{play.Winner}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    <p-footer>
+      <app-add-expansion-modal [boardGame]="boardGame"></app-add-expansion-modal>
+      <app-play-game-modal [boardGame]="boardGame"></app-play-game-modal>
+    </p-footer>
+  </p-panel>
