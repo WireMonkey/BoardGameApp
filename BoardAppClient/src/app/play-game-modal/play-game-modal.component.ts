@@ -26,6 +26,7 @@ export class PlayGameModalComponent implements OnInit {
   today: Date = new Date();
 
   playerStore: Observable<player[]>;
+  storeList: player[];
 
   constructor(private service: BordGameService, private store: Store<AppState>) { 
     this.playerStore = this.store.select('player');   
@@ -33,18 +34,15 @@ export class PlayGameModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.playerStore.subscribe(store => {
+      this.storeList = store;
+    })
   }
 
   PlayGame() {
     this.playGameDialogShow = true;
 
-    this.playerStore.forEach(item => {
-      if(item.length > 0){
-        this.playerList = item.map(p => {
-          return p.Name;
-        });
-      }
-    });
+    this.playerList = this.storeList.map(p => {return p.Name});
   }
 
   isEmptyOrSpaces(str){

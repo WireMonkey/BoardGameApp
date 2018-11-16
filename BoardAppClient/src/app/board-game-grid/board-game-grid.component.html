@@ -1,15 +1,15 @@
-<p-dataView #dv [value]="BoardGames | async" [paginator]="true" [rows]="10">
+<p-dataView #dv [value]="boardGames" [paginator]="true" [rows]="10" filterBy="Name" [totalRecords]="boardGames.length"
+            [rowsPerPageOptions]="[5,10,20,40]" [emptyMessage]="'No Boardgames Found.'" >
     <p-header>
         <div class="ui-helper-clearfix">
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-4" style="text-align:left">
-                    <p-dropdown placeholder="Sort By" (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown>
                 </div>
                 <div class="ui-g-6 ui-md-4 filter-container">
                 </div>
                 <div class="ui-g-6 ui-md-4" style="text-align:right">
-                    <p-autoComplete [(ngModel)]="player" [suggestions]="filteredGames" (completeMethod)="filterPlayers($event)" styleClass="wid100"
-      [minLength]="1" placeholder="Search Games" (onKeyUp)="autoCompleteKeyPress($event)" (onSelect)="addPlayer($event)"></p-autoComplete>
+                    <p-autoComplete [(ngModel)]="searchGame" [suggestions]="filteredGames" (completeMethod)="filterPlayers($event)" styleClass="wid100"
+                    [minLength]="1" placeholder="Search Games" (keyup)="dv.filter($event.target.value)" (onSelect)="dv.filter($event.target.value)"></p-autoComplete>
                 </div>
             </div>
         </div>

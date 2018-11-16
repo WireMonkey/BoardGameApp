@@ -13,43 +13,33 @@ import { state } from '@angular/animations';
   styleUrls: ['./board-game-grid.component.css']
 })
 export class BoardGameGridComponent implements OnInit {
-  BoardGames: Observable<boardgame[]>;
-  gameNames: Observable<string[]>;
-  player: any;
-  games: string[] = [];
-  filteredGames: any[];
-  totalCount: Observable<number>;
+  BoardGames$: Observable<boardgame[]>;
+  searchGame: string;
+  filteredGames: any[] = []
   private boardgameSub: Subscription;
+  boardGames: boardgame[];
+  
+
 
   constructor(private service: BordGameService, private store: Store<AppState>) {
-    this.BoardGames = this.store.select(state => state.boargame);
-    //this.totalCount = this.store.select(state => state.boargame);
-    //this.gameNames = this.store.select(state => state.boargame.map(item => item.Name));
+    this.BoardGames$ = this.store.select('boardgame');
   }
 
   ngOnInit() {
-    this.boardgameSub = this.BoardGames.subscribe(state => {
-      console.log(state);
+    this.boardgameSub = this.BoardGames$.subscribe(state => {
+      this.boardGames = state;
     });
+
   }
 
   filterPlayers(event) {
-    //this.gameNames.forEach(item => {console.log(item)});
-
-    // for(let i = 0; i < this.gameNames.length; i++) {
-    //     let brand = this.gameNames[i];
-    //     if(brand.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
-    //         this.filteredGames.push(brand);
-    //     }
-    // }
+    this.filteredGames = [];
+    let gameNames = this.boardGames.map(g => {return g.Name});
+    for(let i = 0; i < gameNames.length; i++) {
+        let brand = gameNames[i];
+        if(brand.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
+            this.filteredGames.push(brand);
+        }
+    }
   }
-
-  autoCompleteKeyPress(event){
-    
-  }
-
-  addPlayer(event){
-    
-  }
-
 }
