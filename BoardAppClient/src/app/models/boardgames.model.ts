@@ -9,5 +9,7 @@ export interface boardgame{
     Date: Date;
     Players: string[];
     Winner: string;
+    Notes: string;
+    Expansions: string[];
   }[];
 }

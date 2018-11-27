@@ -1,23 +1,29 @@
 <button pButton type="button" label="Play Game" class="ui-button-raised ui-button-success" (click)="PlayGame($event)"></button>
 <p-dialog header="Play a game" [(visible)]="playGameDialogShow" [modal]="true" [responsive]="true" [baseZIndex]="10000" [height]="500" [resizable]="false"
   [contentStyle]="{'overflow':'visible'}" [positionTop]="0">
+  <p-fieldset legend="Info">
     <label>Played On</label><br>
     <p-calendar [(ngModel)]="date1" [maxDate]="today" [defaultDate]="today"></p-calendar>
     <br>
     <br>
-    <label>Players</label><br>
+    <label>Notes</label><br>
+    <input type="text" size="30" pInputText [(ngModel)]="notes" maxlength="50">
+  </p-fieldset>
+  <p-fieldset legend="Players">
     <p-autoComplete [(ngModel)]="player" [suggestions]="filteredPlayers" (completeMethod)="filterPlayers($event)" styleClass="wid100"
-      [minLength]="1" placeholder="Add Players" (onKeyUp)="autoCompleteKeyPress($event)" (onSelect)="addPlayer($event)" [dropdown]="true">
+    [minLength]="1" placeholder="Add Players" (onKeyUp)="autoCompleteKeyPress($event)" (onSelect)="addPlayer($event)" [dropdown]="true">
     </p-autoComplete>
     <br>
     <ul>
       <li *ngFor="let p of players">{{p}}</li>
     </ul>
     <br>
-    <span class="ui-float-label">
-      <input id="winnerTxt" type="text" size="40" pInputText [(ngModel)]="gameWinner">
-      <label for="winnerTxt">Winner</label>
-    </span>
+    <label for="winnerTxt">Winner</label><br>
+    <input id="winnerTxt" type="text" size="30" pInputText [(ngModel)]="gameWinner">
+  </p-fieldset>
+  <p-fieldset legend="Expansions">
+    <p-listbox [options]="expansions" [(ngModel)]="selectedExpansions" multiple="multiple" checkbox="checkbox" [showToggleAll]="false" [filter]="false" ></p-listbox>
+  </p-fieldset>
   <p-footer>
       <button type="button" pButton icon="pi pi-check" (click)="saveGamePlay($event)" label="Done"></button>
       <button type="button" pButton icon="pi pi-times" (click)="playGameDialogShow=false" label="Cancel" class="ui-button-secondary"></button>

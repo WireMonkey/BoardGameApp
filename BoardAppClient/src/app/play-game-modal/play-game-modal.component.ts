@@ -24,6 +24,9 @@ export class PlayGameModalComponent implements OnInit {
   date1: Date = new Date();
   gameWinner: string;
   today: Date = new Date();
+  notes: string;
+  selectedExpansions: any[];
+  expansions: [] = [];
 
   playerStore: Observable<player[]>;
   storeList: player[];
@@ -43,6 +46,7 @@ export class PlayGameModalComponent implements OnInit {
     this.playGameDialogShow = true;
 
     this.playerList = this.storeList.map(p => {return p.Name});
+    this.expansions = this.boardGame.Expansions.map(e => {return {label: e.Name, value: e.Name}});
   }
 
   isEmptyOrSpaces(str){
@@ -72,7 +76,8 @@ export class PlayGameModalComponent implements OnInit {
   }
 
   saveGamePlay(event: any){
-    let gamePlay = {Date: this.date1, Players: this.players, Winner: this.gameWinner};
+    console.log(this.selectedExpansions);
+    let gamePlay = {Date: this.date1, Players: this.players, Winner: this.gameWinner, Notes: this.notes, Expansions: this.selectedExpansions};
     this.boardGame.Plays.push(gamePlay);
 
     this.service.updateBoardGame(this.boardGame).subscribe(data =>{

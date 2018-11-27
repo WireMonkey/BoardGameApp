@@ -20,6 +20,10 @@ export class BoardGameGridItemComponent implements OnInit {
   }
 
   formatPlayerList(list: string[]){
-    return list.join(', ');
+    try {
+      return list.join(', ');
+    } catch (error) {
+      return "";
+    }
   }
 }
