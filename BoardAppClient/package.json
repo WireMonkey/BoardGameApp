@@ -23,6 +23,7 @@
     "@ngrx/core": "^1.2.0",
     "@ngrx/effects": "^6.1.2",
     "@ngrx/store": "^6.1.2",
+    "chance": "^1.0.16",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "fullcalendar": "^3.9.0",

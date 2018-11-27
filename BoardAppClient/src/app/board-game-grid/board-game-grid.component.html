@@ -15,6 +15,8 @@
         </div>
     </p-header>
   <ng-template let-game pTemplate="listItem">
-      <app-board-game-grid-item [boardGame]="game"></app-board-game-grid-item>
+      <div id="game.Id"> 
+          <app-board-game-grid-item [boardGame]="game"></app-board-game-grid-item>
+      </div>
   </ng-template>
 </p-dataView>

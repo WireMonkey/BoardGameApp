@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from './../app.state';
 import { boardgame } from './../models/boardgames.model'
 import { NgxSpinnerService } from 'ngx-spinner';
-import * as boardgameActions from './../actions/boardgame.actions'
+import * as boardgameActions from './../actions/boardgame.actions';
 
 @Component({
   selector: 'app-add-board-game-modal',
@@ -15,16 +15,19 @@ import * as boardgameActions from './../actions/boardgame.actions'
 export class AddBoardGameModalComponent implements OnInit {
   public NewBoardGame: string = "";
 
+
   constructor(private service: BordGameService,private store: Store<AppState>) { }
 
   ngOnInit() {
   }
 
   addBoardGameShow: boolean = false;
-
+  
   AddBoardGame() {
-    let boardGame:boardgame = {Name: this.NewBoardGame, Expansions: [], Plays: []};
-    this.service.updateBoardGame(boardGame).subscribe(data =>{
+    let saveData:any = {Name: this.NewBoardGame, Expansions: [], Plays: []};
+    this.service.updateBoardGame(saveData).subscribe(data =>{
+      let returned = data as any;
+      let boardGame:any = {Id: returned.Id, Name: this.NewBoardGame, Expansions: [], Plays: []};
       this.store.dispatch(new boardgameActions.AddBoardGame(boardGame));
 
       this.addBoardGameShow = false;

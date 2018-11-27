@@ -47,7 +47,7 @@ exports.SaveBoardGames = function(req, res) {
       res.json({message: 'Error writing data', error: err});
     }
     console.log('File is created successfully.');
-    res.json({message: 'Data Saved.'});
+    res.json({message: 'Data Saved.', Id: updateData.Id});
   });
 };
 

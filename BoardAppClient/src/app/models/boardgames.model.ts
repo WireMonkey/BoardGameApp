@@ -1,4 +1,5 @@
 export interface boardgame{
+  Id: string;
   Name: string;
   Expansions: string[];
   Plays: {
