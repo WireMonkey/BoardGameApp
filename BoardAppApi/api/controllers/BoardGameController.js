@@ -1,12 +1,16 @@
 'use strict';
 let fs = require('fs');
 let BoardGameData = [];
-fs.readFile('DB/DB.txt', function(err, data) { 
-  if (err) {
-    console.log(err);
-  }
-  BoardGameData = JSON.parse(data.toString('utf8'));
-});
+try {
+  fs.readFile('DB/DB.txt', function(err, data) { 
+    if (err) {
+      console.log(err);
+    }
+    BoardGameData = JSON.parse(data.toString('utf8'));
+  });
+} catch (error) {
+  console.log(error);
+}
 
 exports.GetAllBoardGames = function(req, res) {
     res.json(BoardGameData);
