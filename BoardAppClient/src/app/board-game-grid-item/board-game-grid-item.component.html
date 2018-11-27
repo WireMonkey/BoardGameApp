@@ -5,7 +5,7 @@
     <h3>Expansions</h3>
     <ul>
       <li *ngFor="let exp of boardGame.Expansions">
-        {{exp}}
+        {{exp.Name}}
       </li>
     </ul>
     <h3>Played Games</h3>
@@ -28,5 +28,6 @@
     <p-footer>
       <app-add-expansion-modal [boardGame]="boardGame"></app-add-expansion-modal>
       <app-play-game-modal [boardGame]="boardGame"></app-play-game-modal>
+      <app-boardgame-edit-modal [boardGame]="boardGame"></app-boardgame-edit-modal>
     </p-footer>
   </p-panel>

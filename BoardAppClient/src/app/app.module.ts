@@ -18,6 +18,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {ToolbarModule} from 'primeng/toolbar';
 import {DataViewModule} from 'primeng/dataview';
 import {DropdownModule} from 'primeng/dropdown';
+import {FieldsetModule} from 'primeng/fieldset';
 
 //Components
 import { AppComponent } from './app.component';
@@ -27,13 +28,13 @@ import { PlayGameModalComponent } from './play-game-modal/play-game-modal.compon
 import { AddBoardGameModalComponent } from './add-board-game-modal/add-board-game-modal.component';
 import { RefreshDataComponent } from './refresh-data/refresh-data.component';
 import { ErrorButtonComponent } from './error-button/error-button.component';
+import { BoardGameGridItemComponent } from './board-game-grid-item/board-game-grid-item.component';
+import { BoardgameEditModalComponent } from './boardgame-edit-modal/boardgame-edit-modal.component';
 
 //ngrx
 import { StoreModule } from '@ngrx/store';
 import { boardGameReducer } from './reducers/boardgame.reducer';
 import { playerReducer } from './reducers/player.reducer';
-import { BoardGameGridItemComponent } from './board-game-grid-item/board-game-grid-item.component';
-
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { BoardGameGridItemComponent } from './board-game-grid-item/board-game-gr
     AddBoardGameModalComponent,
     RefreshDataComponent,
     ErrorButtonComponent,
-    BoardGameGridItemComponent
+    BoardGameGridItemComponent,
+    BoardgameEditModalComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +66,7 @@ import { BoardGameGridItemComponent } from './board-game-grid-item/board-game-gr
     ToolbarModule,
     DataViewModule,
     DropdownModule,
+    FieldsetModule,
     StoreModule.forRoot({boardgame: boardGameReducer,player: playerReducer})
   ],
   providers: [],

@@ -1,7 +1,9 @@
 export interface boardgame{
   Id: string;
   Name: string;
-  Expansions: string[];
+  Expansions: {
+    Name: string;
+  }[];
   Plays: {
     Date: Date;
     Players: string[];

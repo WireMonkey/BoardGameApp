@@ -1,0 +1,16 @@
+<button pButton type="button" label="Edit Game" class="ui-button-raised ui-button-warning" (click)="EditGame($event)" style="float: right;"></button>
+<p-dialog header="Edit Boardgame" [(visible)]="editDialogShow" [modal]="true" [responsive]="true" [baseZIndex]="10000" [height]="500" [resizable]="false"
+  [contentStyle]="{'overflow':'visible'}" [positionTop]="0" [closable]="false">
+  <label>Name:</label>&nbsp;<input type="text" pInputText [(ngModel)]="boardGame.Name"/>
+  <p-fieldset legend="Expansions" [style]="displayStyle">
+    <ul>
+      <li *ngFor="let exp of boardGame.Expansions">
+          <input type="text" pInputText [(ngModel)]="exp.Name"/>
+      </li>
+    </ul>
+  </p-fieldset>
+  <p-footer>
+      <button type="button" pButton icon="pi pi-check" (click)="saveEdits($event)" label="Done"></button>
+      <button type="button" pButton icon="pi pi-times" (click)="cancelEdits($event)" label="Cancel" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog> 
