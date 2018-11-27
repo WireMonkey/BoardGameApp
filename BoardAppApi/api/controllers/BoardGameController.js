@@ -1,5 +1,7 @@
 'use strict';
 let fs = require('fs');
+let Chance = require('chance');
+let chance = new Chance();
 let BoardGameData = [];
 try {
   fs.readFile('DB/DB.txt', function(err, data) { 
@@ -7,6 +9,13 @@ try {
       console.log(err);
     }
     BoardGameData = JSON.parse(data.toString('utf8'));
+
+    //If boardgame entries do not have id then add one.
+    BoardGameData.forEach(game => {
+      if(!game.Id){
+        game.Id = chance.guid();
+      }
+    });
   });
 } catch (error) {
   console.log(error);
@@ -19,14 +28,15 @@ exports.GetAllBoardGames = function(req, res) {
 exports.SaveBoardGames = function(req, res) {
   let updateData = req.body;
   
-  //If the boardgame exists the update the data to be the same
-  if(BoardGameData.some(game => {
-    return game.Name == updateData.Name;
-  })) {
+  //If it has an id then remove the old data from the list.
+  if(updateData.Id){
     let newList = BoardGameData.filter(game => {
-      return game.Name != updateData.Name;
+      return game.Id != updateData.Id;
     });
     BoardGameData = newList;
+  } else {
+    //If data is missing an id then add one.
+    updateData.Id = chance.guid();
   }
 
   BoardGameData.push(updateData);
@@ -48,6 +58,13 @@ exports.ClearCache = function(req, res) {
       res.json({message: 'Error reading data', error: err});
     }
     BoardGameData = JSON.parse(data.toString('utf8'));
+
+    BoardGameData.forEach(game => {
+      if(!game.Id){
+        game.Id = chance.guid();
+      }
+    });
+    
     res.json({message: 'Cache Reset.'});
   });
 }
