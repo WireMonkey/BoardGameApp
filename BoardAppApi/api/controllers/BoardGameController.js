@@ -3,6 +3,7 @@ let fs = require('fs');
 let Chance = require('chance');
 let chance = new Chance();
 let BoardGameData = [];
+
 try {
   fs.readFile('DB/DB.txt', function(err, data) { 
     if (err) {
@@ -22,49 +23,79 @@ try {
 }
 
 exports.GetAllBoardGames = function(req, res) {
+  try {
     res.json(BoardGameData);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 };
 
 exports.SaveBoardGames = function(req, res) {
-  let updateData = req.body;
-  
-  //If it has an id then remove the old data from the list.
-  if(updateData.Id){
-    let newList = BoardGameData.filter(game => {
-      return game.Id != updateData.Id;
-    });
-    BoardGameData = newList;
-  } else {
-    //If data is missing an id then add one.
-    updateData.Id = chance.guid();
-  }
-
-  BoardGameData.push(updateData);
-
-  fs.writeFile('DB/DB.txt', JSON.stringify(BoardGameData), function (err) {
-    if (err) {
-      console.log(err);
-      res.json({message: 'Error writing data', error: err});
+  try {
+    let updateData = req.body;
+    
+    //If it has an id then remove the old data from the list.
+    if(updateData.Id){
+      let newList = BoardGameData.filter(game => {
+        return game.Id != updateData.Id;
+      });
+      BoardGameData = newList;
+    } else {
+      //If data is missing an id then add one.
+      updateData.Id = chance.guid();
     }
-    console.log('File is created successfully.');
-    res.json({message: 'Data Saved.', Id: updateData.Id});
-  });
+
+    BoardGameData.push(updateData);
+
+    fs.writeFile('DB/DB.txt', JSON.stringify(BoardGameData), function (err) {
+      if (err) {
+        console.log(err);
+        res.status(500).send(error);
+      }
+      res.json({message: 'Data Saved.', Id: updateData.Id});
+    });
+  } catch (error) {
+    res.status(500).send(error);
+  }
 };
 
 exports.ClearCache = function(req, res) {
-  fs.readFile('DB/DB.txt', function(err, data) { 
-    if (err) {
-      console.log(err);
-      res.json({message: 'Error reading data', error: err});
-    }
-    BoardGameData = JSON.parse(data.toString('utf8'));
-
-    BoardGameData.forEach(game => {
-      if(!game.Id){
-        game.Id = chance.guid();
+  try {
+    fs.readFile('DB/DB.txt', function(err, data) { 
+      if (err) {
+        console.log(err);
+        res.status(500).send(error);
       }
+      BoardGameData = JSON.parse(data.toString('utf8'));
+
+      BoardGameData.forEach(game => {
+        if(!game.Id){
+          game.Id = chance.guid();
+        }
+      });
+      
+      res.json({message: 'Cache Reset.'});
     });
-    
-    res.json({message: 'Cache Reset.'});
-  });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
+
+exports.RemoveGame = function(req, res) {
+  try {
+    let id = req.body.Id;
+    BoardGameData = BoardGameData.filter(game => {
+      return game.Id != id;
+    });
+
+    fs.writeFile('DB/DB.txt', JSON.stringify(BoardGameData), function (err) {
+      if (err) {
+        console.log(err);
+        res.status(500).send(error);
+      }
+      res.json({message: 'Data Saved.'});
+    });
+  } catch (error) {
+    res.status(500).send(error);
+  }
 }

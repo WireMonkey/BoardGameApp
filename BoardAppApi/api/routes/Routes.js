@@ -5,7 +5,8 @@ module.exports = function(app) {
   // todoList Routes
   app.route('/boardgames')
     .get(boardGame.GetAllBoardGames)
-    .post(boardGame.SaveBoardGames);
+    .post(boardGame.SaveBoardGames)
+    .delete(boardGame.RemoveGame);
 
   app.route('/boardgames/clearcache')
     .get(boardGame.ClearCache);
