@@ -1,6 +1,6 @@
 <button pButton type="button" label="Play Game" class="ui-button-raised ui-button-success" (click)="PlayGame($event)"></button>
-<p-dialog header="Play a game" [(visible)]="playGameDialogShow" [modal]="true" [responsive]="true" [maximizable]="true" [baseZIndex]="10000" [height]="500" [resizable]="false"
-  [contentStyle]="{'overflow':'visible'}">
+<p-dialog header="Play a game" [(visible)]="playGameDialogShow" [modal]="true" [responsive]="true" [baseZIndex]="10000" [height]="500" [resizable]="false"
+  [contentStyle]="{'overflow':'visible'}" [positionTop]="0">
     <label>Played On</label><br>
     <p-calendar [(ngModel)]="date1" [maxDate]="today" [defaultDate]="today"></p-calendar>
     <br>
