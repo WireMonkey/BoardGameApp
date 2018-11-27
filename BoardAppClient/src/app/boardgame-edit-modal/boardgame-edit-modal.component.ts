@@ -10,7 +10,7 @@ import { BordGameService } from '../services/bord-game.service';
 export class BoardgameEditModalComponent implements OnInit {
   editDialogShow: boolean = false;
   hasExpansions: boolean = false;
-  origionalCopy: boardgame = {Id:null,Expansions:[],Name:null,Plays:null};
+  origionalCopy: boardgame = {Id:null,Expansions:[],Name:null,Plays:null,Notes:null};
   displayStyle: any = {display: ""};
 
   @Input() boardGame: any;

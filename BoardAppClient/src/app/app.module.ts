@@ -19,6 +19,7 @@ import {ToolbarModule} from 'primeng/toolbar';
 import {DataViewModule} from 'primeng/dataview';
 import {DropdownModule} from 'primeng/dropdown';
 import {FieldsetModule} from 'primeng/fieldset';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 //Components
 import { AppComponent } from './app.component';
@@ -67,6 +68,7 @@ import { playerReducer } from './reducers/player.reducer';
     DataViewModule,
     DropdownModule,
     FieldsetModule,
+    InputTextareaModule,
     StoreModule.forRoot({boardgame: boardGameReducer,player: playerReducer})
   ],
   providers: [],

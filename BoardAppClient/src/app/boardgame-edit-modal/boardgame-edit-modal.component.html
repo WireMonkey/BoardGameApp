@@ -1,7 +1,11 @@
 <button pButton type="button" label="Edit Game" class="ui-button-raised ui-button-warning" (click)="EditGame($event)" style="float: right;"></button>
 <p-dialog header="Edit Boardgame" [(visible)]="editDialogShow" [modal]="true" [responsive]="true" [baseZIndex]="10000" [height]="500" [resizable]="false"
   [contentStyle]="{'overflow':'visible'}" [positionTop]="0" [closable]="false">
-  <label>Name:</label>&nbsp;<input type="text" pInputText [(ngModel)]="boardGame.Name"/>
+  <label>Name:&nbsp;</label>
+  <input type="text" pInputText [(ngModel)]="boardGame.Name"/>
+  <br>
+  <label>Notes:</label><br>
+  <textarea pInputTextarea rows="1" cols="30" [(ngModel)]="boardGame.Notes" autoResize="autoResize"></textarea>
   <p-fieldset legend="Expansions" [style]="displayStyle">
     <ul>
       <li *ngFor="let exp of boardGame.Expansions">
