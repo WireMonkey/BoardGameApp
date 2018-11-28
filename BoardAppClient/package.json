@@ -31,7 +31,7 @@
     "momentjs": "^2.0.0",
     "ngx-spinner": "^6.1.2",
     "primeicons": "^1.0.0-beta.10",
-    "primeng": "^6.1.4",
+    "primeng": "^6.1.6",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },

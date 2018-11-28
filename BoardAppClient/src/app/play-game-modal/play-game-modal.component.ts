@@ -7,6 +7,8 @@ import { player } from './../models/player.model'
 import * as boardgameActions from './../actions/boardgame.actions'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {MessageService} from 'primeng/api';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-play-game-modal',
@@ -26,14 +28,13 @@ export class PlayGameModalComponent implements OnInit {
   today: Date = new Date();
   notes: string;
   selectedExpansions: any[];
-  expansions: [] = [];
+  expansions: string[] = [];
 
   playerStore: Observable<player[]>;
   storeList: player[];
 
-  constructor(private service: BordGameService, private store: Store<AppState>) { 
+  constructor(private service: BordGameService, private store: Store<AppState>, private messageService: MessageService, private spinner: NgxSpinnerService) { 
     this.playerStore = this.store.select('player');   
-    
   }
 
   ngOnInit() {
@@ -75,17 +76,34 @@ export class PlayGameModalComponent implements OnInit {
     this.player = "";
   }
 
-  saveGamePlay(event: any){
-    console.log(this.selectedExpansions);
-    let gamePlay = {Date: this.date1, Players: this.players, Winner: this.gameWinner, Notes: this.notes, Expansions: this.selectedExpansions};
-    this.boardGame.Plays.push(gamePlay);
+  hideModal(){
+    this.playGameDialogShow = false;
+    this.date1 = new Date;
+    this.players = [];
+    this.notes = "";
+    this.player = "";
+    this.gameWinner ="";
+  }
 
+  saveGamePlay(event: any){
+    this.spinner.show();
+    let gamePlay = {Date: this.date1, Players: this.players, Winner: this.gameWinner, Notes: this.notes, Expansions: this.selectedExpansions};
+    
     this.service.updateBoardGame(this.boardGame).subscribe(data =>{
-      this.playGameDialogShow = false;
-      this.date1 = new Date;
-      this.players = [];
-      this.gameWinner ="";
-    })
+      this.boardGame.Plays.push(gamePlay);
+
+      this.hideModal()
+      this.spinner.hide();
+      this.messageService.add({severity:'success', summary:'Success!', detail:'Game play info saved.'})
+    }, error => {
+      this.hideModal()
+      this.spinner.hide();
+      let message = "Error saving game play."
+      if(error.status == 0) {
+        message = "Unable to reach server."
+      }
+      this.messageService.add({severity:'error', summary:'Error', detail: message});
+    });
 
   }
 }

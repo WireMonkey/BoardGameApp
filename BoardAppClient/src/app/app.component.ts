@@ -10,6 +10,7 @@ import { player } from './models/player.model'
 import * as boardgameActions from './actions/boardgame.actions'
 import * as playerActions from './actions/player.actions'
 import { Observable } from 'rxjs';
+import {MessageService} from 'primeng/api';
 
 
 @Component({
@@ -20,7 +21,7 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   BoardGames: any;
   title = 'BoardAppClient';
-  constructor(private spinner: NgxSpinnerService, private service: BordGameService, private store: Store<AppState>) { }
+  constructor(private messageService: MessageService, private spinner: NgxSpinnerService, private service: BordGameService, private store: Store<AppState>) { }
 
   ngOnInit() {
     //show spinner
@@ -48,8 +49,15 @@ export class AppComponent {
           });
         }
       }
-
+ 
       //hide spinner
+      this.spinner.hide();
+    }, error => {
+      let message = "Error occured retriving data."
+      if(error.status == 0) {
+        message = "Unable to reach server."
+      }
+      this.messageService.add({severity:'error', summary:'Error', detail: message});
       this.spinner.hide();
     });
 

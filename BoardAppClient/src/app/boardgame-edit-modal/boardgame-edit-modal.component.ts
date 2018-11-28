@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { boardgame } from '../models/boardgames.model';
 import { BordGameService } from '../services/bord-game.service';
+import { MessageService } from 'primeng/api';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-boardgame-edit-modal',
@@ -15,7 +17,7 @@ export class BoardgameEditModalComponent implements OnInit {
 
   @Input() boardGame: any;
   
-  constructor(private service: BordGameService,) { }
+  constructor(private messageService: MessageService, private service: BordGameService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
   }
@@ -27,9 +29,19 @@ export class BoardgameEditModalComponent implements OnInit {
   }
 
   saveEdits(event: any) {
+    this.spinner.show();
     this.service.updateBoardGame(this.boardGame).subscribe(data =>{
       this.editDialogShow = false;
-    })
+      this.spinner.hide();
+    }, error => {
+      this.cancelEdits(null);
+      this.spinner.hide();
+      let message = "Error saving boardgame changes."
+      if(error.status == 0) {
+        message += " Unable to reach server."
+      }
+      this.messageService.add({severity:'error', summary:'Error', detail: message});
+    });
   }
 
   cancelEdits(event: any) {
@@ -37,6 +49,7 @@ export class BoardgameEditModalComponent implements OnInit {
       this.boardGame.Expansions[index].Name = this.origionalCopy.Expansions[index].Name;
     }
     this.boardGame.Name = this.origionalCopy.Name;
+    this.boardGame.Notes = this.origionalCopy.Notes;
 
     this.editDialogShow = false;
   }

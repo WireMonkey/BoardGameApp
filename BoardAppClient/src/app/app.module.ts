@@ -21,6 +21,10 @@ import {DropdownModule} from 'primeng/dropdown';
 import {FieldsetModule} from 'primeng/fieldset';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {ListboxModule} from 'primeng/listbox';
+import {ToastModule} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
+import {BlockUIModule} from 'primeng/blockui';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 //Components
 import { AppComponent } from './app.component';
@@ -71,9 +75,12 @@ import { playerReducer } from './reducers/player.reducer';
     FieldsetModule,
     InputTextareaModule,
     ListboxModule,
+    ToastModule,
+    BlockUIModule,
+    ProgressSpinnerModule,
     StoreModule.forRoot({boardgame: boardGameReducer,player: playerReducer})
   ],
-  providers: [],
+  providers: [MessageService],
   exports: [],
   bootstrap: [AppComponent]
 })
