@@ -19,7 +19,6 @@
             <th>Date Played</th>
             <th style="word-break: break-all;">Expansions</th>
             <th>Players</th>
-            <th>Winner</th>
             <th>Notes</th>
           </tr>
         </ng-template>
@@ -27,8 +26,11 @@
           <tr>
             <td>{{formatDate(play.Date)}}</td>
             <td>{{formatPlayerList(play.Expansions)}}</td>
-            <td>{{formatPlayerList(play.Players)}}</td>
-            <td>{{play.Winner}}</td>
+            <td>
+              {{formatPlayerList(play.Players)}}
+              <br><br>
+              <label><b>Winner: </b></label> play.Winner
+            </td>
             <td>{{play.Notes}}</td>
           </tr>
         </ng-template>
