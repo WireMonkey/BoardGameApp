@@ -88,14 +88,16 @@ export class PlayGameModalComponent implements OnInit {
   saveGamePlay(event: any){
     this.spinner.show();
     let gamePlay = {Date: this.date1, Players: this.players, Winner: this.gameWinner, Notes: this.notes, Expansions: this.selectedExpansions};
+    this.boardGame.Plays.push(gamePlay);
     
     this.service.updateBoardGame(this.boardGame).subscribe(data =>{
-      this.boardGame.Plays.push(gamePlay);
 
       this.hideModal()
       this.spinner.hide();
       this.messageService.add({severity:'success', summary:'Success!', detail:'Game play info saved.'})
     }, error => {
+      this.boardGame.Plays = this.boardGame.Plays.filter(p => {return p != gamePlay});
+
       this.hideModal()
       this.spinner.hide();
       let message = "Error saving game play."
