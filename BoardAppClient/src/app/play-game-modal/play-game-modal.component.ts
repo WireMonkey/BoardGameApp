@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {MessageService} from 'primeng/api';
 import { NgxSpinnerService } from 'ngx-spinner';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-play-game-modal',
@@ -89,6 +90,15 @@ export class PlayGameModalComponent implements OnInit {
     this.spinner.show();
     let gamePlay = {Date: this.date1, Players: this.players, Winner: this.gameWinner, Notes: this.notes, Expansions: this.selectedExpansions};
     this.boardGame.Plays.push(gamePlay);
+    this.boardGame.Plays.sort(function(a, b){
+      if (moment(a.Date).isBefore(moment(b.Date))) {
+        return 1;
+      } else if (moment(a.Date).isAfter(moment(b.Date))) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
     
     this.service.updateBoardGame(this.boardGame).subscribe(data =>{
 

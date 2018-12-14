@@ -3,11 +3,9 @@
       {{boardGame.Name}}
     </p-header>
     <h3>Expansions</h3>
-    <ul>
-      <li *ngFor="let exp of boardGame.Expansions">
-        {{exp.Name}}
-      </li>
-    </ul>
+    <p>
+      {{formatExpansionList(boardGame.Expansions)}}
+    </p>
     <h3>Notes</h3>
     <p>
       {{boardGame.Notes}}
@@ -19,6 +17,7 @@
             <th>Date Played</th>
             <th style="word-break: break-all;">Exp.</th>
             <th>Players</th>
+            <th style="width:4rem"></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-play>
@@ -29,6 +28,9 @@
               {{formatPlayerList(play.Players)}}
               <br><br>
               <label><b>Winner: </b></label>{{play.Winner}}
+            </td>
+            <td>
+              <p-button type="button" icon="pi pi-trash" styleClass="ui-button-danger" pTooltip="Remove played game." tooltipPosition="top" (click)="removePlayedGame($event,play)"></p-button>
             </td>
           </tr>
         </ng-template>
