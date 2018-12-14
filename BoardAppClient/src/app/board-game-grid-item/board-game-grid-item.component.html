@@ -30,7 +30,7 @@
               <label><b>Winner: </b></label>{{play.Winner}}
             </td>
             <td>
-              <p-button type="button" icon="pi pi-trash" styleClass="ui-button-danger" pTooltip="Remove played game." tooltipPosition="top" (click)="removePlayedGame($event,play)"></p-button>
+              <p-button type="button" icon="pi pi-trash" styleClass="ui-button-danger" (click)="removePlayedGame($event,play)"></p-button>
             </td>
           </tr>
         </ng-template>
