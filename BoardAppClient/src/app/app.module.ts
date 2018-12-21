@@ -41,6 +41,7 @@ import { BoardgameEditModalComponent } from './boardgame-edit-modal/boardgame-ed
 import { StoreModule } from '@ngrx/store';
 import { boardGameReducer } from './reducers/boardgame.reducer';
 import { playerReducer } from './reducers/player.reducer';
+import { StatBarComponent } from './stat-bar/stat-bar.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { playerReducer } from './reducers/player.reducer';
     RefreshDataComponent,
     ErrorButtonComponent,
     BoardGameGridItemComponent,
-    BoardgameEditModalComponent
+    BoardgameEditModalComponent,
+    StatBarComponent
   ],
   imports: [
     BrowserModule,
