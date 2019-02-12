@@ -25,41 +25,43 @@ export class AppComponent {
 
   ngOnInit() {
     // show spinner
-    this.spinner.show();
+    //this.spinner.show();
+
+    this.store.dispatch(new boardgameActions.LoadBoardGames());
 
     // Call Service to get all boardgames
-    this.service.getBoardGames().subscribe(data => {
-      this.BoardGames = Object.keys(data).map(function(key) {
-        return data[key];
-      });
+    // this.service.getBoardGames().subscribe(data => {
+    //   this.BoardGames = Object.keys(data).map(function(key) {
+    //     return data[key];
+    //   });
 
-      // Pass all boardgames into store
-      for (let index = 0; index < this.BoardGames.length; index++) {
-        this.store.dispatch(new boardgameActions.AddBoardGame(this.BoardGames[index]));
+    //   // Pass all boardgames into store
+    //   for (let index = 0; index < this.BoardGames.length; index++) {
+    //     this.store.dispatch(new boardgameActions.AddBoardGame(this.BoardGames[index]));
 
-        // Add all players to player store
-        if (this.BoardGames[index].Plays) {
-          this.BoardGames[index].Plays.forEach(play => {
-            if (play.Players && play.Players.length > 0) {
-              play.Players.forEach(item => {
-                const p: player = {Name: item};
-                this.store.dispatch(new playerActions.AddPlayers(p));
-              });
-            }
-          });
-        }
-      }
+    //     // Add all players to player store
+    //     if (this.BoardGames[index].Plays) {
+    //       this.BoardGames[index].Plays.forEach(play => {
+    //         if (play.Players && play.Players.length > 0) {
+    //           play.Players.forEach(item => {
+    //             const p: player = {Name: item};
+    //             this.store.dispatch(new playerActions.AddPlayers(p));
+    //           });
+    //         }
+    //       });
+    //     }
+    //   }
 
       // hide spinner
-      this.spinner.hide();
-    }, error => {
-      let message = 'Error occured retriving data.';
-      if (error.status === 0) {
-        message = 'Unable to reach server.';
-      }
-      this.messageService.add({severity: 'error', summary: 'Error', detail: message});
-      this.spinner.hide();
-    });
+    //   this.spinner.hide();
+    // }, error => {
+    //   let message = 'Error occured retriving data.';
+    //   if (error.status === 0) {
+    //     message = 'Unable to reach server.';
+    //   }
+    //   this.messageService.add({severity: 'error', summary: 'Error', detail: message});
+    //   this.spinner.hide();
+    // });
 
   }
 }

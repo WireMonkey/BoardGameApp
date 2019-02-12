@@ -18,7 +18,7 @@ export function boardGameReducer (state: boardgame[] = initState, action: Boardg
       state = [];
       return state;
     case BoardgameActions.UPDATE_BOARDGAME:
-      const newList = state.filter(game => {
+      let newList = state.filter(game => {
         return game.Name !== action.payload.Name;
       });
 
@@ -30,6 +30,25 @@ export function boardGameReducer (state: boardgame[] = initState, action: Boardg
         return (tA < tB) ? -1 : (tA > tB) ? 1 : 0;
       });
       return state;
+    case BoardgameActions.ADD_BOARDGAMES:
+      state = action.payload;
+      state = state.sort((a, b) => {
+        const tA = a.Name;
+        const tB = b.Name;
+        return (tA < tB) ? -1 : (tA > tB) ? 1 : 0;
+      });
+      return state;
+    case BoardgameActions.ERROR_BOARDGAMES:
+      let game = state.find(x => x.Id == action.payload.Id);
+      game.Name = action.payload.Name;
+      game.Expansions = action.payload.Expansions;
+      game.Plays = action.payload.Plays
+      game.Notes = action.payload.Notes
+      return state;
+    case BoardgameActions.REMOVE_BOARDGAMES:
+    return state.filter(game => {
+      return game.Name !== action.payload.Name;
+    });
     default:
       return state;
   }

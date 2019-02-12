@@ -73,7 +73,7 @@ exports.ClearCache = function(req, res) {
           game.Id = chance.guid();
         }
       });
-      
+      console.log(BoardGameData.length);
       res.json({message: 'Cache Reset.'});
     });
   } catch (error) {

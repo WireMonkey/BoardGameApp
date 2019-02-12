@@ -8,16 +8,16 @@ import { map } from 'rxjs/operators';
 })
 export class BordGameService {
 
-  apiUrl: string = '';
+  apiUrl = '';
   constructor(private http: HttpClient) {
-    this.apiUrl = 'http://' + window.location.hostname + ':3000/boardgames'
+    this.apiUrl = 'http://' + window.location.hostname + ':3000/boardgames';
   }
 
-  getBoardGames(){
-      return this.http.get(this.apiUrl).pipe(map(data => data));
+  getBoardGames() {
+      return this.http.get(this.apiUrl);
   }
 
-  updateBoardGame(data: any){
-    return this.http.post(this.apiUrl,data).pipe(map(data => data));
+  updateBoardGame(data: any) {
+    return this.http.post(this.apiUrl, data).pipe(map(data => data));
   }
 }

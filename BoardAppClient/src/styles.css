@@ -13,3 +13,12 @@ h1 {
 body #errorButton .ui-button {
   background-color: red;
 }
+
+p-dialog .ui-dialog {
+  overflow: auto;
+  max-height: 70%;
+}
+
+.ui-dialog-content {
+  overflow: visible !important;
+}

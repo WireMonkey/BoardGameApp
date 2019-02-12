@@ -18,7 +18,7 @@ export class AddExpansionModalComponent implements OnInit {
   expDialogShow: boolean = false;
   public NewExpansion: string = "";
 
-  constructor(private messageService: MessageService, private service: BordGameService,private store: Store<AppState>, private spinner: NgxSpinnerService) { }
+  constructor(private messageService: MessageService, private service: BordGameService, private store: Store<AppState>, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
   }
@@ -28,23 +28,12 @@ export class AddExpansionModalComponent implements OnInit {
   }
 
   saveExpansion(event: any) {
-    this.spinner.show();
-    this.boardGame.Expansions.push({Name: this.NewExpansion});
+    let org = JSON.parse(JSON.stringify(this.boardGame));
 
-    this.service.updateBoardGame(this.boardGame).subscribe(data =>{
-      this.expDialogShow = false;
-      this.NewExpansion = "";
-      this.spinner.hide();
-    }, error => {
-      this.boardGame.Expansions = this.boardGame.Expansions.filter(e => {return e.Name != this.NewExpansion});
-      this.NewExpansion = "";
-      this.spinner.hide();
-      this.expDialogShow = false;
-      let message = "Error adding expansion to boardgame."
-      if(error.status == 0) {
-        message += " Unable to reach server."
-      }
-      this.messageService.add({severity:'error', summary:'Error', detail: message});
-    });
+    this.boardGame.Expansions.push({ Name: this.NewExpansion });
+    this.store.dispatch(new boardgameActions.UpdateBoardGame(this.boardGame, org));
+
+    this.expDialogShow = false;
+    this.NewExpansion = '';
   }
 }

@@ -36,12 +36,14 @@ import { RefreshDataComponent } from './refresh-data/refresh-data.component';
 import { ErrorButtonComponent } from './error-button/error-button.component';
 import { BoardGameGridItemComponent } from './board-game-grid-item/board-game-grid-item.component';
 import { BoardgameEditModalComponent } from './boardgame-edit-modal/boardgame-edit-modal.component';
+import { StatBarComponent } from './stat-bar/stat-bar.component';
 
 //ngrx
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { boardGameReducer } from './reducers/boardgame.reducer';
 import { playerReducer } from './reducers/player.reducer';
-import { StatBarComponent } from './stat-bar/stat-bar.component';
+import { BoardgameEffects } from './effects/boardgame.effects'; 
 
 @NgModule({
   declarations: [
@@ -80,7 +82,8 @@ import { StatBarComponent } from './stat-bar/stat-bar.component';
     ToastModule,
     BlockUIModule,
     ProgressSpinnerModule,
-    StoreModule.forRoot({boardgame: boardGameReducer,player: playerReducer})
+    StoreModule.forRoot({boardgame: boardGameReducer, player: playerReducer}),
+    EffectsModule.forRoot([BoardgameEffects])
   ],
   providers: [MessageService],
   exports: [],

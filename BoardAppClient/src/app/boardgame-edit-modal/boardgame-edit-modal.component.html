@@ -9,7 +9,7 @@
   <p-fieldset legend="Expansions" [style]="displayStyle">
     <ul>
       <li *ngFor="let exp of boardGame.Expansions">
-          <input type="text" pInputText [(ngModel)]="exp.Name"/>
+          <input type="text" pInputText class="ui-inputtext" [(ngModel)]="exp.Name"/>
       </li>
     </ul>
   </p-fieldset>

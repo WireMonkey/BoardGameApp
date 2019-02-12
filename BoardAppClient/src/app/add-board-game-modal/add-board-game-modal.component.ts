@@ -7,6 +7,7 @@ import { boardgame } from './../models/boardgames.model'
 import { NgxSpinnerService } from 'ngx-spinner';
 import * as boardgameActions from './../actions/boardgame.actions';
 import { MessageService } from 'primeng/api';
+import { gameplay } from '../models/gameplay.model';
 
 @Component({
   selector: 'app-add-board-game-modal',
@@ -17,35 +18,23 @@ export class AddBoardGameModalComponent implements OnInit {
   public NewBoardGame: string = "";
 
 
-  constructor(private messageService: MessageService, private service: BordGameService,private store: Store<AppState>, private spinner: NgxSpinnerService) { }
+  constructor(private messageService: MessageService, private service: BordGameService, private store: Store<AppState>, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
   }
 
   addBoardGameShow: boolean = false;
-  
+
   AddBoardGame() {
-    this.spinner.show();
-    let saveData:any = {Name: this.NewBoardGame, Expansions: [], Plays: []};
-    this.service.updateBoardGame(saveData).subscribe(data =>{
-      let returned = data as any;
-      let boardGame:any = {Id: returned.Id, Name: this.NewBoardGame, Expansions: [], Plays: []};
-      this.store.dispatch(new boardgameActions.AddBoardGame(boardGame));
-      this.spinner.hide();
-      this.addBoardGameShow = false;
-    }, error => {
-      this.addBoardGameShow = false;
-      this.spinner.hide();
-      let message = "Error saving new boardgame."
-      if(error.status == 0) {
-        message += " Unable to reach server."
-      }
-      this.messageService.add({severity:'error', summary:'Error', detail: message});
-    });
+    let saveData: boardgame = { Name: this.NewBoardGame, Expansions: [], Plays: [], Notes: "", Id: null };
+    this.store.dispatch(new boardgameActions.AddBoardGame(saveData));
+
+    this.NewBoardGame = '';
+    this.addBoardGameShow = false;
   }
 
   ShowModal() {
-    this.NewBoardGame = "";
+    this.NewBoardGame = '';
     this.addBoardGameShow = true;
   }
 }

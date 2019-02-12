@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from './../app.state';
 import { boardgame } from './../models/boardgames.model';
 import { state } from '@angular/animations';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -16,9 +17,9 @@ export class BoardGameGridComponent implements OnInit {
   BoardGames$: Observable<boardgame[]>;
   searchGame: string;
   filteredGames: any[] = []
-  private boardgameSub: Subscription;
-  boardGames: boardgame[];
-  
+  //private boardgameSub: Subscription;
+  //boardGames: boardgame[];
+
 
 
   constructor(private service: BordGameService, private store: Store<AppState>) {
@@ -26,20 +27,23 @@ export class BoardGameGridComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.boardgameSub = this.BoardGames$.subscribe(state => {
-      this.boardGames = state;
-    });
-
   }
 
   filterPlayers(event) {
     this.filteredGames = [];
-    let gameNames = this.boardGames.map(g => {return g.Name});
-    for(let i = 0; i < gameNames.length; i++) {
-        let brand = gameNames[i];
-        if(brand.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
-            this.filteredGames.push(brand);
-        }
+    let gameNames = [];
+
+    let bSub = this.BoardGames$.subscribe(state => {
+      gameNames = state.map(g => { return g.Name });
+    });
+    
+    for (let i = 0; i < gameNames.length; i++) {
+      let brand = gameNames[i];
+      if (brand.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
+        this.filteredGames.push(brand);
+      }
     }
+
+    bSub.unsubscribe();
   }
 }

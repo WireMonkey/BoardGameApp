@@ -33,6 +33,7 @@ export class PlayGameModalComponent implements OnInit {
 
   playerStore: Observable<player[]>;
   storeList: player[];
+  private oBoardgame: boardgame;
 
   constructor(private service: BordGameService, private store: Store<AppState>, private messageService: MessageService, private spinner: NgxSpinnerService) {
     this.playerStore = this.store.select('player');
@@ -42,13 +43,16 @@ export class PlayGameModalComponent implements OnInit {
     this.playerStore.subscribe(store => {
       this.storeList = store;
     });
+
+    this.oBoardgame = JSON.parse(JSON.stringify(this.boardGame));
   }
 
   PlayGame() {
     this.playGameDialogShow = true;
+    this.oBoardgame = JSON.parse(JSON.stringify(this.boardGame));
 
-    this.playerList = this.storeList.map(p =>p.Name);
-    this.expansions = this.boardGame.Expansions.map(e =>({label: e.Name, value: e.Name}));
+    this.playerList = this.storeList.map(p => p.Name);
+    this.expansions = this.boardGame.Expansions.map(e => ({label: e.Name, value: e.Name}));
   }
 
   isEmptyOrSpaces(str) {
@@ -83,39 +87,27 @@ export class PlayGameModalComponent implements OnInit {
     this.players = [];
     this.notes = '';
     this.player = '';
-    this.gameWinner = "";
+    this.gameWinner = '';
+    this.selectedExpansions = [];
   }
 
   saveGamePlay(event: any) {
-    this.spinner.show();
-    const gamePlay = {Date: this.date1, Players: this.players, Winner: this.gameWinner, Notes: this.notes, Expansions: this.selectedExpansions};
-    this.boardGame.Plays.push(gamePlay);
-    this.boardGame.Plays.sort(function(a, b) {
-      if (moment(a.Date).isBefore(moment(b.Date))) {
-        return 1;
-      } else if (moment(a.Date).isAfter(moment(b.Date))) {
-        return -1;
-      } else {
-        return 0;
-      }
-    });
-
-    this.service.updateBoardGame(this.boardGame).subscribe(data => {
-
+    //this.spinner.show();
+    const gamePlay = {Date: this.date1, Players: this.players,
+      Winner: this.gameWinner, Notes: this.notes, Expansions: this.selectedExpansions};
+      this.boardGame.Plays.unshift(gamePlay);
+      this.boardGame.Plays.sort(function(a, b) {
+        if (moment(a.Date).isBefore(moment(b.Date))) {
+          return 1;
+        } else if (moment(a.Date).isAfter(moment(b.Date))) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+      
+      this.store.dispatch(new boardgameActions.PlayBoardGame(this.boardGame, this.oBoardgame));
+      
       this.hideModal();
-      this.spinner.hide();
-      this.messageService.add({severity: 'success', summary: 'Success!', detail: 'Game play info saved.'});
-    }, error => {
-      this.boardGame.Plays = this.boardGame.Plays.filter(p =>p != gamePlay);
-
-      this.hideModal();
-      this.spinner.hide();
-      let message = 'Error saving game play.'
-      if (error.status == 0) {
-        message = 'Unable to reach server.'
-      }
-      this.messageService.add({severity: 'error', summary: 'Error', detail: message});
-    });
-
   }
 }

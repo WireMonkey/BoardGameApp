@@ -1,3 +1,5 @@
+import { gameplay } from "./gameplay.model";
+
 export interface boardgame{
   Id: string;
   Name: string;
@@ -5,11 +7,5 @@ export interface boardgame{
   Expansions: {
     Name: string;
   }[];
-  Plays: {
-    Date: Date;
-    Players: string[];
-    Winner: string;
-    Notes: string;
-    Expansions: string[];
-  }[];
+  Plays: gameplay[];
 }
