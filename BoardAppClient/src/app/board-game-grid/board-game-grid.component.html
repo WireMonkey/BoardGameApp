@@ -13,7 +13,7 @@
             </div>
         </div>
     </p-header>
-  <ng-template let-game pTemplate="listItem">
+  <ng-template let-game ngFor pTemplate="listItem">
       <div [id]="game.Id"> 
           <app-board-game-grid-item [boardGame]="game"></app-board-game-grid-item>
       </div>

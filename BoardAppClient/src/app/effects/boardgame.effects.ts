@@ -124,9 +124,10 @@ export class BoardgameEffects {
     ofType(BoardgameActions.ADD_BOARDGAME),
     switchMap((action: any) => {
       return this.boardgameService.updateBoardGame(action.payload).pipe(
-        map(response => {
+        map((response: any) => {
+          console.log(response);
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Boardgame saved.' });
-          return new BoardgameActions.DoneBoardgames();
+          return new BoardgameActions.SetBoardgameId(response.Id);
         }),
         catchError(err => {
           let message = 'Unable to add boardgame. ';
