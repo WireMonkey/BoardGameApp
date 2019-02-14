@@ -27,8 +27,7 @@ export class BoardgameEffects {
     switchMap(() => {
       this.spinner.show();
       return this.boardgameService.getBoardGames().pipe(
-        map((games: boardgame[]) => {//Create
-          this.statsService.CalculateStats(games);
+        map((games: boardgame[]) => {
           return new BoardgameActions.AddBoardGames(games);
         }),
         tap((act: any) => {
@@ -103,7 +102,7 @@ export class BoardgameEffects {
     switchMap((action: any) => {
       return this.boardgameService.updateBoardGame(action.payload).pipe(
         map(response => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Expansion Added' });
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Boardgame Updated.' });
           return new BoardgameActions.DoneBoardgames();
         }),
         catchError(err => {
