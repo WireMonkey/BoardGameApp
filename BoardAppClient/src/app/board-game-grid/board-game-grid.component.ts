@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BordGameService } from './../services/bord-game.service';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -6,6 +6,7 @@ import { AppState } from './../app.state';
 import { boardgame } from './../models/boardgames.model';
 import { state } from '@angular/animations';
 import { map } from 'rxjs/operators';
+import { DataView } from 'primeng/dataview';
 
 
 @Component({
@@ -16,7 +17,8 @@ import { map } from 'rxjs/operators';
 export class BoardGameGridComponent implements OnInit {
   BoardGames$: Observable<boardgame[]>;
   searchGame: string;
-  filteredGames: any[] = []
+  filteredGames: any[] = [];
+  @ViewChild('dv') grid: DataView;
   //private boardgameSub: Subscription;
   //boardGames: boardgame[];
 
