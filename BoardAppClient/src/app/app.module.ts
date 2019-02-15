@@ -43,7 +43,11 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { boardGameReducer } from './reducers/boardgame.reducer';
 import { playerReducer } from './reducers/player.reducer';
-import { BoardgameEffects } from './effects/boardgame.effects'; 
+import { BoardgameEffects } from './effects/boardgame.effects';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { LoginComponent } from './login/login.component';
+import { CreateUserComponent } from './create-user/create-user.component';
+import { UnauthComponent } from './unauth/unauth.component'; 
 
 @NgModule({
   declarations: [
@@ -56,7 +60,11 @@ import { BoardgameEffects } from './effects/boardgame.effects';
     ErrorButtonComponent,
     BoardGameGridItemComponent,
     BoardgameEditModalComponent,
-    StatBarComponent
+    StatBarComponent,
+    ResetPasswordComponent,
+    LoginComponent,
+    CreateUserComponent,
+    UnauthComponent
   ],
   imports: [
     BrowserModule,
