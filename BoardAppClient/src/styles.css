@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+}
+
 h1 {
   color: white;
 }
@@ -22,4 +26,9 @@ p-dialog .ui-dialog {
 
 .ui-dialog-content {
   overflow: visible !important;
+}
+
+.loginDiv {
+  display: flex;
+  justify-content: center;
 }
