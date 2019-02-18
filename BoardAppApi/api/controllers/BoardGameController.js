@@ -1,22 +1,16 @@
 'use strict';
-let fs = require('fs');
-let Chance = require('chance');
-let chance = new Chance();
-let BoardGameData = [];
+const fs = require('fs');
+const Chance = require('chance');
+const chance = new Chance();
+const axios = require('axios');
+let dbConnections = {};
 
 try {
-  fs.readFile('DB/DB.txt', function(err, data) { 
+  fs.readFile('config.json', function(err, data) { 
     if (err) {
       console.log(err);
     }
-    BoardGameData = JSON.parse(data.toString('utf8'));
-
-    //If boardgame entries do not have id then add one.
-    BoardGameData.forEach(game => {
-      if(!game.Id){
-        game.Id = chance.guid();
-      }
-    });
+    dbConnections = JSON.parse(data.toString('utf8'));
   });
 } catch (error) {
   console.log(error);
@@ -24,7 +18,13 @@ try {
 
 exports.GetAllBoardGames = function(req, res) {
   try {
-    res.json(BoardGameData);
+    //Make call to get all keys
+    axios.get(dbConnections.boardgameApi + '/_all_docs?include_docs=true').then(response => {
+      res.json(response.data.rows.map(r => r.doc));
+    }).catch(error => {
+      console.log(error);
+      res.status(500).send(error);
+    })
   } catch (error) {
     res.status(500).send(error);
   }
@@ -34,66 +34,30 @@ exports.SaveBoardGames = function(req, res) {
   try {
     let updateData = req.body;
     
-    //If it has an id then remove the old data from the list.
-    if(updateData.Id){
-      let newList = BoardGameData.filter(game => {
-        return game.Id != updateData.Id;
-      });
-      BoardGameData = newList;
-    } else {
+    if(!updateData._id){
       //If data is missing an id then add one.
-      updateData.Id = chance.guid();
+      updateData._id = chance.guid();
+      delete updateData._rev;
     }
-
-    BoardGameData.push(updateData);
-
-    fs.writeFile('DB/DB.txt', JSON.stringify(BoardGameData), function (err) {
-      if (err) {
-        console.log(err);
-        res.status(500).send(error);
-      }
-      res.json({message: 'Data Saved.', Id: updateData.Id});
-    });
+    
+    axios.put(dbConnections.boardgameApi + '/' + updateData._id,updateData).then(response => {
+      res.json(response.data);
+    }).catch(error => {
+      res.status(500).send("error saving data");
+    })
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
-exports.ClearCache = function(req, res) {
-  try {
-    fs.readFile('DB/DB.txt', function(err, data) { 
-      if (err) {
-        console.log(err);
-        res.status(500).send(error);
-      }
-      BoardGameData = JSON.parse(data.toString('utf8'));
-
-      BoardGameData.forEach(game => {
-        if(!game.Id){
-          game.Id = chance.guid();
-        }
-      });
-      console.log(BoardGameData.length);
-      res.json({message: 'Cache Reset.'});
-    });
-  } catch (error) {
-    res.status(500).send(error);
-  }
-}
-
 exports.RemoveGame = function(req, res) {
   try {
-    let id = req.body.Id;
-    BoardGameData = BoardGameData.filter(game => {
-      return game.Id != id;
-    });
+    let removeData = req.body;
 
-    fs.writeFile('DB/DB.txt', JSON.stringify(BoardGameData), function (err) {
-      if (err) {
-        console.log(err);
-        res.status(500).send(error);
-      }
-      res.json({message: 'Data Saved.'});
+    axios.delete(dbConnections.boardgameApi + '/' + removeData._id + '?rev=' + removeData._rev).then(response => {
+      res.json(response);
+    }).catch(error => {
+      res.status(500).send("error saving data");
     });
   } catch (error) {
     res.status(500).send(error);

@@ -18,16 +18,8 @@ routes(app); //register the route
 
 app.listen(port);
 
-if(!fs.existsSync('DB/DB.txt')){
-  console.log('DB file doesnt exist. Creating file');
-  
-  let jsonData = JSON.stringify([]);
-  fs.writeFile('DB/DB.txt', jsonData, function (err) {
-    if (err) {
-      throw err;
-    }
-    console.log('File is created successfully.');
-  });
+if(!fs.existsSync('config.json')){
+  throw Error('Config file missing');
 }
 
 console.log('Boardgame RESTful API server started on: ' + port);

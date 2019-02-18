@@ -9,9 +9,6 @@ module.exports = function(app) {
     .post(boardGame.SaveBoardGames)
     .delete(boardGame.RemoveGame);
 
-  app.route('/boardgames/clearcache')
-    .get(boardGame.ClearCache);
-
   app.route('/users')
     .post(users.CreateUser);
   app.route('/users/valid')

@@ -3,5 +3,6 @@ WORKDIR /app
 COPY package.json /app
 RUN npm install
 COPY . /app
+RUN rm /DB/DB.txt
 CMD node api/server.js
 EXPOSE 3000
