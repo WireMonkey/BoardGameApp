@@ -25,6 +25,7 @@ import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 import {BlockUIModule} from 'primeng/blockui';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {TabViewModule} from 'primeng/tabview';
 
 //Components
 import { AppComponent } from './app.component';
@@ -43,7 +44,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { boardGameReducer } from './reducers/boardgame.reducer';
 import { playerReducer } from './reducers/player.reducer';
-import { BoardgameEffects } from './effects/boardgame.effects'; 
+import { BoardgameEffects } from './effects/boardgame.effects';
+import { StatModalComponent } from './stat-modal/stat-modal.component'; 
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { BoardgameEffects } from './effects/boardgame.effects';
     ErrorButtonComponent,
     BoardGameGridItemComponent,
     BoardgameEditModalComponent,
-    StatBarComponent
+    StatBarComponent,
+    StatModalComponent
   ],
   imports: [
     BrowserModule,
@@ -82,6 +85,7 @@ import { BoardgameEffects } from './effects/boardgame.effects';
     ToastModule,
     BlockUIModule,
     ProgressSpinnerModule,
+    TabViewModule,
     StoreModule.forRoot({boardgame: boardGameReducer, player: playerReducer}),
     EffectsModule.forRoot([BoardgameEffects])
   ],
