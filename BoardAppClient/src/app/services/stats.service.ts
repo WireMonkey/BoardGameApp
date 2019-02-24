@@ -21,7 +21,8 @@ export class StatsService {
     },
     lastPlayed: {
       Expansions: [],
-      Id: '',
+      _id: '',
+      _rev: '',
       Name: '',
       Notes: '',
       Plays: [{
@@ -34,7 +35,8 @@ export class StatsService {
     },
     mostPlayed: {
       Expansions: [],
-      Id: '',
+      _id: '',
+      _rev: '',
       Name: '',
       Notes: '',
       Plays: []
@@ -79,7 +81,7 @@ export class StatsService {
       })[0];
     } else {
       return {
-        Name: '', Plays: [{ Date: null, Players: [], Winner: '', Notes: '', Expansions: [] }], Expansions: [], Notes: '', Id: ''
+        Name: '', Plays: [{ Date: null, Players: [], Winner: '', Notes: '', Expansions: [] }], Expansions: [], Notes: '', _id: '', _rev: ''
       };
     }
   }
@@ -89,7 +91,7 @@ export class StatsService {
       return games.sort((a, b) => b.Plays.length - a.Plays.length)[0];
     } else {
       return {
-        Name: '', Plays: [{ Date: null, Players: [], Winner: '', Notes: '', Expansions: [] }], Expansions: [], Notes: '', Id: ''
+        Name: '', Plays: [{ Date: null, Players: [], Winner: '', Notes: '', Expansions: [] }], Expansions: [], Notes: '',  _id: '', _rev: ''
       };
     }
   }

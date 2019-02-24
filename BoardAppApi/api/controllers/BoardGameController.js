@@ -3,23 +3,15 @@ const fs = require('fs');
 const Chance = require('chance');
 const chance = new Chance();
 const axios = require('axios');
-let dbConnections = {};
+const myArgs = require('optimist').argv;
+const dbConnections = myArgs.boardgame;
 
-try {
-  fs.readFile('config.json', function(err, data) { 
-    if (err) {
-      console.log(err);
-    }
-    dbConnections = JSON.parse(data.toString('utf8'));
-  });
-} catch (error) {
-  console.log(error);
-}
+console.log(myArgs.boardgame);
 
 exports.GetAllBoardGames = function(req, res) {
   try {
     //Make call to get all keys
-    axios.get(dbConnections.boardgameApi + '/_all_docs?include_docs=true').then(response => {
+    axios.get(dbConnections + '/_all_docs?include_docs=true').then(response => {
       res.json(response.data.rows.map(r => r.doc));
     }).catch(error => {
       console.log(error);
@@ -40,7 +32,7 @@ exports.SaveBoardGames = function(req, res) {
       delete updateData._rev;
     }
     
-    axios.put(dbConnections.boardgameApi + '/' + updateData._id,updateData).then(response => {
+    axios.put(dbConnections + '/' + updateData._id,updateData).then(response => {
       res.json(response.data);
     }).catch(error => {
       res.status(500).send("error saving data");
@@ -54,7 +46,7 @@ exports.RemoveGame = function(req, res) {
   try {
     let removeData = req.body;
 
-    axios.delete(dbConnections.boardgameApi + '/' + removeData._id + '?rev=' + removeData._rev).then(response => {
+    axios.delete(dbConnections + '/' + removeData._id + '?rev=' + removeData._rev).then(response => {
       res.json(response);
     }).catch(error => {
       res.status(500).send("error saving data");

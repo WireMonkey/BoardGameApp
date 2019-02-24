@@ -39,7 +39,7 @@ export function boardGameReducer(state: boardgame[] = initState, action: Boardga
       });
       return state;
     case BoardgameActions.ERROR_BOARDGAMES:
-      let game = state.find(x => x.Id == action.payload.Id);
+      let game = state.find(x => x._id == action.payload._id);
       game.Name = action.payload.Name;
       game.Expansions = action.payload.Expansions;
       game.Plays = action.payload.Plays
@@ -50,8 +50,9 @@ export function boardGameReducer(state: boardgame[] = initState, action: Boardga
         return game.Name !== action.payload.Name;
       });
     case BoardgameActions.SETID_BOARDGAMES:
-      let newGame = state.find(x => x.Id == null);
-      newGame.Id = action.id;
+      let newGame = state.find(x => x._id == null);
+      newGame._id = action.id;
+      newGame._rev = action.rev;
       return state;
     default:
       return state;

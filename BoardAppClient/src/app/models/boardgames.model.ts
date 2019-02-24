@@ -1,7 +1,8 @@
 import { gameplay } from "./gameplay.model";
 
 export interface boardgame{
-  Id: string;
+  _id: string;
+  _rev: string;
   Name: string;
   Notes: string;
   Expansions: {

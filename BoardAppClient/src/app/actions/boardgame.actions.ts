@@ -52,7 +52,7 @@ export class ErrorBoardGames implements Action {
 
 export class SetBoardgameId implements Action {
   readonly type = SETID_BOARDGAMES;
-  constructor(public id: string) { }
+  constructor(public id: string, public rev: string) { }
 }
 
 export class DoneBoardgames implements Action {
