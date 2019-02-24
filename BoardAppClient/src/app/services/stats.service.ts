@@ -42,7 +42,7 @@ export class StatsService {
       Plays: []
     }
   };
-  private playerList = [];
+  playerList = [];
   private gameList = [];
 
   constructor() { }
@@ -109,7 +109,9 @@ export class StatsService {
   private AddPlayers(play: gameplay): void {
     play.Players.forEach(p => {
       this.addToList(p, play);
-    })
+    });
+
+    this.playerList.sort((a, b) => b.Rate - a.Rate);
   }
 
   private addToList(p: any, play: gameplay) {
@@ -149,6 +151,8 @@ export class StatsService {
       }
     });
 
+    this.playerList.sort((a, b) => b.Rate - a.Rate);
+    
     return players.sort((a, b) => b.Rate - a.Rate)[0];
   }
 }

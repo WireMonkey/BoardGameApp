@@ -25,6 +25,7 @@ import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 import {BlockUIModule} from 'primeng/blockui';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {TabViewModule} from 'primeng/tabview';
 
 //Components
 import { AppComponent } from './app.component';
@@ -37,6 +38,7 @@ import { ErrorButtonComponent } from './error-button/error-button.component';
 import { BoardGameGridItemComponent } from './board-game-grid-item/board-game-grid-item.component';
 import { BoardgameEditModalComponent } from './boardgame-edit-modal/boardgame-edit-modal.component';
 import { StatBarComponent } from './stat-bar/stat-bar.component';
+import { StatModalComponent } from './stat-modal/stat-modal.component'; 
 
 //ngrx
 import { StoreModule } from '@ngrx/store';
@@ -48,6 +50,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { LoginComponent } from './login/login.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { UnauthComponent } from './unauth/unauth.component'; 
+
 
 @NgModule({
   declarations: [
@@ -61,6 +64,7 @@ import { UnauthComponent } from './unauth/unauth.component';
     BoardGameGridItemComponent,
     BoardgameEditModalComponent,
     StatBarComponent,
+    StatModalComponent,
     ResetPasswordComponent,
     LoginComponent,
     CreateUserComponent,
@@ -90,6 +94,7 @@ import { UnauthComponent } from './unauth/unauth.component';
     ToastModule,
     BlockUIModule,
     ProgressSpinnerModule,
+    TabViewModule,
     StoreModule.forRoot({boardgame: boardGameReducer, player: playerReducer}),
     EffectsModule.forRoot([BoardgameEffects])
   ],

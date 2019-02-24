@@ -3,7 +3,7 @@
 <p-dialog header="Play a game" [(visible)]="playGameDialogShow" [modal]="true" [responsive]="true" [baseZIndex]="10000"
   [height]="500" [resizable]="false" [positionTop]="0">
   <div class="ui-g">
-    <div class="ui-g-12 ui-md-6">
+    <div class="ui-g-12 ui-md-6 ui-sm-12">
       <p-fieldset legend="Info">
         <label>Played On</label><br>
         <p-calendar [(ngModel)]="date1" [maxDate]="today" [defaultDate]="today"></p-calendar>
@@ -19,7 +19,7 @@
           [showToggleAll]="false" [filter]="false"></p-listbox>
       </p-fieldset>
     </div>
-    <div class="ui-g-12 ui-md-6">
+    <div class="ui-g-12 ui-md-6 ui-sm-12">
       <p-fieldset legend="Players">
         <p-autoComplete [(ngModel)]="player" [suggestions]="filteredPlayers" (completeMethod)="filterPlayers($event)"
           styleClass="wid100" [minLength]="1" placeholder="Add Players" (onKeyUp)="autoCompleteKeyPress($event)"

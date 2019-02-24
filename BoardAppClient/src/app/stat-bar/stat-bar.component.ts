@@ -15,12 +15,13 @@ import { StatsService } from '../services/stats.service';
   styleUrls: ['./stat-bar.component.css']
 })
 export class StatBarComponent implements OnInit {
-  
+  showStats: boolean = false;
+
   constructor(public statsService: StatsService) {
   }
 
   ngOnInit() {
-    this.statsService.statData.MostWins.Name;
+
   }
 
   formatDate(date: any) {

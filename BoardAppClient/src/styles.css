@@ -21,7 +21,7 @@ body #errorButton .ui-button {
 p-dialog .ui-dialog {
   overflow: auto;
   max-height: 70%;
-  max-width: 60%;
+  max-width: 100%;
 }
 
 .ui-dialog-content {

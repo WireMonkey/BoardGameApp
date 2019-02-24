@@ -1,0 +1,35 @@
+<i class="pi pi-info-circle" style="font-size: 2em" pTooltip="Click for more stats" (click)="showDialog=true"></i>
+<p-dialog header="Stats" [(visible)]="showDialog" [style]="{width: '100%', height: '100%', minWidth: '100%', minHeight: '100%'}">
+    <p-tabView>
+        <p-tabPanel header="Players">
+                <p-table [value]="statsService.playerList" [columns]="cols">
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                    {{col.header}}
+                                    <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-columns="columns">
+                            <tr>
+                                <td *ngFor="let col of columns">
+                                    <div *ngIf="col.field !== 'Rate'">
+                                        {{rowData[col.field]}}
+                                    </div>
+                                    <div *ngIf="col.field == 'Rate'">
+                                        {{rowData[col.field] | percent}}
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+        </p-tabPanel>
+        <p-tabPanel header="Games">
+           Game Data
+        </p-tabPanel>
+    </p-tabView>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-times" (click)="showDialog=false" label="Close"></button>
+      </p-footer>
+</p-dialog>
