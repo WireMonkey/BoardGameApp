@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -50,6 +50,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { LoginComponent } from './login/login.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { UnauthComponent } from './unauth/unauth.component'; 
+import { ErrorsHandler } from './ErrorHandling/ErrorHandler';
 
 
 @NgModule({
@@ -98,7 +99,13 @@ import { UnauthComponent } from './unauth/unauth.component';
     StoreModule.forRoot({boardgame: boardGameReducer, player: playerReducer}),
     EffectsModule.forRoot([BoardgameEffects])
   ],
-  providers: [MessageService],
+  providers: [
+    MessageService,
+    {
+      provide: ErrorHandler,
+      useClass: ErrorsHandler,
+    }
+  ],
   exports: [],
   bootstrap: [AppComponent]
 })

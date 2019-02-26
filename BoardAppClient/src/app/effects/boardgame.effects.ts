@@ -55,7 +55,7 @@ export class BoardgameEffects {
           }
           this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
           this.spinner.hide();
-          return new Observable();
+          throw err;
         })
       );
     })
@@ -90,7 +90,7 @@ export class BoardgameEffects {
           }
           this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
           this.store.dispatch(new BoardgameActions.ErrorBoardGames(action.orig));
-          return new Observable();
+          throw err;
         })
       )
     })
@@ -112,7 +112,7 @@ export class BoardgameEffects {
           }
           this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
           this.store.dispatch(new BoardgameActions.ErrorBoardGames(action.orig));
-          return new Observable();
+          throw err;
         })
       );
     })
@@ -138,7 +138,7 @@ export class BoardgameEffects {
           }
           this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
           this.store.dispatch(new BoardgameActions.RemoveBoardgame(action.payload));
-          return new Observable();
+          throw err;
         })
       )
     })

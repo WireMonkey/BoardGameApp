@@ -3,19 +3,8 @@ html, body {
   height: 100%;
 }
 
-h1 {
+h1, h5 {
   color: white;
-}
-
-#errorButton {
-  margin: 5px;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
-
-body #errorButton .ui-button {
-  background-color: red;
 }
 
 p-dialog .ui-dialog {
@@ -31,4 +20,11 @@ p-dialog .ui-dialog {
 .loginDiv {
   display: flex;
   justify-content: center;
+}
+
+.footer{
+  position: fixed;
+  bottom: 0px;
+  width:100%;
+  z-index: 102;
 }
