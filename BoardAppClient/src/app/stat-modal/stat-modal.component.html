@@ -1,8 +1,8 @@
 <i class="pi pi-info-circle" style="font-size: 2em" pTooltip="Click for more stats" (click)="showDialog=true"></i>
-<p-dialog header="Stats" [(visible)]="showDialog" [style]="{width: '100%', height: '100%', minWidth: '100%', minHeight: '100%'}">
+<p-dialog header="Stats" [(visible)]="showDialog" [style]="{width: '100%', height: '100%', minWidth: '100%', minHeight: '100%'}" [positionTop]="0">
     <p-tabView>
         <p-tabPanel header="Players">
-                <p-table [value]="statsService.playerList" [columns]="cols">
+                <p-table [value]="statsService.playerList" [columns]="playerCols" [paginator]="true" [rows]="5">
                         <ng-template pTemplate="header" let-columns>
                             <tr>
                                 <th *ngFor="let col of columns" [pSortableColumn]="col.field">
@@ -26,7 +26,28 @@
                     </p-table>
         </p-tabPanel>
         <p-tabPanel header="Games">
-           Game Data
+            <p-table [value]="statsService.gameList" [columns]="gameCols" [paginator]="true" [rows]="5">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr>
+                        <td *ngFor="let col of columns">
+                            <div *ngIf="col.field !== 'LastPlayed'">
+                                {{rowData[col.field]}}
+                            </div>
+                            <div *ngIf="col.field == 'LastPlayed'">
+                                {{formatDate(rowData[col.field])}}
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
         </p-tabPanel>
     </p-tabView>
     <p-footer>
