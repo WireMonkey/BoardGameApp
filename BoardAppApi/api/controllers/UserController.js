@@ -1,16 +1,37 @@
+'use strict';
+let fs = require('fs');
 const bcrypt = require('bcrypt');
 const Chance = require('chance');
 const chance = new Chance();
 const saltRounds = 10;
-const users = [];
+let users = [];
+
+try {
+    fs.readFile('DB/Users.txt', function(err, data) { 
+      if (err) {
+        console.log(err);
+      }
+      users = JSON.parse(data.toString('utf8'));
+    });
+  } catch (error) {
+    console.log(error);
+  }
 
 exports.CreateUser = async function (req, res) {
     try {
         let hash = await HashPassword(req.body.userName, req.body.password);
         let userId = await SaveUser(req.body.userName, hash);
-        res.json(userId);
+
+        fs.writeFile('DB/Users.txt', JSON.stringify(users), function (err) {
+            if (err) {
+              console.log(err);
+              res.status(500).send(error);
+            }
+            res.json({message: 'Data Saved.', Id: userId});
+          });
     } catch (error) {
-        res.status(500).json(error);
+        console.log(error.message);
+        res.status(500).send(error.message);
     }
 }
 

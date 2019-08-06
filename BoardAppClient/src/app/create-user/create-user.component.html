@@ -1,3 +1,12 @@
-<p>
-  create-user works!
-</p>
+<div class="p-grid" style="height:100%; width: 100%; margin: 0px">
+  <div class="p-col p-col-align-start"></div>
+  <div class="p-col p-col-align-center" style="text-align: center;">
+      <input type="text" pInputText class="ui-inputtext ui-corner-all ui-widget" [(ngModel)]="username" placeholder="username"><br>
+      <input pPassword type="password" [(ngModel)]="password" placeholder="password">
+      <br>
+      <br>
+    <button type="button" pButton icon="pi pi-user-plus" pTooltip="Create user" tooltipPosition="right" label="Create Account" (click)="createButtonClick($event)"></button> 
+    <button type="button" pButton icon="pi pi-times" pTooltip="Cancel" tooltipPosition="right" label="Cancel" (click)="cancelButtonClick($event)"></button> 
+  </div>
+  <div class="p-col p-col-align-end"></div>
+</div>

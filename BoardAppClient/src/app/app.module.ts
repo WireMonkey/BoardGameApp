@@ -26,6 +26,7 @@ import {MessageService} from 'primeng/api';
 import {BlockUIModule} from 'primeng/blockui';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {TabViewModule} from 'primeng/tabview';
+import {PasswordModule} from 'primeng/password';
 
 //Components
 import { AppComponent } from './app.component';
@@ -51,6 +52,7 @@ import { LoginComponent } from './login/login.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { UnauthComponent } from './unauth/unauth.component'; 
 import { ErrorsHandler } from './ErrorHandling/ErrorHandler';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -69,7 +71,8 @@ import { ErrorsHandler } from './ErrorHandling/ErrorHandler';
     ResetPasswordComponent,
     LoginComponent,
     CreateUserComponent,
-    UnauthComponent
+    UnauthComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -96,6 +99,7 @@ import { ErrorsHandler } from './ErrorHandling/ErrorHandler';
     BlockUIModule,
     ProgressSpinnerModule,
     TabViewModule,
+    PasswordModule,
     StoreModule.forRoot({boardgame: boardGameReducer, player: playerReducer}),
     EffectsModule.forRoot([BoardgameEffects])
   ],

@@ -12,7 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class BoardgameEditModalComponent implements OnInit {
   editDialogShow: boolean = false;
   hasExpansions: boolean = false;
-  origionalCopy: boardgame = {Id:null,Expansions:[],Name:null,Plays:null,Notes:null};
+  origionalCopy: boardgame = {Id:null,Expansions:[],Name:null,Plays:null,Notes:null,UserId:null};
   displayStyle: any = {display: ""};
 
   @Input() boardGame: any;

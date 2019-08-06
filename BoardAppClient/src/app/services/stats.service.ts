@@ -25,6 +25,7 @@ export class StatsService {
       Expansions: [],
       //_id: '',
       //_rev: '',
+      UserId: '',
       Id: '',
       Name: '',
       Notes: '',
@@ -40,6 +41,7 @@ export class StatsService {
       Expansions: [],
       //_id: '',
       //_rev: '',
+      UserId: '',
       Id: '',
       Name: '',
       Notes: '',
@@ -52,15 +54,20 @@ export class StatsService {
   constructor() { }
 
   CalculateStats(games: boardgame[]): void {
-    this.playerList = [];
-    const PlayedGames = games.filter(b => b.Plays && b.Plays.length > 0);
-    this.CreatePlayerList([...PlayedGames]);
-    this.CreateBoardgameList([...games]);
+    if(games.length > 0){
+      this.playerList = [];
+      const PlayedGames = games.filter(b => b.Plays && b.Plays.length > 0);
+      if(PlayedGames.length > 0){
 
-    this.statData.lastPlayed = this.getLastPlayed([...PlayedGames]);
-    this.statData.mostPlayed = this.GetMostPlayed([...PlayedGames]);
-    this.statData.MostWins = this.GetMostWins();
-    this.statData.HighestWinRate = this.getHighestWinRate();
+        this.CreatePlayerList([...PlayedGames]);
+        this.CreateBoardgameList([...games]);
+        
+        this.statData.lastPlayed = this.getLastPlayed([...PlayedGames]);
+        this.statData.mostPlayed = this.GetMostPlayed([...PlayedGames]);
+        this.statData.MostWins = this.GetMostWins();
+        this.statData.HighestWinRate = this.getHighestWinRate();
+      }
+    }
   }
 
   addGamePlay(game: boardgame): void {
@@ -87,7 +94,7 @@ export class StatsService {
       })[0];
     } else {
       return {
-        Name: '', Plays: [{ Date: null, Players: [], Winner: '', Notes: '', Expansions: [] }], Expansions: [], Notes: '', Id: ''// _id: '', _rev: ''
+        Name: '', Plays: [{ Date: null, Players: [], Winner: '', Notes: '', Expansions: [] }], Expansions: [], Notes: '', Id: '', UserId: ''// _id: '', _rev: ''
       };
     }
   }
@@ -97,7 +104,7 @@ export class StatsService {
       return games.sort((a, b) => b.Plays.length - a.Plays.length)[0];
     } else {
       return {
-        Name: '', Plays: [{ Date: null, Players: [], Winner: '', Notes: '', Expansions: [] }], Expansions: [], Notes: '', Id: '' //_id: '', _rev: ''
+        Name: '', Plays: [{ Date: null, Players: [], Winner: '', Notes: '', Expansions: [] }], Expansions: [], Notes: '', Id: '', UserId: '' //_id: '', _rev: ''
       };
     }
   }

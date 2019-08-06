@@ -5,13 +5,15 @@
         Board Games
       </h1>
     </div>
-    <div class="ui-toolbar-group-right">
-        <app-add-board-game-modal style="display:inline-block"></app-add-board-game-modal>&nbsp;<app-refresh-data style="display:inline-block"></app-refresh-data>
+    <div class="ui-toolbar-group-right" [hidden]="!userService.validUser">
+        <app-add-board-game-modal style="display:inline-block"></app-add-board-game-modal>&nbsp;<app-refresh-data style="display:inline-block"></app-refresh-data>&nbsp;<app-logout style="display:inline-block"></app-logout>
     </div>
   </span>
 </p-toolbar>
 <div style="text-align:center;">
-  <app-board-game-grid></app-board-game-grid>
+  <app-board-game-grid [hidden]="!userService.validUser"></app-board-game-grid>
+  <app-login [hidden]="userService.validUser || userService.createUser"></app-login>
+  <app-create-user [hidden]="!userService.createUser"></app-create-user>
   <ngx-spinner
     bdColor="rgba(0,0,0,0.8)"
     size="Large"

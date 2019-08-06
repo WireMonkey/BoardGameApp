@@ -8,6 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import * as boardgameActions from './../actions/boardgame.actions';
 import { MessageService } from 'primeng/api';
 import { gameplay } from '../models/gameplay.model';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-add-board-game-modal',
@@ -18,7 +19,7 @@ export class AddBoardGameModalComponent implements OnInit {
   public NewBoardGame: string = "";
 
 
-  constructor(private messageService: MessageService, private service: BordGameService, private store: Store<AppState>, private spinner: NgxSpinnerService) { }
+  constructor(private messageService: MessageService, private service: BordGameService, private store: Store<AppState>, private spinner: NgxSpinnerService, private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -26,7 +27,7 @@ export class AddBoardGameModalComponent implements OnInit {
   addBoardGameShow: boolean = false;
 
   AddBoardGame() {
-    let saveData: boardgame = { Name: this.NewBoardGame, Expansions: [], Plays: [], Notes: "", Id: null };//_id: null, _rev: null };
+    let saveData: boardgame = { UserId: this.userService.userId, Name: this.NewBoardGame, Expansions: [], Plays: [], Notes: "", Id: null };//_id: null, _rev: null };
     this.store.dispatch(new boardgameActions.AddBoardGame(saveData));
 
     this.NewBoardGame = '';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
-import { Observable, observable } from 'rxjs';
+import { Observable, observable, of } from 'rxjs';
 import * as BoardgameActions from './../actions/boardgame.actions';
 import { switchMap, map, tap, catchError } from 'rxjs/operators';
 import { BordGameService } from '../services/bord-game.service';
@@ -49,13 +49,17 @@ export class BoardgameEffects {
           this.spinner.hide();
         }),
         catchError(err => {
-          let message = 'Error occured retriving data.';
-          if (err.status === 0) {
-            message += ' Unable to reach server.';
+          if (err.status != 404) {
+            let message = 'Error occured retriving data.';
+            if (err.status === 0) {
+              message += ' Unable to reach server.';
+            }
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
           }
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
+          
           this.spinner.hide();
-          throw err;
+
+          return of();
         })
       );
     })
@@ -90,9 +94,10 @@ export class BoardgameEffects {
           }
           this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
           this.store.dispatch(new BoardgameActions.ErrorBoardGames(action.orig));
-          throw err;
+          console.log(err);
+          return of();
         })
-      )
+      );
     })
   );
 
@@ -112,7 +117,8 @@ export class BoardgameEffects {
           }
           this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
           this.store.dispatch(new BoardgameActions.ErrorBoardGames(action.orig));
-          throw err;
+          console.log(err);
+          return of();
         })
       );
     })
@@ -124,12 +130,12 @@ export class BoardgameEffects {
     switchMap((action: any) => {
       return this.boardgameService.updateBoardGame(action.payload).pipe(
         map((response: any) => {
-          if(response.ok){
+          //if(response.ok){
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Boardgame saved.' });
             return new BoardgameActions.SetBoardgameId(response.id,response.rev);
-          } else {
-            throw Error("Not Saved");
-          }
+          // } else {
+          //   throw Error("Not Saved");
+          // }
         }),
         catchError(err => {
           let message = 'Unable to add boardgame. ';
@@ -138,7 +144,8 @@ export class BoardgameEffects {
           }
           this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
           this.store.dispatch(new BoardgameActions.RemoveBoardgame(action.payload));
-          throw err;
+          console.log(err);
+          return of();
         })
       )
     })

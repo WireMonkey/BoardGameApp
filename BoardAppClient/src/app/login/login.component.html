@@ -1,11 +1,12 @@
 <div class="p-grid" style="height:100%; width: 100%; margin: 0px">
   <div class="p-col p-col-align-start"></div>
   <div class="p-col p-col-align-center" style="text-align: center;">
-    <label>Username:&nbsp;</label><input type="text">
+    <input type="text" pInputText class="ui-inputtext ui-corner-all ui-widget" [(ngModel)]="username" placeholder="username"><br>
+    <input pPassword type="password" [feedback]="false" [(ngModel)]="password" placeholder="password">
     <br>
-    <label>Password:&nbsp;</label><input type="password">
     <br>
-    <button>Login</button>
+    <button type="button" pButton icon="pi pi-user" pTooltip="Log in" tooltipPosition="right" label="Login" (click)="loginButtonClick($event)"></button> 
+    <button type="button" pButton icon="pi pi-user-plus" pTooltip="Create user" tooltipPosition="right" label="Create" (click)="createButtonClick($event)"></button> 
   </div>
   <div class="p-col p-col-align-end"></div>
 </div>
