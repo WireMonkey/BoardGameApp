@@ -15,6 +15,21 @@ export class UserService {
     this.apiUrl = 'http://' + window.location.hostname + ':3000/users/';
   }
 
+  loadUserFromStorage() {
+    if(localStorage.getItem("boardgameToken")){
+      this.validUser = true;
+      this.userId = localStorage.getItem("boardgameToken");
+      return true;
+    }
+    return false;
+  }
+
+  storeData() {
+    if(this.validUser){
+      localStorage.setItem("boardgameToken",this.userId);
+    }
+  }
+
   loginUser(userName: string, password: string) {
     let userData = {userName: userName, password: password};
     return this.http.post(this.apiUrl + "valid", userData);
@@ -23,5 +38,11 @@ export class UserService {
   saveUser(userName: string, password: string) {
     let userData = {userName: userName, password: password};
     return this.http.post(this.apiUrl, userData);
+  }
+
+  logoutUser() {
+    this.validUser = false;
+    this.userId = '';
+    localStorage.removeItem("boardgameToken");
   }
 }

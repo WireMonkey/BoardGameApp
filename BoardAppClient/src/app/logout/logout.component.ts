@@ -18,8 +18,7 @@ export class LogoutComponent implements OnInit {
   }
 
   logoutButtonClicked(event: any) {
-    this.service.validUser = false;
-    this.service.userId = '';
+    this.service.logoutUser();
     this.store.dispatch(new boardgameActions.ClearBoardGame());
   }
 }

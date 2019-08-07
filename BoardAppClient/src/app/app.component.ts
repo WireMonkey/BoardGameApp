@@ -1,5 +1,5 @@
 import { BordGameService } from './services/bord-game.service';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { BoardGameGridComponent } from './board-game-grid/board-game-grid.component';
 import { RefreshDataComponent } from './refresh-data/refresh-data.component';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -20,14 +20,17 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  BoardGames: any;
   title = 'BoardAppClient';
-  validLogin = false;
-  createUser = false;
-
   constructor(private messageService: MessageService, private spinner: NgxSpinnerService, private service: BordGameService, private store: Store<AppState>, private userService: UserService) { }
 
   ngOnInit() {
-    
+    if(this.userService.loadUserFromStorage()){
+      this.store.dispatch(new boardgameActions.LoadBoardGames());
+    }
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  public beforeunloadHandler($event) {
+     this.userService.storeData();
   }
 }
