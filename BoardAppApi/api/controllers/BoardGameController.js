@@ -25,9 +25,8 @@ try {
 
 exports.GetAllBoardGames = function(req, res) {
   try {
-    let userId = req.query.userid;
+    let userId = req.decoded.userId;
     if(userId){
-      console.log(userId);
       let returnData = BoardGameData.filter(x => x.UserId == userId);
       if(returnData.length > 0) {
         res.json(returnData);
@@ -35,7 +34,7 @@ exports.GetAllBoardGames = function(req, res) {
         res.status(404).send();
       }
     } else {
-      res.status(500).send();  
+      res.status(401).send();  
     }
   } catch (error) {
     res.status(500).send(error);

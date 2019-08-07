@@ -2,6 +2,8 @@
 let fs = require('fs');
 const bcrypt = require('bcrypt');
 const Chance = require('chance');
+const jwt = require('jsonwebtoken');
+const config = require('../config.js');
 const chance = new Chance();
 const saltRounds = 10;
 let users = [];
@@ -27,7 +29,7 @@ exports.CreateUser = async function (req, res) {
               console.log(err);
               res.status(500).send(error);
             }
-            res.json({message: 'Data Saved.', Id: userId});
+            res.json({message: 'Data Saved.'});
           });
     } catch (error) {
         console.log(error.message);
@@ -41,12 +43,13 @@ exports.ValidateUser = async function (req, res) {
         if (user) {
             let correct = await CheckPassword(req.body.userName, req.body.password, user.password);
             if (correct) {
-                res.json(user._id);
+                let token = await GenerateJwt(user._id);
+                res.json(token);
             } else {
-                res.status(400).json('Login invalid');
+                res.status(401).json('Login invalid');
             }
         } else {
-            res.status(400).json('Login invalid');
+            res.status(401).json('Login invalid');
         }
     } catch (error) {
         res.status(500).send(error);
@@ -102,4 +105,14 @@ async function SaveUser(userName, hashPassword) {
     let userId = chance.guid();
     users.push({ _id: userId, userName: userName, password: hashPassword });
     return userId;
+}
+
+async function GenerateJwt(userId) {
+    let token = jwt.sign({userId: userId},
+        config.secret,
+        { expiresIn: '24h' // expires in 24 hours
+        }
+      );
+
+    return token;
 }
