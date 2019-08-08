@@ -15,7 +15,7 @@ export class BordGameService {
   }
 
   getBoardGames() {
-      return this.http.get(this.apiUrl + "?userid=" + this.userService.userId);
+      return this.http.get(this.apiUrl);
   }
 
   updateBoardGame(data: any) {

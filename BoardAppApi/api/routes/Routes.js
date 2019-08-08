@@ -8,7 +8,7 @@ module.exports = function(app) {
   app.route('/boardgames',)
     .get(auth.verifyJWTToken,boardGame.GetAllBoardGames)
     .post(auth.verifyJWTToken,boardGame.SaveBoardGames)
-    .delete(auth.verifyJWTToken,boardGame.RemoveGame);
+    .delete(auth.verifyJWTToken,boardGame.RemoveGame)
 
   app.route('/boardgames/clearcache')
     .get(boardGame.ClearCache);

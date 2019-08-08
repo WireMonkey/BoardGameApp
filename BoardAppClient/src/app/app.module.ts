@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //Node_modules
 import {AutoCompleteModule} from 'primeng/autocomplete';
@@ -53,6 +53,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { UnauthComponent } from './unauth/unauth.component'; 
 import { ErrorsHandler } from './ErrorHandling/ErrorHandler';
 import { LogoutComponent } from './logout/logout.component';
+import { HttpAuthService } from './services/http-auth.service';
 
 
 @NgModule({
@@ -108,7 +109,8 @@ import { LogoutComponent } from './logout/logout.component';
     {
       provide: ErrorHandler,
       useClass: ErrorsHandler,
-    }
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpAuthService, multi: true }
   ],
   exports: [],
   bootstrap: [AppComponent]
