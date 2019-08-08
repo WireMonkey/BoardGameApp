@@ -25,7 +25,12 @@ export class AppComponent {
 
   ngOnInit() {
     if(this.userService.loadUserFromStorage()){
-      this.store.dispatch(new boardgameActions.LoadBoardGames());
+      this.spinner.show();
+      this.userService.refreshToken().toPromise().then(result => {
+        this.userService.validUser = true;
+        this.userService.userId = result.toString();
+        this.store.dispatch(new boardgameActions.LoadBoardGames());
+      })
     }
   }
 

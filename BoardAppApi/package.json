@@ -19,6 +19,7 @@
     "cors": "^2.8.5",
     "event-stream": "^3.3.4",
     "express": "^4.16.4",
+    "express-force-https": "^1.0.0",
     "fs": "0.0.1-security",
     "jsonwebtoken": "^8.4.0"
   }

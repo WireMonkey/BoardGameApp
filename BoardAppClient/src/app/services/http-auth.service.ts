@@ -21,5 +21,5 @@ export class HttpAuthService implements HttpInterceptor {
     }
 
     return next.handle(request);
-}
+  }
 }

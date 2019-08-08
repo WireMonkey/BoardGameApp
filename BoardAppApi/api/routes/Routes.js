@@ -21,4 +21,6 @@ module.exports = function(app) {
     .post(users.SetResetPassword);
   app.route('/users/reset')
     .post(users.ResetPassword);
+  app.route('/users/refresh')
+    .get(auth.verifyJWTToken,users.refreshJwt);
 };

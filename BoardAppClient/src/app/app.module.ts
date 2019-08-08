@@ -54,6 +54,7 @@ import { UnauthComponent } from './unauth/unauth.component';
 import { ErrorsHandler } from './ErrorHandling/ErrorHandler';
 import { LogoutComponent } from './logout/logout.component';
 import { HttpAuthService } from './services/http-auth.service';
+import { HttpUnAuthService } from './services/http-un-auth.service';
 
 
 @NgModule({
@@ -110,7 +111,8 @@ import { HttpAuthService } from './services/http-auth.service';
       provide: ErrorHandler,
       useClass: ErrorsHandler,
     },
-    { provide: HTTP_INTERCEPTORS, useClass: HttpAuthService, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpAuthService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpUnAuthService, multi: true }
   ],
   exports: [],
   bootstrap: [AppComponent]

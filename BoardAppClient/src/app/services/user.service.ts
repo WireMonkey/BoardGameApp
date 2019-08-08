@@ -17,7 +17,6 @@ export class UserService {
 
   loadUserFromStorage() {
     if(localStorage.getItem("boardgameToken")){
-      this.validUser = true;
       this.userId = localStorage.getItem("boardgameToken");
       return true;
     }
@@ -44,5 +43,9 @@ export class UserService {
     this.validUser = false;
     this.userId = '';
     localStorage.removeItem("boardgameToken");
+  }
+
+  refreshToken() {
+    return this.http.get(this.apiUrl + "refresh");
   }
 }

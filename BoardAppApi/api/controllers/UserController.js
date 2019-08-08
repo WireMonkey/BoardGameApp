@@ -56,6 +56,21 @@ exports.ValidateUser = async function (req, res) {
     }
 }
 
+exports.refreshJwt = async function (req, res) {
+    try {
+        let userId = req.decoded.userId;
+        let user = users.find(x => x._id === userId);
+        if (user) {
+            let token = await GenerateJwt(user._id);
+            res.json(token);
+        } else {
+            res.status(401).json('Login invalid');
+        }
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
 exports.SetResetPassword = async function (req, res) {
     try {
         let user = users.find(x => x.userName === req.body.userName);
