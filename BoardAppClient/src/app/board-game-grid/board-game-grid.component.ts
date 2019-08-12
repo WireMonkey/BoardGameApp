@@ -18,7 +18,7 @@ export class BoardGameGridComponent implements OnInit {
   BoardGames$: Observable<boardgame[]>;
   searchGame: string;
   filteredGames: any[] = [];
-  @ViewChild('dv') grid: DataView;
+  @ViewChild('dv', {static: false}) grid: DataView;
   //private boardgameSub: Subscription;
   //boardGames: boardgame[];
 
