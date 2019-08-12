@@ -1,6 +1,6 @@
 <button pButton type="button" label="Edit Game" class="ui-button-raised ui-button-warning" (click)="EditGame($event)" style="float: right;"></button>
-<p-dialog header="Edit Boardgame" [(visible)]="editDialogShow" [modal]="true" [responsive]="true" [baseZIndex]="10000" [height]="500" [resizable]="false"
-  [contentStyle]="{'overflow':'visible'}" [positionTop]="0" [closable]="false">
+<p-dialog header="Edit Boardgame" [(visible)]="editDialogShow" [modal]="true" [responsive]="true" [baseZIndex]="10000" [resizable]="false"
+  [positionTop]="0" [closable]="false" [style]="{height: '500px','overflow':'visible'}">
   <label>Name:&nbsp;</label>
   <input type="text" pInputText [(ngModel)]="boardGame.Name"/>
   <br>

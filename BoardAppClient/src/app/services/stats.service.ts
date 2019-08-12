@@ -155,20 +155,28 @@ export class StatsService {
 
   private getHighestWinRate() {
     const players = this.playerList.filter(p => (p.Wins + p.Plays) > 2);
-
-    players.forEach(p => {
-      if (p.Wins > 0) {
-        p.Rate = p.Wins / p.Plays;
-      } else {
-        p.Rate = 0;
+    if(players.length > 0){
+      players.forEach(p => {
+        if (p.Wins > 0) {
+          p.Rate = p.Wins / p.Plays;
+        } else {
+          p.Rate = 0;
+        }
+      });
+  
+      this.playerList.sort((a, b) => {
+        return b.Rate - a.Rate;
+      });
+      
+      return this.playerList[0];
+    } else {
+      return {
+        Name: '',
+        Wins: 0,
+        Plays: 0,
+        Rate: 0
       }
-    });
-
-    this.playerList.sort((a, b) => {
-      return b.Rate - a.Rate;
-    });
-    
-    return this.playerList[0];
+    }
   }
 
   private CreateBoardgameList(games: boardgame[]) {

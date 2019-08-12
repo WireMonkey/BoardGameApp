@@ -28,3 +28,7 @@ html, body {
     width:100%;
     z-index: 102;
   }
+
+  .modalAutoComp {
+    width: 150px;
+  }

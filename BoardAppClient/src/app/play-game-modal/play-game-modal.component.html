@@ -1,7 +1,7 @@
 <button pButton type="button" label="Play Game" class="ui-button-raised ui-button-success"
   (click)="PlayGame()"></button>
 <p-dialog header="Play a game" [(visible)]="playGameDialogShow" [modal]="true" [responsive]="true" [baseZIndex]="10000"
-  [height]="500" [resizable]="false" [positionTop]="0">
+  [resizable]="false" [positionTop]="0" [style]="{height: '500px','overflow':'visible'}">
   <div class="ui-g">
     <div class="ui-g-12 ui-md-6 ui-sm-12">
       <p-fieldset legend="Info">
@@ -22,8 +22,8 @@
     <div class="ui-g-12 ui-md-6 ui-sm-12">
       <p-fieldset legend="Players">
         <p-autoComplete [(ngModel)]="player" [suggestions]="filteredPlayers" (completeMethod)="filterPlayers($event)"
-          styleClass="wid100" [minLength]="1" placeholder="Add Players" (onKeyUp)="autoCompleteKeyPress($event)"
-          (onSelect)="addPlayer($event)" [dropdown]="true">
+          [minLength]="1" placeholder="Add Players" (onKeyUp)="autoCompleteKeyPress($event)"
+          (onSelect)="addPlayer($event)" [dropdown]="true" inputStyleClass="modalAutoComp">
         </p-autoComplete>
         <br>
         <ul>

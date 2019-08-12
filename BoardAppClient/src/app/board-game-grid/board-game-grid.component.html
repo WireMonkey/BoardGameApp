@@ -7,7 +7,7 @@
                     <app-stat-bar></app-stat-bar>
                 </div>
                 <div class="ui-g-12 ui-md-4" style="text-align:right">
-                    <p-autoComplete [(ngModel)]="searchGame" [suggestions]="filteredGames" (completeMethod)="filterPlayers($event)" styleClass="wid100"
+                    <p-autoComplete [(ngModel)]="searchGame" [suggestions]="filteredGames" (completeMethod)="filterPlayers($event)" inputStyleClass="modalAutoComp"
                     [minLength]="1" placeholder="Search Games" (keyup)="dv.filter($event.target.value)" (onSelect)="dv.filter($event.target.value)"></p-autoComplete>
                 </div>
             </div>
