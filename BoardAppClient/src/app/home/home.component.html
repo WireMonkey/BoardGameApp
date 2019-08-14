@@ -1,0 +1,3 @@
+<app-board-game-grid [hidden]="!userService.validUser"></app-board-game-grid>
+<app-login [hidden]="userService.validUser || userService.createUser"></app-login>
+<app-create-user [hidden]="!userService.createUser"></app-create-user>

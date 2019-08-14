@@ -9,6 +9,7 @@ export class UserService {
   userId = '';
   validUser = false;
   createUser = false;
+  userInfo: any;
   
   constructor(private http: HttpClient) { 
     this.apiUrl = 'http://' + window.location.hostname + ':3000/users/';
@@ -38,6 +39,11 @@ export class UserService {
     return this.http.post(this.apiUrl, userData);
   }
 
+  resetPassword(refreshToken: string, password: string) {
+    let resetData = {resetHash: refreshToken, password: password};
+    return this.http.post(this.apiUrl + "reset", resetData);
+  }
+
   logoutUser() {
     this.validUser = false;
     this.userId = '';
@@ -46,5 +52,11 @@ export class UserService {
 
   refreshToken() {
     return this.http.get(this.apiUrl + "refresh");
+  }
+
+  loadUserdata() {
+    return this.http.get(this.apiUrl).subscribe(result => {
+      this.userInfo = result;
+    })
   }
 }

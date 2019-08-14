@@ -14,6 +14,7 @@ module.exports = function(app) {
     .get(boardGame.ClearCache);
 
   app.route('/users')
+    .get(auth.verifyJWTToken,users.getUserData)
     .post(users.CreateUser);
   app.route('/users/valid')
     .post(users.ValidateUser);

@@ -27,6 +27,7 @@ import {BlockUIModule} from 'primeng/blockui';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {TabViewModule} from 'primeng/tabview';
 import {PasswordModule} from 'primeng/password';
+import {MessageModule} from 'primeng/message';
 
 //Components
 import { AppComponent } from './app.component';
@@ -55,6 +56,9 @@ import { ErrorsHandler } from './ErrorHandling/ErrorHandler';
 import { LogoutComponent } from './logout/logout.component';
 import { HttpAuthService } from './services/http-auth.service';
 import { HttpUnAuthService } from './services/http-un-auth.service';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -74,7 +78,9 @@ import { HttpUnAuthService } from './services/http-un-auth.service';
     LoginComponent,
     CreateUserComponent,
     UnauthComponent,
-    LogoutComponent
+    LogoutComponent,
+    HomeComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -102,8 +108,10 @@ import { HttpUnAuthService } from './services/http-un-auth.service';
     ProgressSpinnerModule,
     TabViewModule,
     PasswordModule,
+    MessageModule,
     StoreModule.forRoot({boardgame: boardGameReducer, player: playerReducer}),
-    EffectsModule.forRoot([BoardgameEffects])
+    EffectsModule.forRoot([BoardgameEffects]),
+    AppRoutingModule
   ],
   providers: [
     MessageService,

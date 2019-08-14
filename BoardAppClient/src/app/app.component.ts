@@ -23,6 +23,8 @@ export class AppComponent {
         this.userService.validUser = true;
         this.userService.userId = result.toString();
         this.store.dispatch(new boardgameActions.LoadBoardGames());
+
+        this.userService.loadUserdata();
       })
     }
   }

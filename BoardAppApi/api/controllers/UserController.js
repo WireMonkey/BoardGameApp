@@ -99,6 +99,16 @@ exports.ResetPassword = async function (req, res) {
     }
 }
 
+exports.getUserData = async function(req, res) {
+    try {
+        let userId = req.decoded.userId;
+        let user = users.find(x => x._id === userId);
+        res.status(200).json({userName: user.userName, email: user.email});
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
 async function HashPassword(userName, password) {
     let uPass = userName + '.' + password;
     let hash = await bcrypt.hash(uPass, saltRounds);

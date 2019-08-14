@@ -55,6 +55,8 @@ export class BoardgameEffects {
               message += ' Unable to reach server.';
             }
             this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
+          } else {
+            this.messageService.add({severity:'info', summary:'No boardgames found.', detail:'Please add a boardgame'})
           }
           
           this.spinner.hide();

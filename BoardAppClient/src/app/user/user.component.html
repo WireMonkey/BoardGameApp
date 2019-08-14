@@ -1,0 +1,12 @@
+<h1><button pButton type="button" icon="pi pi-user-edit" class="ui-button-raised" (click)="editUserShow=true"></button></h1>
+<p-dialog header="Edit user" [(visible)]="editUserShow" [modal]="true" [responsive]="true" [baseZIndex]="10000"
+          [positionTop]="0">
+    <br>
+    <span class="ui-float-label">
+        <inpu
+    </span>
+  <p-footer>
+      <button type="button" pButton icon="pi pi-check" (click)="AddBoardGame()" label="Save"></button>
+      <button type="button" pButton icon="pi pi-times" (click)="editUserShow=false" label="Cancel" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>

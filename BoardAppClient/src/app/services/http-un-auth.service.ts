@@ -21,8 +21,7 @@ export class HttpUnAuthService implements HttpInterceptor {
           of();
       }
       
-      const error = err.error || err.statusText;
-      return throwError(error);
+      return throwError(err);
       
   }))
   }
