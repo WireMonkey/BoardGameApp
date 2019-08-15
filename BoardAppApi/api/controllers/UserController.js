@@ -22,7 +22,7 @@ try {
 exports.CreateUser = async function (req, res) {
     try {
         let hash = await HashPassword(req.body.userName, req.body.password);
-        let userId = await SaveUser(req.body.userName, hash);
+        let userId = await SaveUser(req.body.userName, hash, req.body.email);
 
         fs.writeFile('DB/Users.txt', JSON.stringify(users), function (err) {
             if (err) {
@@ -109,6 +109,35 @@ exports.getUserData = async function(req, res) {
     }
 }
 
+exports.updateUser = async function(req,res){
+    try {
+        let userId = req.decoded.userId;
+        let user = users.find(x => x._id === userId);
+        console.log(req.body.password);
+        if (req.body.password && req.body.password.length > 0) {
+            user.password = await HashPassword(req.body.userName, req.body.password);
+        }
+
+        if (req.body.email) {
+            user.email = req.body.email;
+        }
+
+        if (req.body.userName) {
+            user.userName = req.body.userName;
+        }
+
+        fs.writeFile('DB/Users.txt', JSON.stringify(users), function (err) {
+            if (err) {
+              console.log(err);
+              res.status(500).send(error);
+            }
+            res.json({message: 'Data Saved.'});
+          });
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
 async function HashPassword(userName, password) {
     let uPass = userName + '.' + password;
     let hash = await bcrypt.hash(uPass, saltRounds);
@@ -121,14 +150,14 @@ async function CheckPassword(userName, password, hashPassword) {
     return correct;
 }
 
-async function SaveUser(userName, hashPassword) {
+async function SaveUser(userName, hashPassword, email) {
     let user = users.find(x => x.userName === userName);
     if (user) {
         throw Error('User already exists.');
     }
 
     let userId = chance.guid();
-    users.push({ _id: userId, userName: userName, password: hashPassword });
+    users.push({ _id: userId, userName: userName, password: hashPassword, email: email });
     return userId;
 }
 

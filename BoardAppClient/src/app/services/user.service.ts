@@ -34,9 +34,17 @@ export class UserService {
     return this.http.post(this.apiUrl + "valid", userData);
   }
 
-  saveUser(userName: string, password: string) {
-    let userData = {userName: userName, password: password};
+  saveUser(userName: string, password: string, email: string) {
+    let userData = {userName: userName, password: password, email: email};
     return this.http.post(this.apiUrl, userData);
+  }
+
+  updateUser(userName: string, password: string, email: string) {
+    let userData = {userName: userName, email: email, password: null};
+    if (password && password.length > 0){
+      userData.password = password;
+    }
+    return this.http.patch(this.apiUrl,userData);
   }
 
   resetPassword(refreshToken: string, password: string) {
@@ -55,7 +63,7 @@ export class UserService {
   }
 
   loadUserdata() {
-    return this.http.get(this.apiUrl).subscribe(result => {
+    this.http.get(this.apiUrl).subscribe(result => {
       this.userInfo = result;
     })
   }

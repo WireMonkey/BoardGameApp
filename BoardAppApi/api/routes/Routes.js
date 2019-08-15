@@ -15,7 +15,8 @@ module.exports = function(app) {
 
   app.route('/users')
     .get(auth.verifyJWTToken,users.getUserData)
-    .post(users.CreateUser);
+    .post(users.CreateUser)
+    .patch(auth.verifyJWTToken,users.updateUser);
   app.route('/users/valid')
     .post(users.ValidateUser);
   app.route('/users/setReset')

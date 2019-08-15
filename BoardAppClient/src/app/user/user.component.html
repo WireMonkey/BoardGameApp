@@ -1,12 +1,36 @@
-<h1><button pButton type="button" icon="pi pi-user-edit" class="ui-button-raised" (click)="editUserShow=true"></button></h1>
+<h1><button pButton type="button" icon="pi pi-user-edit" class="ui-button-raised" (click)="showModal()"></button></h1>
 <p-dialog header="Edit user" [(visible)]="editUserShow" [modal]="true" [responsive]="true" [baseZIndex]="10000"
           [positionTop]="0">
-    <br>
-    <span class="ui-float-label">
-        <inpu
-    </span>
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-8">
+                <input type="text" pInputText class="ui-inputtext ui-corner-all ui-widget" size="60" [(ngModel)]="username" placeholder="Username" [disabled]="true">
+            </div>
+            <div class="ui-grid-col-4">
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-8">
+                <input type="emaiil" pInputText class="ui-inputtext ui-corner-all ui-widget" size="60" [(ngModel)]="email" placeholder="email" tooltipPosition="right" 
+                pTooltip="Email will only be used for password reset.">
+            </div>
+            <div class="ui-grid-col-4">
+                <p-message severity="error" text="Email is required" *ngIf="validateEmail()"></p-message>
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-8">
+                <input pPassword type="password" [(ngModel)]="password" size="60" placeholder="password">
+            </div>
+            <div class="ui-grid-col-4">
+                <p-message severity="error" text="Password must be longer than 8 characters" *ngIf="validatePassword()"></p-message>
+            </div>
+        </div>
+    </div>
   <p-footer>
-      <button type="button" pButton icon="pi pi-check" (click)="AddBoardGame()" label="Save"></button>
+    <div class="ui-toolbar-group-left">
+        <button type="button" pButton icon="pi pi-check" (click)="saveButtonClicked()" label="Save" [disabled]="!validEmail || !validPassword"></button>
+    </div>
       <button type="button" pButton icon="pi pi-times" (click)="editUserShow=false" label="Cancel" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>

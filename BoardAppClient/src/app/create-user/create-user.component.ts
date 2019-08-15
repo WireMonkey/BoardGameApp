@@ -49,7 +49,7 @@ export class CreateUserComponent implements OnInit {
 
   createButtonClick(event: any) {
     this.spinner.show();
-    this.service.saveUser(this.username,this.password).subscribe(data => {
+    this.service.saveUser(this.username,this.password,this.email).subscribe(data => {
       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Account Created' });
       this.username = "";
       this.password = "";

@@ -22,16 +22,17 @@ export class LoginComponent implements OnInit {
 
   loginButtonClick(event: any) {
     this.service.loginUser(this.username,this.password).subscribe(data => {
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login successfull' });
+      this.messageService.add({ severity: 'success', summary: 'Login successfull', detail: 'Welcome ' + this.username });
       this.service.validUser = true;
       this.service.userId = data.toString();
       this.store.dispatch(new boardgameActions.LoadBoardGames());
+      this.service.loadUserdata();
       this.username = "";
       this.password = "";
     }, error => {
       this.username = "";
       this.password = "";
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Invalid username or password" });
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Invalid username or password." });
     });
   }
 

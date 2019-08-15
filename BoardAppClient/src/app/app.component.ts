@@ -25,7 +25,9 @@ export class AppComponent {
         this.store.dispatch(new boardgameActions.LoadBoardGames());
 
         this.userService.loadUserdata();
-      })
+      }).catch(error => {
+        this.spinner.hide();
+      });
     }
   }
 
