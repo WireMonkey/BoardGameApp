@@ -1,3 +1,5 @@
 module.exports = {
-    secret: 'test'
+    secret: 'test',
+    mailjetApi: '',
+    mailjetSecret: ''
   };

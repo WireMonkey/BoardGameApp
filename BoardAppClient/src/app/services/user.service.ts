@@ -52,6 +52,11 @@ export class UserService {
     return this.http.post(this.apiUrl + "reset", resetData);
   }
 
+  sendResetEmail(email: string) {
+    let resetData = {email: email};
+    return this.http.post(this.apiUrl + "setReset", resetData);
+  }
+
   logoutUser() {
     this.validUser = false;
     this.userId = '';

@@ -5,6 +5,7 @@ const Chance = require('chance');
 const jwt = require('jsonwebtoken');
 const config = require('../config.js');
 const chance = new Chance();
+const email = require('../libs/email');
 const saltRounds = 10;
 let users = [];
 
@@ -73,12 +74,13 @@ exports.refreshJwt = async function (req, res) {
 
 exports.SetResetPassword = async function (req, res) {
     try {
-        let user = users.find(x => x.userName === req.body.userName);
+        let user = users.find(x => x.email === req.body.email);
         let resetHash = chance.hash({length: 50});
         if (user) {
             user.password = chance.hash({length: 25});
             user.resetHash = resetHash;
-            res.json(resetHash);
+            await email.SendEmail(user);
+            res.status(200).send();
         } else {
             res.json('');
         }
@@ -113,7 +115,13 @@ exports.updateUser = async function(req,res){
     try {
         let userId = req.decoded.userId;
         let user = users.find(x => x._id === userId);
-        console.log(req.body.password);
+
+        //Make sure that
+        let nameEmailCheck = users.filter(x => x._id != userId && (x.userName == req.body.email || x.email == req.body.email));
+        if(nameEmailCheck.length > 0) {
+            throw error("Email or name already in use.");
+        }
+        
         if (req.body.password && req.body.password.length > 0) {
             user.password = await HashPassword(req.body.userName, req.body.password);
         }
@@ -151,7 +159,7 @@ async function CheckPassword(userName, password, hashPassword) {
 }
 
 async function SaveUser(userName, hashPassword, email) {
-    let user = users.find(x => x.userName === userName);
+    let user = users.find(x => x.userName === userName || x.email == email);
     if (user) {
         throw Error('User already exists.');
     }

@@ -13,7 +13,7 @@ export class ResetPasswordComponent implements OnInit {
   refreshToken: string;
   password: string;
 
-  constructor(private route: ActivatedRoute, private router: Router,private messageService: MessageService, private spinner: NgxSpinnerService, private service: UserService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private messageService: MessageService, private spinner: NgxSpinnerService, private service: UserService) { }
 
   ngOnInit() {
     this.refreshToken = this.route.snapshot.paramMap.get('id');

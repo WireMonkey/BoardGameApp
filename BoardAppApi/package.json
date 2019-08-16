@@ -21,6 +21,7 @@
     "express": "^4.16.4",
     "express-force-https": "^1.0.0",
     "fs": "0.0.1-security",
-    "jsonwebtoken": "^8.4.0"
+    "jsonwebtoken": "^8.4.0",
+    "node-mailjet": "^3.3.1"
   }
 }
