@@ -77,7 +77,6 @@ exports.SetResetPassword = async function (req, res) {
         let user = users.find(x => x.email === req.body.email);
         let resetHash = chance.hash({length: 50});
         if (user) {
-            user.password = chance.hash({length: 25});
             user.resetHash = resetHash;
             await email.SendEmail(user);
             res.status(200).send();
