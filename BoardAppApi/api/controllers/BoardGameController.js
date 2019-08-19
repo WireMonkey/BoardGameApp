@@ -44,6 +44,9 @@ exports.GetAllBoardGames = function(req, res) {
 exports.SaveBoardGames = function(req, res) {
   try {
     let updateData = req.body;
+
+    let userId = req.decoded.userId;
+    updateData.UserId = userId;
     
     //If it has an id then remove the old data from the list.
     if(updateData.Id){
@@ -94,7 +97,8 @@ exports.ClearCache = function(req, res) {
 
 exports.RemoveGame = function(req, res) {
   try {
-    let id = req.body.Id;
+    let id = req.query.id;
+
     BoardGameData = BoardGameData.filter(game => {
       return game.Id != id;
     });

@@ -7,6 +7,7 @@ const initState: boardgame[] = [];
 export function boardGameReducer(state: boardgame[] = initState, action: BoardgameActions.Actions) {
   switch (action.type) {
     case BoardgameActions.ADD_BOARDGAME:
+    case BoardgameActions.ERROR_ADD_BOARDGAME:
       state.push(action.payload);
       state = state.sort((a, b) => {
         const tA = a.Name;
@@ -47,6 +48,7 @@ export function boardGameReducer(state: boardgame[] = initState, action: Boardga
       game.Notes = action.payload.Notes
       return state;
     case BoardgameActions.REMOVE_BOARDGAMES:
+    case BoardgameActions.ERROR_REMOVE_BOARDGAMES:
       return state.filter(game => {
         return game.Name !== action.payload.Name;
       });

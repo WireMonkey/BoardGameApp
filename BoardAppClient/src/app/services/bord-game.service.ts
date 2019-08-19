@@ -20,4 +20,8 @@ export class BordGameService {
   updateBoardGame(data: any) {
     return this.http.post(this.apiUrl, data).pipe(map(data => data));
   }
+
+  deleteBoardGame(data: any) {
+    return this.http.delete(this.apiUrl+"?id=" + data.Id);
+  }
 }

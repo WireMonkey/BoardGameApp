@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { boardgame } from '../models/boardgames.model';
 import { BordGameService } from '../services/bord-game.service';
-import { MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { NgxSpinnerService } from 'ngx-spinner';
+import * as boardgameActions from './../actions/boardgame.actions';
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.state';
 
 @Component({
   selector: 'app-boardgame-edit-modal',
@@ -17,7 +20,7 @@ export class BoardgameEditModalComponent implements OnInit {
 
   @Input() boardGame: any;
   
-  constructor(private messageService: MessageService, private service: BordGameService, private spinner: NgxSpinnerService) { }
+  constructor(private messageService: MessageService, private service: BordGameService, private spinner: NgxSpinnerService, private confirmationService: ConfirmationService,private store: Store<AppState>) { }
 
   ngOnInit() {
   }
@@ -52,5 +55,19 @@ export class BoardgameEditModalComponent implements OnInit {
     this.boardGame.Notes = this.origionalCopy.Notes;
 
     this.editDialogShow = false;
+  }
+
+  deleteBoardgame(event: any) {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to proceed?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.store.dispatch(new boardgameActions.RemoveBoardgame(this.boardGame));
+        this.editDialogShow = false;
+      },
+      reject: () => {
+      }
+    });
   }
 }

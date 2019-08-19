@@ -11,6 +11,8 @@ export const ERROR_BOARDGAMES = '[boardgame] error';
 export const PLAY_BOARDGAMES = '[boardgame] play';
 export const DONE_BOARDGAMES = '[boardgame] done';
 export const REMOVE_BOARDGAMES = '[boardgame] delete';
+export const ERROR_REMOVE_BOARDGAMES = '[boardgame] delete';
+export const ERROR_ADD_BOARDGAME = '[boardgame] add';
 export const SETID_BOARDGAMES = '[boardgame] set id';
 
 export class AddBoardGame implements Action {
@@ -65,4 +67,15 @@ export class RemoveBoardgame implements Action {
   constructor(public payload: boardgame) { }
 }
 
-export type Actions = AddBoardGame | ClearBoardGame | UpdateBoardGame | LoadBoardGames | AddBoardGames | ErrorBoardGames | PlayBoardGame | DoneBoardgames | RemoveBoardgame | SetBoardgameId;
+export class ErrorRemoveBoardgame implements Action {
+  readonly type = ERROR_REMOVE_BOARDGAMES;
+  constructor(public payload: boardgame) { }
+}
+
+export class ErrorAddBoardGame implements Action {
+  readonly type = ERROR_ADD_BOARDGAME;
+
+  constructor(public payload: boardgame) { }
+}
+
+export type Actions = AddBoardGame | ClearBoardGame | UpdateBoardGame | LoadBoardGames | AddBoardGames | ErrorBoardGames | PlayBoardGame | DoneBoardgames | RemoveBoardgame | SetBoardgameId | ErrorAddBoardGame | ErrorRemoveBoardgame;

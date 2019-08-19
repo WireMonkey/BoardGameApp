@@ -2,7 +2,7 @@
 <p-dialog header="Edit Boardgame" [(visible)]="editDialogShow" [modal]="true" [responsive]="true" [baseZIndex]="10000" [resizable]="false"
   [positionTop]="0" [closable]="false" [style]="{height: '500px','overflow':'visible'}">
   <label>Name:&nbsp;</label>
-  <input type="text" pInputText [(ngModel)]="boardGame.Name"/>
+  <input type="text" pInputText [(ngModel)]="boardGame.Name" class="ui-inputtext"/>
   <br>
   <label>Notes:</label><br>
   <textarea pInputTextarea rows="1" cols="30" [(ngModel)]="boardGame.Notes" autoResize="autoResize"></textarea>
@@ -15,6 +15,7 @@
   </p-fieldset>
   <p-footer>
       <button type="button" pButton icon="pi pi-check" (click)="saveEdits($event)" label="Done"></button>
+      <button type="button" pButton icon="pi pi-trash" (click)="deleteBoardgame($event)" label="Delete" class="ui-button-raised ui-button-warning"></button>
       <button type="button" pButton icon="pi pi-times" (click)="cancelEdits($event)" label="Cancel" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog> 

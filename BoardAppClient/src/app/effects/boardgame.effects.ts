@@ -127,6 +127,33 @@ export class BoardgameEffects {
   )
 
   @Effect()
+  RemoveBoardGames$ = this.actions$.pipe(
+    ofType(BoardgameActions.REMOVE_BOARDGAMES),
+    switchMap((action: any) => {
+      return this.boardgameService.deleteBoardGame(action.payload).pipe(
+        map((response: any) => {
+          //if(response.ok){
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Boardgame removed.' });
+            return new BoardgameActions.DoneBoardgames();
+          // } else {
+          //   throw Error("Not Saved");
+          // }
+        }),
+        catchError(err => {
+          let message = 'Unable to remove boardgame. ';
+          if (err.status === 0) {
+            message += 'Unable to reach server.';
+          }
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
+          this.store.dispatch(new BoardgameActions.ErrorAddBoardGame(action.payload));
+          console.log(err);
+          return of();
+        })
+      )
+    })
+  )
+
+  @Effect()
   AddBoardGame$ = this.actions$.pipe(
     ofType(BoardgameActions.ADD_BOARDGAME),
     switchMap((action: any) => {
@@ -145,7 +172,7 @@ export class BoardgameEffects {
             message += 'Unable to reach server.';
           }
           this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
-          this.store.dispatch(new BoardgameActions.RemoveBoardgame(action.payload));
+          this.store.dispatch(new BoardgameActions.ErrorRemoveBoardgame(action.payload));
           console.log(err);
           return of();
         })

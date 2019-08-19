@@ -28,6 +28,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {TabViewModule} from 'primeng/tabview';
 import {PasswordModule} from 'primeng/password';
 import {MessageModule} from 'primeng/message';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 
 //Components
 import { AppComponent } from './app.component';
@@ -111,12 +113,18 @@ import { ResetRequestComponent } from './reset-request/reset-request.component';
     TabViewModule,
     PasswordModule,
     MessageModule,
+    ConfirmDialogModule,
     StoreModule.forRoot({boardgame: boardGameReducer, player: playerReducer}),
     EffectsModule.forRoot([BoardgameEffects]),
     AppRoutingModule
   ],
   providers: [
     MessageService,
+    {
+      provide: ErrorHandler,
+      useClass: ErrorsHandler,
+    },
+    ConfirmationService,
     {
       provide: ErrorHandler,
       useClass: ErrorsHandler,
