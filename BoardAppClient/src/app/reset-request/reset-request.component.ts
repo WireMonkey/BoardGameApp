@@ -27,8 +27,10 @@ export class ResetRequestComponent implements OnInit {
       this.spinner.hide();
       this.messageService.add({ severity: 'error', summary: 'Error', detail: "Error sending reset email."});
     });
+  }
 
-
+  backClick(event: any){
+    this.router.navigateByUrl('/');
   }
 
 }

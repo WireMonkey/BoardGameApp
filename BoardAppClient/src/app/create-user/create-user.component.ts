@@ -58,7 +58,8 @@ export class CreateUserComponent implements OnInit {
     }, error => {
       this.username = "";
       this.password = "";
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Error creating user: " + error.error });
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Error creating user."});
+      this.spinner.hide();
     });
   }
 }

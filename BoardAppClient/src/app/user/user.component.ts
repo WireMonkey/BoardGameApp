@@ -41,7 +41,7 @@ export class UserComponent implements OnInit {
       this.editUserShow = false;
     },error => {
       this.spinner.hide();
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Error saving changes: " + error.error });
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Error saving changes."});
     })
     
   }
