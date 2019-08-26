@@ -114,3 +114,28 @@ exports.RemoveGame = function(req, res) {
     res.status(500).send(error);
   }
 }
+
+exports.AddManyBoardGames = function(req,res){
+  try {
+    let userId = req.query.user;
+    let addGames = req.body;
+
+    addGames.forEach(game => {
+      game.UserId = userId;
+      game.Id = chance.guid();
+    });
+
+    BoardGameData = BoardGameData.concat(addGames);
+
+    fs.writeFile('DB/DB.txt', JSON.stringify(BoardGameData), function (err) {
+      if (err) {
+        console.log(err);
+        res.status(500).send(error);
+      }
+      res.json({message: 'Data Saved.'});
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+}

@@ -11,7 +11,10 @@ module.exports = function(app) {
     .delete(auth.verifyJWTToken,boardGame.RemoveGame)
 
   app.route('/boardgames/clearcache')
-    .get(boardGame.ClearCache);
+    .get(auth.verifyJWTToken,boardGame.ClearCache);
+
+  app.route('/boardgames/batchadd')
+    .post(auth.verifyJWTToken,boardGame.AddManyBoardGames);
 
   app.route('/users')
     .get(auth.verifyJWTToken,users.getUserData)

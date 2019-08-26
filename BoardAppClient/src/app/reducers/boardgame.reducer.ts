@@ -50,7 +50,7 @@ export function boardGameReducer(state: boardgame[] = initState, action: Boardga
     case BoardgameActions.REMOVE_BOARDGAMES:
     case BoardgameActions.ERROR_REMOVE_BOARDGAMES:
       return state.filter(game => {
-        return game.Name !== action.payload.Name;
+        return game.Id !== action.payload.Id;
       });
     case BoardgameActions.SETID_BOARDGAMES:
       // let newGame = state.find(x => x._id == null);
