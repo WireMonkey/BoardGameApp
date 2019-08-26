@@ -53,11 +53,13 @@ export class CreateUserComponent implements OnInit {
       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Account Created' });
       this.username = "";
       this.password = "";
+      this.email = "";
       this.service.createUser = false;
       this.spinner.hide();
     }, error => {
       this.username = "";
       this.password = "";
+      this.email = "";
       this.messageService.add({ severity: 'error', summary: 'Error', detail: "Error creating user."});
       this.spinner.hide();
     });
