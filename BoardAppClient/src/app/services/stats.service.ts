@@ -57,10 +57,10 @@ export class StatsService {
     if(games.length > 0){
       this.playerList = [];
       const PlayedGames = games.filter(b => b.Plays && b.Plays.length > 0);
-      if(PlayedGames.length > 0){
+      this.CreateBoardgameList([...games]);
 
+      if(PlayedGames.length > 0){
         this.CreatePlayerList([...PlayedGames]);
-        this.CreateBoardgameList([...games]);
         
         this.statData.lastPlayed = this.getLastPlayed([...PlayedGames]);
         this.statData.mostPlayed = this.GetMostPlayed([...PlayedGames]);
@@ -154,7 +154,7 @@ export class StatsService {
   }
 
   private getHighestWinRate() {
-    const players = this.playerList.filter(p => (p.Wins + p.Plays) > 2);
+    const players = this.playerList;
     if(players.length > 0){
       players.forEach(p => {
         if (p.Wins > 0) {
@@ -182,10 +182,16 @@ export class StatsService {
   private CreateBoardgameList(games: boardgame[]) {
     this.gameList = games.map(game => {
       return this.CalcBoardgameStats(game);
-    }).filter(g => g.LastPlayed !== null);
+    });
 
     this.gameList.sort(function(a, b) {
-      if (moment(a.LastPlayed).isBefore(moment(b.LastPlayed))) {
+      if (a.LastPlayed == null && b.LastPlayed == null) {
+        return 0;
+      } else if (a.LastPlayed == null) {
+        return 1;
+      } else if (b.LastPlayed == null) {
+        return -1;
+      } else if (moment(a.LastPlayed).isBefore(moment(b.LastPlayed))) {
         return 1;
       } else if (moment(a.LastPlayed).isAfter(moment(b.LastPlayed))) {
         return -1;

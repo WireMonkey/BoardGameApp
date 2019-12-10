@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { tap, map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 
 
@@ -10,8 +11,8 @@ import { tap, map } from 'rxjs/operators';
 })
 export class SlackService {
 
-  ErrorApi: string = "";
-  SuggestionsAPI: string = "";
+  ErrorApi: string = environment.errorKey;
+  SuggestionsAPI: string = environment.suggestionsKey;
   options = {
     headers: new HttpHeaders(
       { 'Content-Type': 'application/x-www-form-urlencoded' }

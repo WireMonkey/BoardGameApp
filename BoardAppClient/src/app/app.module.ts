@@ -30,6 +30,7 @@ import {PasswordModule} from 'primeng/password';
 import {MessageModule} from 'primeng/message';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
+import {CheckboxModule} from 'primeng/checkbox';
 
 //Components
 import { AppComponent } from './app.component';
@@ -62,6 +63,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { ResetRequestComponent } from './reset-request/reset-request.component';
+import { ThemeChangeComponent } from './theme-change/theme-change.component';
 
 
 @NgModule({
@@ -84,7 +86,8 @@ import { ResetRequestComponent } from './reset-request/reset-request.component';
     LogoutComponent,
     HomeComponent,
     UserComponent,
-    ResetRequestComponent
+    ResetRequestComponent,
+    ThemeChangeComponent
   ],
   imports: [
     BrowserModule,
@@ -114,6 +117,7 @@ import { ResetRequestComponent } from './reset-request/reset-request.component';
     PasswordModule,
     MessageModule,
     ConfirmDialogModule,
+    CheckboxModule,
     StoreModule.forRoot({boardgame: boardGameReducer, player: playerReducer}),
     EffectsModule.forRoot([BoardgameEffects]),
     AppRoutingModule
