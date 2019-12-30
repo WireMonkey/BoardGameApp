@@ -10,7 +10,8 @@ export class BordGameService {
 
   apiUrl = '';
   constructor(private http: HttpClient, private userService: UserService) {
-    this.apiUrl = 'http://' + window.location.hostname + ':3000/boardgames';
+    this.apiUrl = 'http://' + window.location.hostname + ':4200/api/boardgames';
+    //this.apiUrl = 'http://' + window.location.hostname + ':3000/boardgames';
   }
 
   getBoardGames() {
@@ -22,6 +23,6 @@ export class BordGameService {
   }
 
   deleteBoardGame(data: any) {
-    return this.http.delete(this.apiUrl+"?id=" + data.Id);
+    return this.http.delete(this.apiUrl+"?id=" + data._id);
   }
 }

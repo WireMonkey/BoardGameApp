@@ -14,8 +14,8 @@ try {
 
     //If boardgame entries do not have id then add one.
     BoardGameData.forEach(game => {
-      if(!game.Id){
-        game.Id = chance.guid();
+      if(!game._id){
+        game._id = chance.guid();
       }
     });
   });
@@ -49,14 +49,14 @@ exports.SaveBoardGames = function(req, res) {
     updateData.UserId = userId;
     
     //If it has an id then remove the old data from the list.
-    if(updateData.Id){
+    if(updateData._id){
       let newList = BoardGameData.filter(game => {
-        return game.Id != updateData.Id;
+        return game._id != updateData._id;
       });
       BoardGameData = newList;
     } else {
       //If data is missing an id then add one.
-      updateData.Id = chance.guid();
+      updateData._id = chance.guid();
     }
 
     BoardGameData.push(updateData);
@@ -66,7 +66,7 @@ exports.SaveBoardGames = function(req, res) {
         console.log(err);
         res.status(500).send(error);
       }
-      res.json({message: 'Data Saved.', Id: updateData.Id});
+      res.json({message: 'Data Saved.', id: updateData._id});
     });
   } catch (error) {
     res.status(500).send(error);
@@ -100,7 +100,7 @@ exports.RemoveGame = function(req, res) {
     let id = req.query.id;
 
     BoardGameData = BoardGameData.filter(game => {
-      return game.Id != id;
+      return game._id != id;
     });
 
     fs.writeFile('DB/DB.txt', JSON.stringify(BoardGameData), function (err) {
@@ -122,7 +122,7 @@ exports.AddManyBoardGames = function(req,res){
 
     addGames.forEach(game => {
       game.UserId = userId;
-      game.Id = chance.guid();
+      game._id = chance.guid();
     });
 
     BoardGameData = BoardGameData.concat(addGames);

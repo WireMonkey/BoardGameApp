@@ -23,10 +23,10 @@ export class StatsService {
     },
     lastPlayed: {
       Expansions: [],
-      //_id: '',
-      //_rev: '',
+      _id: '',
+      _rev: '',
       UserId: '',
-      Id: '',
+      //Id: '',
       Name: '',
       Notes: '',
       Plays: [{
@@ -39,10 +39,10 @@ export class StatsService {
     },
     mostPlayed: {
       Expansions: [],
-      //_id: '',
-      //_rev: '',
+      _id: '',
+      _rev: '',
       UserId: '',
-      Id: '',
+      //Id: '',
       Name: '',
       Notes: '',
       Plays: []
@@ -94,7 +94,7 @@ export class StatsService {
       })[0];
     } else {
       return {
-        Name: '', Plays: [{ Date: null, Players: [], Winner: '', Notes: '', Expansions: [] }], Expansions: [], Notes: '', Id: '', UserId: ''// _id: '', _rev: ''
+        Name: '', Plays: [{ Date: null, Players: [], Winner: '', Notes: '', Expansions: [] }], Expansions: [], Notes: '',UserId: '', _id: '', _rev: ''
       };
     }
   }
@@ -104,7 +104,7 @@ export class StatsService {
       return games.sort((a, b) => b.Plays.length - a.Plays.length)[0];
     } else {
       return {
-        Name: '', Plays: [{ Date: null, Players: [], Winner: '', Notes: '', Expansions: [] }], Expansions: [], Notes: '', Id: '', UserId: '' //_id: '', _rev: ''
+        Name: '', Plays: [{ Date: null, Players: [], Winner: '', Notes: '', Expansions: [] }], Expansions: [], Notes: '',  UserId: '',_id: '', _rev: ''
       };
     }
   }
@@ -202,7 +202,7 @@ export class StatsService {
   }
 
   private AddBoardGame(game: boardgame) {
-    let gameStats = this.gameList.find(g => g._id == game.Id);
+    let gameStats = this.gameList.find(g => g._id == game._id);
     if(gameStats){
       gameStats.LastPlayed = game.Plays[0].Date;
       gameStats.TotalPlays = game.Plays.length;
@@ -231,7 +231,7 @@ export class StatsService {
       _id: null
     };
 
-    gameStats._id = game.Id//game._id;
+    gameStats._id = game._id;
     gameStats.Name = game.Name;
     gameStats.TotalPlays = game.Plays.length;
     gameStats.LastPlayed = (game.Plays.length >= 1) ? game.Plays[0].Date : null;

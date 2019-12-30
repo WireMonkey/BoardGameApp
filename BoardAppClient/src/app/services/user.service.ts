@@ -12,7 +12,8 @@ export class UserService {
   userInfo: any;
   
   constructor(private http: HttpClient) { 
-    this.apiUrl = 'http://' + window.location.hostname + ':3000/users/';
+    this.apiUrl = 'http://' + window.location.hostname + ':4200/api/users/';
+    //this.apiUrl = 'http://' + window.location.hostname + ':3000/users/';
   }
 
   loadUserFromStorage() {

@@ -15,7 +15,7 @@ import { AppState } from '../app.state';
 export class BoardgameEditModalComponent implements OnInit {
   editDialogShow: boolean = false;
   hasExpansions: boolean = false;
-  origionalCopy: boardgame = {Id:null,Expansions:[],Name:null,Plays:null,Notes:null,UserId:null};
+  origionalCopy: boardgame = {_id:null,_rev:null,Expansions:[],Name:null,Plays:null,Notes:null,UserId:null};
   displayStyle: any = {display: ""};
 
   @Input() boardGame: any;

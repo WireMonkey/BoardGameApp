@@ -1,6 +1,6 @@
 # Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
 FROM nginx:1.15
 
-COPY ./dist/BoardAppClient/ /usr/share/nginx/html
+COPY ./dist/mig/ /usr/share/nginx/html
 
 COPY default.conf /etc/nginx/conf.d/

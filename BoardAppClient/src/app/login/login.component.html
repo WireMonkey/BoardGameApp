@@ -15,7 +15,7 @@
         <div class="ui-grid-col-4">
         </div>
         <div class="ui-grid-col-4">
-          <input pPassword type="password" [feedback]="false" [(ngModel)]="password" placeholder="password">
+          <input pPassword type="password" [feedback]="false" [(ngModel)]="password" placeholder="password" (keyup)="onKey($event)">
         </div>
         <div class="ui-grid-col-4">
         </div>

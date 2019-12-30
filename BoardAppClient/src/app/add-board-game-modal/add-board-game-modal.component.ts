@@ -27,7 +27,7 @@ export class AddBoardGameModalComponent implements OnInit {
   addBoardGameShow: boolean = false;
 
   AddBoardGame() {
-    let saveData: boardgame = { UserId: null, Name: this.NewBoardGame, Expansions: [], Plays: [], Notes: "", Id: null };//_id: null, _rev: null };
+    let saveData: boardgame = { UserId: null, Name: this.NewBoardGame, Expansions: [], Plays: [], Notes: "", _id: null, _rev: null };
     this.store.dispatch(new boardgameActions.AddBoardGame(saveData));
 
     this.NewBoardGame = '';

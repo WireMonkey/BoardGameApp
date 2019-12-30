@@ -5,7 +5,7 @@ const Chance = require('chance');
 const jwt = require('jsonwebtoken');
 const config = require('../config.js');
 const chance = new Chance();
-const email = require('../libs/email');
+const email = require('../libs/Email');
 const saltRounds = 10;
 let users = [];
 
@@ -78,7 +78,7 @@ exports.SetResetPassword = async function (req, res) {
         let resetHash = chance.hash({length: 50});
         if (user) {
             user.resetHash = resetHash;
-            await email.SendEmail(user);
+            //await email.SendEmail(user);
             res.status(200).send();
         } else {
             res.json('');

@@ -36,6 +36,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  onKey(event: any) {
+    if(event.key == "Enter") {
+      this.loginButtonClick(event);
+    }
+  }
+
   createButtonClick(event: any) {
     this.service.createUser = true;
   }
