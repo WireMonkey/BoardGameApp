@@ -1,9 +1,8 @@
-const config = require('../config.js');
+const config = require('../../Config/config.js');
 const mailjet = require ('node-mailjet').connect(config.mailjetApi,config.mailjetSecret);
 
 exports.SendEmail = async function(user) {
     try {
-        console.log(user);
         await sendResetEmail(user.resetHash,user.email);
         return true;
     } catch (error) {
@@ -12,14 +11,14 @@ exports.SendEmail = async function(user) {
 }
 
 async function sendResetEmail(resetHash, email) {
-    let resetUrl = 'http://localhost:4200/reset/' + resetHash;
+    let resetUrl = config.resetUrl + resetHash;
     const request = mailjet
     .post("send", {'version': 'v3.1'})
     .request({
       "Messages":[
         {
           "From": {
-            "Email": "kofootapps@gmail.com",
+            "Email": config.email,
             "Name": "Boardgame app"
           },
           "To": [
@@ -33,10 +32,10 @@ async function sendResetEmail(resetHash, email) {
         }
       ]
     }).then(result => {
-      console.log(result);
+      console.log('Reset email sent to' + email);
       return true;
     }).catch(error => {
-      console.log(error);
+      console.error(error);
       throw error;
     });
   }

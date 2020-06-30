@@ -24,7 +24,7 @@ module.exports = function(app) {
     .post(users.ValidateUser);
   app.route('/api/users/setReset')
     .post(users.SetResetPassword);
-  app.route('/api/users/reset')
+  app.route('/api/users/reset') 
     .post(users.ResetPassword);
   app.route('/api/users/refresh')
     .get(auth.verifyJWTToken,users.refreshJwt);

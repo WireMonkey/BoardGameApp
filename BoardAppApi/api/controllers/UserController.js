@@ -3,7 +3,7 @@ let fs = require('fs');
 const bcrypt = require('bcrypt');
 const Chance = require('chance');
 const jwt = require('jsonwebtoken');
-const config = require('../config.js');
+const config = require('../../Config/config.js');
 const chance = new Chance();
 const email = require('../libs/Email');
 const saltRounds = 10;
@@ -12,12 +12,13 @@ let users = [];
 try {
     fs.readFile('DB/Users.txt', function(err, data) { 
       if (err) {
-        console.log(err);
+        console.error(err);
       }
       users = JSON.parse(data.toString('utf8'));
+      users = users.filter(x => x.resetHash).forEach(x => x.resetHash = '');
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 
 exports.CreateUser = async function (req, res) {
@@ -27,13 +28,13 @@ exports.CreateUser = async function (req, res) {
 
         fs.writeFile('DB/Users.txt', JSON.stringify(users), function (err) {
             if (err) {
-              console.log(err);
+              console.error(err);
               res.status(500).send(error);
             }
             res.json({message: 'Data Saved.'});
           });
     } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
         res.status(500).send(error.message);
     }
 }
@@ -78,7 +79,7 @@ exports.SetResetPassword = async function (req, res) {
         let resetHash = chance.hash({length: 50});
         if (user) {
             user.resetHash = resetHash;
-            //await email.SendEmail(user);
+            await email.SendEmail(user);
             res.status(200).send();
         } else {
             res.json('');
@@ -135,7 +136,7 @@ exports.updateUser = async function(req,res){
 
         fs.writeFile('DB/Users.txt', JSON.stringify(users), function (err) {
             if (err) {
-              console.log(err);
+              console.error(err);
               res.status(500).send(error);
             }
             res.json({message: 'Data Saved.'});

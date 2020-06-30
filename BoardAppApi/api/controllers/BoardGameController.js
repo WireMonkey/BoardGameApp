@@ -8,7 +8,7 @@ let BoardGameData = [];
 try {
   fs.readFile('DB/DB.txt', function(err, data) { 
     if (err) {
-      console.log(err);
+      console.error(err);
     }
     BoardGameData = JSON.parse(data.toString('utf8'));
 
@@ -20,7 +20,7 @@ try {
     });
   });
 } catch (error) {
-  console.log(error);
+  console.error(error);
 }
 
 exports.GetAllBoardGames = function(req, res) {
@@ -63,7 +63,7 @@ exports.SaveBoardGames = function(req, res) {
 
     fs.writeFile('DB/DB.txt', JSON.stringify(BoardGameData), function (err) {
       if (err) {
-        console.log(err);
+        console.error(err);
         res.status(500).send(error);
       }
       res.json({message: 'Data Saved.', id: updateData._id});
@@ -77,7 +77,7 @@ exports.ClearCache = function(req, res) {
   try {
     fs.readFile('DB/DB.txt', function(err, data) { 
       if (err) {
-        console.log(err);
+        console.error(err);
         res.status(500).send(error);
       }
       BoardGameData = JSON.parse(data.toString('utf8'));
@@ -105,7 +105,7 @@ exports.RemoveGame = function(req, res) {
 
     fs.writeFile('DB/DB.txt', JSON.stringify(BoardGameData), function (err) {
       if (err) {
-        console.log(err);
+        console.error(err);
         res.status(500).send(error);
       }
       res.json({message: 'Data Saved.'});
@@ -129,13 +129,13 @@ exports.AddManyBoardGames = function(req,res){
 
     fs.writeFile('DB/DB.txt', JSON.stringify(BoardGameData), function (err) {
       if (err) {
-        console.log(err);
+        console.error(err);
         res.status(500).send(error);
       }
       res.json({message: 'Data Saved.'});
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send(error);
   }
 }

@@ -96,7 +96,7 @@ export class BoardgameEffects {
           }
           this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
           this.store.dispatch(new BoardgameActions.ErrorBoardGames(action.orig));
-          console.log(err);
+          console.error(err);
           return of();
         })
       );
@@ -119,7 +119,7 @@ export class BoardgameEffects {
           }
           this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
           this.store.dispatch(new BoardgameActions.ErrorBoardGames(action.orig));
-          console.log(err);
+          console.error(err);
           return of();
         })
       );
@@ -146,7 +146,7 @@ export class BoardgameEffects {
           }
           this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
           this.store.dispatch(new BoardgameActions.ErrorAddBoardGame(action.payload));
-          console.log(err);
+          console.error(err);
           return of();
         })
       )
@@ -173,7 +173,7 @@ export class BoardgameEffects {
           }
           this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
           this.store.dispatch(new BoardgameActions.ErrorRemoveBoardgame(action.payload));
-          console.log(err);
+          console.error(err);
           return of();
         })
       )
