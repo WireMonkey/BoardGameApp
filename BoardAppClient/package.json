@@ -28,7 +28,7 @@
     "moment": "^2.24.0",
     "ngx-spinner": "^8.0.3",
     "primeflex": "^1.0.0-rc.1",
-    "primeicons": "^2.0.0",
+    "primeicons": "^4.0.0",
     "primeng": "^9.1.2",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
