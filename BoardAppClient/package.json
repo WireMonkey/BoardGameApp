@@ -26,12 +26,12 @@
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "moment": "^2.24.0",
-    "tslib": "^1.10.0",
     "ngx-spinner": "^8.0.3",
     "primeflex": "^1.0.0-rc.1",
     "primeicons": "^2.0.0",
     "primeng": "^8.0.2",
     "rxjs": "~6.5.5",
+    "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
