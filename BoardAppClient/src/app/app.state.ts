@@ -3,7 +3,7 @@ import {player} from './models/player.model';
 import { Stats } from './models/stats';
 
 export interface AppState {
-  readonly boargame: boardgame[];
+  readonly boardgame: boardgame[];
   readonly player: player[];
   readonly stats: Stats;
 }
