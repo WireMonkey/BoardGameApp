@@ -1,6 +1,6 @@
 <p-button id="triButton" type="button" icon="pi pi-pencil" styleClass="ui-button-raised ui-button-warning" pTooltip="Send Suggestions."tooltipPosition="left" label="Suggestions" (click)="suggestDialogShow=true"></p-button>
-<p-dialog header="Submit suggestions for imporvements." [(visible)]="suggestDialogShow" [responsive]="true" [style]="{height: '500px'}" [resizable]="false"
-  [contentStyle]="{'overflow':'visible'}" [positionTop]="0" [closable]="false">
+<p-dialog header="Submit suggestions for imporvements." [(visible)]="suggestDialogShow" [responsive]="true" [style]="{}" [resizable]="false"
+  [positionTop]="0" [closable]="false">
   <label>Suggestion</label><br>
   <textarea pInputTextarea rows="5" cols="30" [(ngModel)]="suggestions" autoResize="autoResize"></textarea>
   <p-footer>

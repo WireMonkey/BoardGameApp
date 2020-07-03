@@ -118,7 +118,15 @@ import { ThemeChangeComponent } from './theme-change/theme-change.component';
     MessageModule,
     ConfirmDialogModule,
     CheckboxModule,
-    StoreModule.forRoot({boardgame: boardGameReducer, player: playerReducer}),
+    StoreModule.forRoot({boardgame: boardGameReducer, player: playerReducer}, {
+      runtimeChecks: {
+        strictStateImmutability: false,
+        strictActionImmutability: false,
+        strictStateSerializability: false,
+        strictActionSerializability: false,
+        strictActionWithinNgZone: false,
+        strictActionTypeUniqueness: false,
+      }}),
     EffectsModule.forRoot([BoardgameEffects]),
     AppRoutingModule
   ],

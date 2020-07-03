@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { UserService } from './user.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,7 @@ export class BordGameService {
 
   apiUrl = '';
   constructor(private http: HttpClient, private userService: UserService) {
-    this.apiUrl = 'http://' + window.location.hostname + ':4200/api/boardgames';
-    //this.apiUrl = 'http://' + window.location.hostname + ':3000/boardgames';
+    this.apiUrl = environment.Url + 'api/boardgames';
   }
 
   getBoardGames() {

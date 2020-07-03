@@ -15,7 +15,7 @@ try {
         console.error(err);
       }
       users = JSON.parse(data.toString('utf8'));
-      users = users.filter(x => x.resetHash).forEach(x => x.resetHash = '');
+      users.filter(x => x.resetHash).forEach(x => x.resetHash = '');
     });
   } catch (error) {
     console.error(error);

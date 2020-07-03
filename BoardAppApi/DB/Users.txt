@@ -1,1 +1,1 @@
-[{"_id":"c1fa6afe-1c47-5c48-8c0c-4db8da030b3b","userName":"user","password":"$2b$10$bEOImkMjBKgIUi.LmEHDFeOUimeEAHqdvH1NzcObB070aheLsDduW","email":"test@test.com"}]
+[{"_id":"c1fa6afe-1c47-5c48-8c0c-4db8da030b3b","userName":"user","password":"$2b$10$bEOImkMjBKgIUi.LmEHDFeOUimeEAHqdvH1NzcObB070aheLsDduW","email":"test@test.com"},{"_id":"d122ee31-b7ac-5f37-80ac-1d522e3a32e0","userName":"test","password":"$2b$10$0exqzbvv.ODa6ZlJXn3h3uP5k3Qh9qqMwjeh1NHNhB.i43gJdctcq","email":"test@boardgame.app"}]
