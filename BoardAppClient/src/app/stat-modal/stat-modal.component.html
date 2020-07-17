@@ -1,5 +1,5 @@
-<i class="pi pi-info-circle" style="font-size: 2em" pTooltip="Click for more stats" (click)="showDialog=true"></i>
-<p-dialog header="Stats" [(visible)]="showDialog" [style]="{width: '100%', height: '100%', minWidth: '100%', minHeight: '100%'}" [positionTop]="0">
+<i class="pi pi-info-circle" style="font-size: 1.2em" pTooltip="Click for more stats" (click)="showDialog=true"></i>
+<p-dialog header="Stats" [(visible)]="showDialog" [style]="{width: '100%', height: '100%', minWidth: '100%', minHeight: '100%'}">
     <p-tabView>
         <p-tabPanel header="Players">
                 <p-table [value]="statsService.playerList" [columns]="playerCols" [paginator]="true" [rows]="5">

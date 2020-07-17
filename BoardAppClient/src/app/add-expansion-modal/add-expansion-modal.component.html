@@ -1,6 +1,5 @@
 <button pButton type="button" label="Add Expansion" class="ui-button-raised" (click)="AddExpansion()"></button>&nbsp;
-<p-dialog header="Add Expansion" [(visible)]="expDialogShow" [modal]="true" [responsive]="true" [baseZIndex]="10000" [minY]="70"
-          [positionTop]="0">
+<p-dialog header="Add Expansion" [(visible)]="expDialogShow" [modal]="true" [baseZIndex]="10000" [minY]="70">
     <br>
     <span class="ui-float-label">
         <input id="expName" type="text" size="30" pInputText class="ui-inputtext" [(ngModel)]="NewExpansion">

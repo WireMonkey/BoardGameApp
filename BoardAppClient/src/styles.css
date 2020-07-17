@@ -1,25 +1,35 @@
-  p-dialog .ui-dialog {
-    overflow: auto;
-    max-height: 70%;
-    max-width: 100%;
-  }
+p-dialog .ui-dialog {
+  overflow: auto;
+  max-height: 70%;
+  max-width: 100%;
+}
   
-  .ui-dialog-content {
-    overflow: visible !important;
-  }
-  
-  .loginDiv {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .footer{
-    position: fixed;
-    bottom: 0px;
-    width:100%;
-    z-index: 102;
-  }
+.ui-dialog-content {
+  overflow: visible !important;
+}
 
-  .modalAutoComp {
-    width: 150px;
-  }
+.loginDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.footer{
+  position: fixed;
+  bottom: 0px;
+  width:100%;
+  z-index: 102;
+}
+
+.modalAutoComp {
+  width: 150px;
+}
+
+.p-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -.5rem;
+  margin-left: -.5rem;
+}
+.p-grid {
+  margin-top: 0rem !important;
+}
