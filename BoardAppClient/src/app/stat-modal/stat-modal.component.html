@@ -1,8 +1,8 @@
 <i class="pi pi-info-circle" style="font-size: 1.2em" pTooltip="Click for more stats" (click)="showDialog=true"></i>
-<p-dialog header="Stats" [(visible)]="showDialog" [style]="{width: '100%', height: '100%', minWidth: '100%', minHeight: '100%'}">
+<p-dialog header="Stats" [(visible)]="showDialog" [style]="{width: '100%', height: '100%', minWidth: '100%', minHeight: '100%'}" (onHide)="closeModal()" >
     <p-tabView>
         <p-tabPanel header="Players">
-                <p-table [value]="statsService.playerList" [columns]="playerCols" [paginator]="true" [rows]="5">
+                <p-table #playerDt [value]="statsService.playerList" [columns]="playerCols" [paginator]="true" [rows]="5">
                         <ng-template pTemplate="header" let-columns>
                             <tr>
                                 <th *ngFor="let col of columns" [pSortableColumn]="col.field">
@@ -26,7 +26,7 @@
                     </p-table>
         </p-tabPanel>
         <p-tabPanel header="Games">
-            <p-table [value]="statsService.gameList" [columns]="gameCols" [paginator]="true" [rows]="5">
+            <p-table #gameDt [value]="statsService.gameList" [columns]="gameCols" [paginator]="true" [rows]="5">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th *ngFor="let col of columns" [pSortableColumn]="col.field">

@@ -27,6 +27,10 @@ export class AddExpansionModalComponent implements OnInit {
     this.expDialogShow = true;
   }
 
+  HideModal() {
+    this.NewExpansion = '';
+  }
+
   saveExpansion(event: any) {
     let org = JSON.parse(JSON.stringify(this.boardGame));
 

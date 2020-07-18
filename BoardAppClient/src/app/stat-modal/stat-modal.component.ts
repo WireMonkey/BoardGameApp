@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { StatsService } from '../services/stats.service';
 import * as moment from 'moment';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-stat-modal',
@@ -12,6 +13,9 @@ export class StatModalComponent implements OnInit {
 
   playerCols: any[];
   gameCols: any[];
+
+  @ViewChild('playerDt') playerDt: Table;
+  @ViewChild('gameDt') gameDt: Table;
 
   constructor(public statsService: StatsService) { }
 
@@ -29,6 +33,11 @@ export class StatModalComponent implements OnInit {
       { field: 'MostWins', header: 'Most Wins' },
       { field: 'TotalPlays', header: 'Total Plays' },
     ]
+  }
+
+  closeModal(){
+    this.playerDt.reset();
+    this.gameDt.reset();
   }
 
   isNumber(data: any){

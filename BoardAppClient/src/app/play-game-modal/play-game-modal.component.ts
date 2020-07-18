@@ -82,7 +82,6 @@ export class PlayGameModalComponent implements OnInit {
   }
 
   hideModal() {
-    this.playGameDialogShow = false;
     this.date1 = new Date;
     this.players = [];
     this.notes = '';
@@ -108,6 +107,6 @@ export class PlayGameModalComponent implements OnInit {
       
       this.store.dispatch(new boardgameActions.PlayBoardGame(this.boardGame, this.oBoardgame));
       
-      this.hideModal();
+      this.playGameDialogShow = false;
   }
 }

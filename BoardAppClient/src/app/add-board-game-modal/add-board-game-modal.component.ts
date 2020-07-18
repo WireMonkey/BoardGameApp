@@ -34,6 +34,10 @@ export class AddBoardGameModalComponent implements OnInit {
     this.addBoardGameShow = false;
   }
 
+  HideModal() {
+    this.NewBoardGame = '';
+  }
+
   ShowModal() {
     this.NewBoardGame = '';
     this.addBoardGameShow = true;

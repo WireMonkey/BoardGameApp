@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 
 //Node_modules
 import {AutoCompleteModule} from 'primeng/autocomplete';
@@ -34,16 +35,11 @@ import {CheckboxModule} from 'primeng/checkbox';
 
 //Components
 import { AppComponent } from './app.component';
-import { BoardGameGridComponent } from './board-game-grid/board-game-grid.component';
-import { AddExpansionModalComponent } from './add-expansion-modal/add-expansion-modal.component';
-import { PlayGameModalComponent } from './play-game-modal/play-game-modal.component';
 import { AddBoardGameModalComponent } from './add-board-game-modal/add-board-game-modal.component';
-import { RefreshDataComponent } from './refresh-data/refresh-data.component';
 import { ErrorButtonComponent } from './error-button/error-button.component';
-import { BoardGameGridItemComponent } from './board-game-grid-item/board-game-grid-item.component';
-import { BoardgameEditModalComponent } from './boardgame-edit-modal/boardgame-edit-modal.component';
-import { StatBarComponent } from './stat-bar/stat-bar.component';
-import { StatModalComponent } from './stat-modal/stat-modal.component'; 
+import { UserComponent } from './user/user.component';
+import { ThemeChangeComponent } from './theme-change/theme-change.component';
+import { LogoutComponent } from './logout/logout.component';
 
 //ngrx
 import { StoreModule } from '@ngrx/store';
@@ -51,42 +47,20 @@ import { EffectsModule } from '@ngrx/effects';
 import { boardGameReducer } from './reducers/boardgame.reducer';
 import { playerReducer } from './reducers/player.reducer';
 import { BoardgameEffects } from './effects/boardgame.effects';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { LoginComponent } from './login/login.component';
-import { CreateUserComponent } from './create-user/create-user.component';
-import { UnauthComponent } from './unauth/unauth.component'; 
+
+//services
 import { ErrorsHandler } from './ErrorHandling/ErrorHandler';
-import { LogoutComponent } from './logout/logout.component';
 import { HttpAuthService } from './services/http-auth.service';
 import { HttpUnAuthService } from './services/http-un-auth.service';
-import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
-import { UserComponent } from './user/user.component';
-import { ResetRequestComponent } from './reset-request/reset-request.component';
-import { ThemeChangeComponent } from './theme-change/theme-change.component';
 
 
 @NgModule({
   declarations: [
     AppComponent, 
-    BoardGameGridComponent,
-    AddExpansionModalComponent,
-    PlayGameModalComponent,
     AddBoardGameModalComponent,
-    RefreshDataComponent,
-    ErrorButtonComponent,
-    BoardGameGridItemComponent,
-    BoardgameEditModalComponent,
-    StatBarComponent,
-    StatModalComponent,
-    ResetPasswordComponent,
-    LoginComponent,
-    CreateUserComponent,
-    UnauthComponent,
     LogoutComponent,
-    HomeComponent,
     UserComponent,
-    ResetRequestComponent,
+    ErrorButtonComponent,
     ThemeChangeComponent
   ],
   imports: [
@@ -94,28 +68,15 @@ import { ThemeChangeComponent } from './theme-change/theme-change.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    AutoCompleteModule,
-    CalendarModule,
     ButtonModule,
-    TooltipModule,
     OverlayPanelModule,
-    AccordionModule,
-    PanelModule,
-    TableModule,
-    DialogModule,
     NgxSpinnerModule,
     ToolbarModule,
-    DataViewModule,
-    DropdownModule,
-    FieldsetModule,
     InputTextareaModule,
-    ListboxModule,
     ToastModule,
-    BlockUIModule,
-    ProgressSpinnerModule,
-    TabViewModule,
     PasswordModule,
     MessageModule,
+    DialogModule,
     ConfirmDialogModule,
     CheckboxModule,
     StoreModule.forRoot({boardgame: boardGameReducer, player: playerReducer}, {

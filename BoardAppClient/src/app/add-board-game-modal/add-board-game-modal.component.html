@@ -1,5 +1,5 @@
 <h1><button pButton type="button" icon="pi pi-plus" label="Board Game" class="ui-button-raised" (click)="ShowModal()"></button></h1>
-<p-dialog header="Add New BoardGame" [(visible)]="addBoardGameShow" [modal]="true" [baseZIndex]="10000">
+<p-dialog header="Add New BoardGame" [(visible)]="addBoardGameShow" [modal]="true" [baseZIndex]="10000" (onHide)="HideModal()"> 
     <br>
     <span class="ui-float-label">
         <input id="expName" type="text" size="30" pInputText class="ui-inputtext" [(ngModel)]="NewBoardGame">
