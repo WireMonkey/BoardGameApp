@@ -38,6 +38,7 @@ export class StatModalComponent implements OnInit {
   closeModal(){
     this.playerDt.reset();
     this.gameDt.reset();
+    this.statsService.resetSorting();
   }
 
   isNumber(data: any){

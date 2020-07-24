@@ -3,33 +3,33 @@
   <div class="p-col p-col-align-center" style="text-align: center;">
     <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
       <div class="ui-grid-row">
-        <div class="ui-grid-col-4 p-sm-2">
+        <div class="ui-grid-col-4 p-sm-1">
         </div>
-        <div class="ui-grid-col-4 p-sm-8">
+        <div class="ui-grid-col-4 p-sm-10">
             <input type="text" pInputText class="ui-inputtext ui-corner-all ui-widget" [(ngModel)]="username" placeholder="username"><br>
         </div>
-        <div class="ui-grid-col-4 p-sm-2">
+        <div class="ui-grid-col-4 p-sm-1">
         </div>
       </div>
       <div class="ui-grid-row">
-        <div class="ui-grid-col-4 p-sm-2">
+        <div class="ui-grid-col-4 p-sm-1">
         </div>
-        <div class="ui-grid-col-4 p-sm-8">
+        <div class="ui-grid-col-4 p-sm-10">
           <input pPassword type="password" [feedback]="false" [(ngModel)]="password" placeholder="password" (keyup)="onKey($event)">
         </div>
-        <div class="ui-grid-col-4 p-sm-2">
+        <div class="ui-grid-col-4 p-sm-1">
         </div>
       </div>
       <div class="ui-grid-row">
-        <div class="ui-grid-col-4 p-sm-2">
+        <div class="ui-grid-col-4 p-sm-1">
         </div>
-        <div class="ui-grid-col-2 p-sm-4">
+        <div class="ui-grid-col-2 p-sm-5">
           <button type="button" pButton icon="pi pi-sign-in" pTooltip="Log in" tooltipPosition="right" label="Login" (click)="loginButtonClick($event)"></button>&nbsp;
         </div>
-        <div class="ui-grid-col-2 p-sm-4">
+        <div class="ui-grid-col-2 p-sm-5">
           <button type="button" pButton icon="pi pi-user-plus" pTooltip="Create user" tooltipPosition="right" label="Create" (click)="createButtonClick($event)"></button> 
         </div>
-        <div class="ui-grid-col-4 p-sm-2">
+        <div class="ui-grid-col-4 p-sm-1">
         </div>
       </div>
     </div>

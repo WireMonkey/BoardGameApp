@@ -79,6 +79,11 @@ export class StatsService {
     this.statData.HighestWinRate = this.getHighestWinRate();
   }
 
+  resetSorting(): void {
+    this.sortGameList();
+    this.sortPlayerList();
+  }
+
   private getLastPlayed(games: boardgame[]): boardgame {
     if (games.length > 0) {
       return games.sort(function (a, b) {
@@ -164,9 +169,7 @@ export class StatsService {
         }
       });
   
-      this.playerList.sort((a, b) => {
-        return b.Rate - a.Rate;
-      });
+      this.sortPlayerList();
       
       return this.playerList[0];
     } else {
@@ -177,6 +180,12 @@ export class StatsService {
         Rate: 0
       }
     }
+  }
+
+  private sortPlayerList():void{
+    this.playerList.sort((a, b) => {
+      return b.Rate - a.Rate;
+    });
   }
 
   private CreateBoardgameList(games: boardgame[]) {
@@ -211,6 +220,10 @@ export class StatsService {
       this.gameList.push(this.CalcBoardgameStats(game));
     }
 
+    this.sortGameList();
+  }
+
+  private sortGameList(): void {
     this.gameList.sort(function(a, b) {
       if (moment(a.LastPlayed).isBefore(moment(b.LastPlayed))) {
         return 1;
