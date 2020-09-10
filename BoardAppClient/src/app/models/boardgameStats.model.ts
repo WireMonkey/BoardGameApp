@@ -1,4 +1,4 @@
-export interface boardgameStats{
+export class boardgameStats{
   _id: string;
   Name: string;
   MostWins: string;

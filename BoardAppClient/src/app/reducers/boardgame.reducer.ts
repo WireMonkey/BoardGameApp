@@ -8,7 +8,7 @@ export function boardGameReducer(state: boardgame[] = initState, action: Boardga
   switch (action.type) {
     case BoardgameActions.ADD_BOARDGAME:
     case BoardgameActions.ERROR_ADD_BOARDGAME:
-      state.push(action.payload);
+       
       state = state.sort((a, b) => {
         const tA = a.Name;
         const tB = b.Name;

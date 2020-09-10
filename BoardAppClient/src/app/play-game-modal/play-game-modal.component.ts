@@ -81,6 +81,10 @@ export class PlayGameModalComponent implements OnInit {
     this.player = '';
   }
 
+  removePlayer(player: string){
+    this.players = this.players.filter(x => x != player);
+  }
+
   hideModal() {
     this.date1 = new Date;
     this.players = [];

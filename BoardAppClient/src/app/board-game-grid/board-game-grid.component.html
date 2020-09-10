@@ -1,5 +1,6 @@
 <p-dataView #dv [value]="BoardGames$ | async" [paginator]="true" [rows]="10" filterBy="Name" [totalRecords]="(BoardGames$ | async)?.length"
-            [rowsPerPageOptions]="[5,10,20,40]" [emptyMessage]="'No Boardgames Found.'" >
+            [rowsPerPageOptions]="[5,10,20,40]" [emptyMessage]="'No Boardgames Found.'"
+            [trackBy]="trackBoardgame()" >
     <p-header>
         <div class="ui-helper-clearfix">
             <div class="ui-g">
@@ -8,13 +9,13 @@
                 </div>
                 <div class="ui-g-12 ui-md-4" style="text-align:right">
                     <p-autoComplete [(ngModel)]="searchGame" [suggestions]="filteredGames" (completeMethod)="filterPlayers($event)" inputStyleClass="modalAutoComp"
-                    [minLength]="1" placeholder="Search Games" (keyup)="dv.filter($event.target.value)" (onSelect)="dv.filter($event.target.value)"></p-autoComplete>
+                    [minLength]="1" placeholder="Search Games" (keyup)="dv.filter($event.target.value)" (onSelect)="dv.filter($event)"></p-autoComplete>
                     <app-refresh-data style="display:inline-block"></app-refresh-data>&nbsp;
                 </div>
             </div>
         </div>
     </p-header>
-  <ng-template let-game ngFor pTemplate="listItem">
+  <ng-template let-game ngFor  pTemplate="listItem">
       <div [id]="game._id"> 
           <app-board-game-grid-item [boardGame]="game"></app-board-game-grid-item>
       </div>

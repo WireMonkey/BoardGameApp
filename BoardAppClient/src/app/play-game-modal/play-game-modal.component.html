@@ -26,7 +26,11 @@
         </p-autoComplete>
         <br>
         <ul>
-          <li *ngFor="let p of players">{{p}}</li>
+          <li *ngFor="let p of players" (Click)="removePlayer(p)">
+            <label (click)="removePlayer(p)">
+              {{p}}
+            </label>
+          </li>
         </ul>
         <br>
         <label for="winnerTxt">Winner</label><br>

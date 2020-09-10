@@ -40,12 +40,23 @@ export class BoardGameGridComponent implements OnInit {
     });
     
     for (let i = 0; i < gameNames.length; i++) {
-      let brand = gameNames[i];
-      if (brand.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
-        this.filteredGames.push(brand);
+      let name = gameNames[i];
+      if (name.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
+        this.filteredGames.push(name);
       }
     }
 
     bSub.unsubscribe();
+  }
+
+  trackBoardgame(i: number, game: boardgame){
+    if(game){
+      return game._id;
+    }
+    return i;
+  }
+
+  log(event: any){
+    console.log(event);
   }
 }

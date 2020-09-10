@@ -1,6 +1,6 @@
 import { boardgame } from "./boardgames.model";
 
-export interface Stats {
+export class Stats {
     lastPlayed: boardgame;
     mostPlayed: boardgame;
     MostWins: {

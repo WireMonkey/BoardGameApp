@@ -1,1 +1,1 @@
-[{"_id":"c1fa6afe-1c47-5c48-8c0c-4db8da030b3b","userName":"user","password":"$2b$10$bEOImkMjBKgIUi.LmEHDFeOUimeEAHqdvH1NzcObB070aheLsDduW","email":"test@test.com"},{"_id":"d122ee31-b7ac-5f37-80ac-1d522e3a32e0","userName":"test","password":"$2b$10$0exqzbvv.ODa6ZlJXn3h3uP5k3Qh9qqMwjeh1NHNhB.i43gJdctcq","email":"test@boardgame.app"}]
+[{"_id":"06b3838f-23f6-5d2e-9236-4b5ea7f72c92","userName":"user","password":"$2b$10$u5EG/HD0whRDfGcfcRs7Eu90r4TK734sIKtQJjG2tm3Q79lEw1YKy","email":"test@kofoot.app"}]

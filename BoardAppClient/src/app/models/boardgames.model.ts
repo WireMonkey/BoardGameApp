@@ -1,6 +1,6 @@
 import { gameplay } from "./gameplay.model";
 
-export interface boardgame{
+export class boardgame{
   _id: string;
   _rev: string;
   UserId: string;
