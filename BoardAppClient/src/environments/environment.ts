@@ -6,6 +6,7 @@ export const environment = {
   errorKey: "",
   suggestionsKey: "",
   Url: "http://192.168.1.205:3000/", 
+  qrUrl: "http://192.168.1.205:4200/",
   production: false
 };
 

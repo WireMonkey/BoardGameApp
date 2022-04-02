@@ -7,6 +7,7 @@ import { MessageService } from 'primeng/api';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
 import * as boardgameActions from './../actions/boardgame.actions';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-board-game-grid-item',
@@ -15,7 +16,7 @@ import * as boardgameActions from './../actions/boardgame.actions';
 })
 export class BoardGameGridItemComponent implements OnInit {
   @Input() boardGame: boardgame;
-  constructor(private messageService: MessageService, private service: BordGameService, private spinner: NgxSpinnerService, private store: Store<AppState>) { }
+  constructor(private messageService: MessageService, private service: BordGameService, private spinner: NgxSpinnerService, private store: Store<AppState>, private userService: UserService) { }
 
   ngOnInit() {
   }

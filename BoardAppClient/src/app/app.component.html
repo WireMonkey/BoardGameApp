@@ -6,8 +6,8 @@
       </h1>
     </div>
     <div class="ui-toolbar-group-right" [hidden]="!userService.validUser">
-        <app-add-board-game-modal style="display:inline-block"></app-add-board-game-modal>&nbsp;
-        <app-user style="display:inline-block"></app-user>&nbsp;
+        <app-add-board-game-modal style="display:inline-block" *ngIf="!userService.readonly"></app-add-board-game-modal>&nbsp;
+        <app-user style="display:inline-block" *ngIf="!userService.readonly"></app-user>&nbsp;
         <app-logout style="display:inline-block"></app-logout>
     </div>
   </span>

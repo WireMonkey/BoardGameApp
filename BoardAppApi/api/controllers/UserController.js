@@ -45,7 +45,7 @@ exports.ValidateUser = async function (req, res) {
         if (user) {
             let correct = await CheckPassword(req.body.userName, req.body.password, user.password);
             if (correct) {
-                let token = await GenerateJwt(user._id);
+                let token = await GenerateJwt(user._id, false);
                 res.json(token);
             } else {
                 res.status(401).json('Login invalid');
@@ -58,12 +58,28 @@ exports.ValidateUser = async function (req, res) {
     }
 }
 
+exports.ValidateReadOnlyUser = async function (req, res) {
+    try {
+        let user = users.find(x => x.userName === req.body.userName);
+        let validId = req.body.id && req.body.id >= 1 && req.body.id <= 30001;
+        if (user && validId) {
+            let token = await GenerateJwt(user._id, true);
+            res.json(token);
+        } else {
+            res.status(401).json('Login invalid');
+        }
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
 exports.refreshJwt = async function (req, res) {
     try {
         let userId = req.decoded.userId;
+        let readOnly = req.decoded.readOnly
         let user = users.find(x => x._id === userId);
         if (user) {
-            let token = await GenerateJwt(user._id);
+            let token = await GenerateJwt(user._id, readOnly);
             res.json(token);
         } else {
             res.status(401).json('Login invalid');
@@ -169,8 +185,8 @@ async function SaveUser(userName, hashPassword, email) {
     return userId;
 }
 
-async function GenerateJwt(userId) {
-    let token = jwt.sign({userId: userId},
+async function GenerateJwt(userId, isReadOnly = false) {
+    let token = jwt.sign({userId: userId, readOnly: isReadOnly},
         config.secret,
         { expiresIn: '24h' // expires in 24 hours
         }

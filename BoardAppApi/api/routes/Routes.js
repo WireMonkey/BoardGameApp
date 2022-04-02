@@ -7,21 +7,23 @@ module.exports = function(app) {
   // todoList Routes
   app.route('/api/boardgames',)
     .get(auth.verifyJWTToken,boardGame.GetAllBoardGames)
-    .post(auth.verifyJWTToken,boardGame.SaveBoardGames)
-    .delete(auth.verifyJWTToken,boardGame.RemoveGame)
+    .post(auth.verifyJWTTokenNotReadOnly,boardGame.SaveBoardGames)
+    .delete(auth.verifyJWTTokenNotReadOnly,boardGame.RemoveGame)
 
   app.route('/api/boardgames/clearcache')
     .get(auth.verifyJWTToken,boardGame.ClearCache);
 
   app.route('/api/boardgames/batchadd')
-    .post(auth.verifyJWTToken,boardGame.AddManyBoardGames);
+    .post(auth.verifyJWTTokenNotReadOnly,boardGame.AddManyBoardGames);
 
   app.route('/api/users')
-    .get(auth.verifyJWTToken,users.getUserData)
+    .get(auth.verifyJWTTokenNotReadOnly,users.getUserData)
     .post(users.CreateUser)
-    .patch(auth.verifyJWTToken,users.updateUser);
+    .patch(auth.verifyJWTTokenNotReadOnly,users.updateUser);
   app.route('/api/users/valid')
     .post(users.ValidateUser);
+    app.route('/api/users/validReadOnly')
+    .post(users.ValidateReadOnlyUser);
   app.route('/api/users/setReset')
     .post(users.SetResetPassword);
   app.route('/api/users/reset') 

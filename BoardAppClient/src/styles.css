@@ -30,6 +30,12 @@ p-dialog .ui-dialog {
   margin-right: -.5rem;
   margin-left: -.5rem;
 }
+
 .p-grid {
   margin-top: 0rem !important;
+}
+
+qr-code img {
+  height: 150px !important;
+  width: fit-content !important;
 }

@@ -10,7 +10,7 @@
     <p>
       {{boardGame.Notes}}
     </p>
-    <h3>Played Games</h3>
+    <h3>{{boardGame.Plays.length}} Games Played</h3>
       <p-table [value]="boardGame.Plays">
         <ng-template pTemplate="header">
           <tr>
@@ -30,14 +30,14 @@
               <label><b>Winner: </b></label>{{play.Winner}}
             </td>
             <td>
-              <p-button type="button" icon="pi pi-trash" styleClass="ui-button-danger" (click)="removePlayedGame($event,play)"></p-button>
+              <p-button type="button" icon="pi pi-trash" styleClass="ui-button-danger" (click)="removePlayedGame($event,play)" *ngIf="!userService.readonly"></p-button>
             </td>
           </tr>
         </ng-template>
       </p-table>
     <p-footer>
-      <app-add-expansion-modal [boardGame]="boardGame"></app-add-expansion-modal>
-      <app-play-game-modal [boardGame]="boardGame"></app-play-game-modal>
-      <app-boardgame-edit-modal [boardGame]="boardGame"></app-boardgame-edit-modal>
+      <app-add-expansion-modal [boardGame]="boardGame" *ngIf="!userService.readonly"></app-add-expansion-modal>
+      <app-play-game-modal [boardGame]="boardGame" *ngIf="!userService.readonly"></app-play-game-modal>
+      <app-boardgame-edit-modal [boardGame]="boardGame" *ngIf="!userService.readonly"></app-boardgame-edit-modal>
     </p-footer>
   </p-panel>

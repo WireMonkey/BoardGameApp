@@ -23,6 +23,7 @@
     "@ngrx/core": "^1.2.0",
     "@ngrx/effects": "^9.2.0",
     "@ngrx/store": "^9.2.0",
+    "angular2-qrcode": "^2.0.3",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "moment": "^2.24.0",

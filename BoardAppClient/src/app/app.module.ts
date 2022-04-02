@@ -32,6 +32,7 @@ import {MessageModule} from 'primeng/message';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import {CheckboxModule} from 'primeng/checkbox';
+import { QRCodeModule } from 'angular2-qrcode';
 
 //Components
 import { AppComponent } from './app.component';
@@ -79,6 +80,7 @@ import { HttpUnAuthService } from './services/http-un-auth.service';
     DialogModule,
     ConfirmDialogModule,
     CheckboxModule,
+    QRCodeModule, 
     StoreModule.forRoot({boardgame: boardGameReducer, player: playerReducer}, {
       runtimeChecks: {
         strictStateImmutability: false,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { MessageService } from 'primeng/api';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user',
@@ -19,6 +20,8 @@ export class UserComponent implements OnInit {
   email: string = ""
   emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+  qrCode: string = "";
+
   constructor(private userService: UserService,private messageService: MessageService, private spinner: NgxSpinnerService,) { }
 
   ngOnInit() {
@@ -29,6 +32,10 @@ export class UserComponent implements OnInit {
     this.email = this.userService.userInfo.email;
     this.password = "";
     this.editUserShow = true;
+
+    const qrData = window.btoa(JSON.stringify({userName: this.username, id: Math.floor(Math.random() * 30000 + 1)})); 
+    this.qrCode =  environment.qrUrl + 'collection/' + qrData;
+    console.log(this.qrCode);
   }
 
   saveButtonClicked(){

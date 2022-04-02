@@ -9,6 +9,7 @@ export class UserService {
   apiUrl = '';
   userId = '';
   validUser = false;
+  readonly = false;
   createUser = false;
   userInfo: any;
   
@@ -33,6 +34,11 @@ export class UserService {
   loginUser(userName: string, password: string) {
     let userData = {userName: userName, password: password};
     return this.http.post(this.apiUrl + "valid", userData);
+  }
+
+  loginReadOnly(userName: string, id: string) {
+    let userData = {userName: userName, id: id};
+    return this.http.post(this.apiUrl + "validReadOnly", userData);
   }
 
   saveUser(userName: string, password: string, email: string) {
