@@ -3,6 +3,8 @@ import { UserService } from '../services/user.service';
 import { MessageService } from 'primeng/api';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment';
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.state';
 
 @Component({
   selector: 'app-user',
@@ -22,7 +24,7 @@ export class UserComponent implements OnInit {
 
   qrCode: string = "";
 
-  constructor(private userService: UserService,private messageService: MessageService, private spinner: NgxSpinnerService,) { }
+  constructor(private userService: UserService,private messageService: MessageService, private spinner: NgxSpinnerService, private store: Store<AppState>) { }
 
   ngOnInit() {
   }
@@ -35,7 +37,6 @@ export class UserComponent implements OnInit {
 
     const qrData = window.btoa(JSON.stringify({userName: this.username, id: Math.floor(Math.random() * 30000 + 1)})); 
     this.qrCode =  environment.qrUrl + 'collection/' + qrData;
-    console.log(this.qrCode);
   }
 
   saveButtonClicked(){
@@ -66,6 +67,21 @@ export class UserComponent implements OnInit {
   validatePassword() {
     this.validPassword = this.password.length >= 8 || this.password.length <= 0;
     return !this.validPassword;
+  }
+
+  downloadJson() {
+    this.spinner.show();
+    this.store.select('boardgame').subscribe(items => {
+      const bJson = JSON.stringify(items);
+        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(bJson);
+        var downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href",     dataStr);
+        downloadAnchorNode.setAttribute("download", "boardgames.json");
+        document.body.appendChild(downloadAnchorNode);
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+      this.spinner.hide();
+    });
   }
 
 }

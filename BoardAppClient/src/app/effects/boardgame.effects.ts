@@ -13,13 +13,14 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { player } from '../models/player.model';
 import * as playerActions from '../actions/player.actions';
 import { StatsService } from '../services/stats.service';
+import { UserService } from '../services/user.service';
 
 const toPayload = <T>(action: { payload: T }) => action.payload;
 
 @Injectable()
 export class BoardgameEffects {
 
-  constructor(private messageService: MessageService, private spinner: NgxSpinnerService, private actions$: Actions, private http: HttpClient, private boardgameService: BordGameService, private store: Store<AppState>, private statsService: StatsService) { }
+  constructor(private messageService: MessageService, private spinner: NgxSpinnerService, private actions$: Actions, private http: HttpClient, private boardgameService: BordGameService, private store: Store<AppState>, private statsService: StatsService, private userService: UserService) { }
 
   @Effect()
   LoadBoardGames$ = this.actions$.pipe(
@@ -47,6 +48,13 @@ export class BoardgameEffects {
         }),
         tap(() => {
           this.spinner.hide();
+        }),
+        tap(() => {
+          if(this.boardgameService.firstLoad){
+            this.messageService.add({severity:'info', summary:'Refresh', detail:'Boardgame list has been refreshed'});
+          } else {
+            this.boardgameService.firstLoad = true;
+          }
         }),
         catchError(err => {
           if (err.status != 404) {
@@ -179,4 +187,14 @@ export class BoardgameEffects {
       )
     })
   )
+
+  @Effect()
+  ClearBoardgame$ = this.actions$.pipe(
+    ofType(BoardgameActions.CLEAR_BOARDGAME),
+    switchMap((action: any) => {
+      debugger;
+      this.boardgameService.firstLoad = false;
+      return of();
+    })
+  );
 }

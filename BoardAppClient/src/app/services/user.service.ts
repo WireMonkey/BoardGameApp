@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  apiUrl = '';
+  private apiUrl = '';
   userId = '';
   validUser = false;
   readonly = false;
@@ -26,7 +26,7 @@ export class UserService {
   }
 
   storeData() {
-    if(this.validUser){
+    if(this.validUser && !this.readonly){
       localStorage.setItem("boardgameToken",this.userId);
     }
   }

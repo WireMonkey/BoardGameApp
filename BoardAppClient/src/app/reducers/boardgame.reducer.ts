@@ -17,6 +17,7 @@ export function boardGameReducer(state: boardgame[] = initState, action: Boardga
       return state;
     case BoardgameActions.CLEAR_BOARDGAME:
       state = [];
+
       return state;
     case BoardgameActions.UPDATE_BOARDGAME:
       let newList = state.filter(game => {

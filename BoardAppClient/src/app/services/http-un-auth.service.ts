@@ -22,8 +22,7 @@ export class HttpUnAuthService implements HttpInterceptor {
           of();
       }
       
-      return throwError(err);
-      
+      return throwError(err); 
   }))
   }
 }

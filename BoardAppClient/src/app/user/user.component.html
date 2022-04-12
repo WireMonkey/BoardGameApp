@@ -33,11 +33,17 @@
                 <qr-code [value]="qrCode"></qr-code>
             </div>
         </div>
+        <div class="ui-grid-row">
+            <a [href]="qrCode" target="_blank">{{qrCode}}</a>
+        </div>
     </div>
   <p-footer>
     <div class="ui-toolbar-group-left">
         <button type="button" pButton icon="pi pi-check" (click)="saveButtonClicked()" label="Save" [disabled]="!validEmail || !validPassword"></button>
     </div>
+    <div class="ui-toolbar-group-right">
+      <button type="button" pButton icon="pi pi-download" (click)="downloadJson()" label="&nbsp;Json"></button>
       <button type="button" pButton icon="pi pi-times" (click)="editUserShow=false" label="Cancel" class="ui-button-secondary"></button>
+    </div>
   </p-footer>
 </p-dialog>

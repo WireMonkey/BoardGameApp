@@ -9,7 +9,9 @@ import { environment } from 'src/environments/environment';
 })
 export class BordGameService {
 
-  apiUrl = '';
+  private apiUrl = '';
+  firstLoad = false;
+  
   constructor(private http: HttpClient, private userService: UserService) {
     this.apiUrl = environment.Url + 'api/boardgames';
   }

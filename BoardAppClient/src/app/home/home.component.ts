@@ -29,11 +29,26 @@ export class HomeComponent implements OnInit, AfterViewInit {
           this.userService.readonly = true;
           this.userService.userId = data.toString();
           this.store.dispatch(new boardgameActions.LoadBoardGames());
+          this.reloadBoardgames();
         }, error => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: "Invalid code provided" });
         });
       }
     }
+  }
+  
+  reloadBoardgames(): void {
+    setTimeout(() => {
+      this.messageService.add({severity:'info', summary:'Refresh', detail:'List will be refreshed every 5 mins'});      
+    },500);
+
+    setInterval(() =>{
+      this.messageService.add({severity:'info', summary:'Refresh', detail:'Refreshing boardgame list'});
+
+      setTimeout(() => {
+        this.store.dispatch(new boardgameActions.LoadBoardGames());
+      },1000);
+    }, 299000)//299000 - 5min
   }
 
 }
